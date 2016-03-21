@@ -2,40 +2,37 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template-general.xhtml">
 
-<h:head>
-	<title>Login</title>
-</h:head>
-<h:body>
-	<h:form id="login" method="POST" action="login">
-		<p:tab></p:tab>
-		<table>
-			<tr>
-				<td>login:</td>
-				<td><p:inputText type="text" required="true"
-						requiredMessage="Introducir nombre" id="userName"
-						value="#{user.user.login}" />
-					<p:message for="userName"></p:message></td>
-			</tr>
-			<tr>
-				<td>pass:</td>
-				<td><p:inputText type="password" required="true"
-						requiredMessage="Introducir contraseña" id="password"
-						value="#{user.user.password}" />
-					<p:message for="password"/></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div align="right">
-						<p:commandButton value="Login" action="#{user.login}" />
-					</div>
-				</td>
-			</tr>
-		</table>
-	</h:form>
+	<ui:define name="title">Login</ui:define>
+	<ui:define name="body">
+		<h:form id="login" method="POST" action="login">
+			<p:tab></p:tab>
+			<table>
+				<tr>
+					<td>login:</td>
+					<td><p:inputText type="text" required="true"
+							requiredMessage="Introducir nombre" id="userName"
+							value="#{user.user.login}" /> <p:message for="userName"></p:message></td>
+				</tr>
+				<tr>
+					<td>pass:</td>
+					<td><p:inputText type="password" required="true"
+							requiredMessage="Introducir contraseña" id="password"
+							value="#{user.user.password}" /> <p:message for="password" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div align="right">
+							<p:commandButton value="Login" action="#{user.login}" />
+						</div>
+					</td>
+				</tr>
+			</table>
+		</h:form>
 
-</h:body>
+	</ui:define>
 
 </ui:composition>
 

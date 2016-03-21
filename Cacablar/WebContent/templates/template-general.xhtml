@@ -8,16 +8,16 @@
 
 <f:view locale="#{settings.locale}">
 	<h:head>
-		<title>#{msgs.tituloHead}</title>
+		<title><ui:insert name="title">#{msgs.tituloDefectoCabecera}</ui:insert></title>
 	</h:head>
 	<h:body>
 				<h1>#{msgs.tituloAplicacion1}</h1>
 				<h2>#{msgs.tituloAplicacion2}</h2>
-				<h2><ui:insert name="titulo">#{msgs.tituloDefectoCabecera}</ui:insert></h2>
+				<h2><ui:insert name="title">#{msgs.tituloDefectoCabecera}</ui:insert></h2>
 
-			<ui:insert name="cuerpo">#{msgs.tituloDefectoCuerpo}</ui:insert>
+			<ui:insert name="body">#{msgs.tituloDefectoCuerpo}</ui:insert>
 		
-			<ui:insert name="pie">#{msgs.tituloPie}</ui:insert>
+			<ui:insert name="foot">#{msgs.tituloPie}</ui:insert>
 
 	</h:body>
 </f:view>

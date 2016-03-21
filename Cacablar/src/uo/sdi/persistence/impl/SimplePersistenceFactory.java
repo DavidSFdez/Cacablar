@@ -2,6 +2,7 @@ package uo.sdi.persistence.impl;
 
 
 import uo.sdi.persistence.PersistenceFactory;
+import uo.sdi.persistence.TripDao;
 import uo.sdi.persistence.UserDao;
 
 /**
@@ -17,6 +18,12 @@ public class SimplePersistenceFactory implements PersistenceFactory {
     public UserDao createUserDao() {
 	
 	return new UserDaoJdbcImpl();
+    }
+
+    @Override
+    public TripDao createTripDao() {
+	
+	return new TripDaoJdbcImpl();
     }
 
 

@@ -34,14 +34,7 @@ public class UserBean implements Serializable{
     {
 	return user.getId()!=null;
     }
-    public String registrarse(){
-	
-	if(user.getId()!=null){
-	    return "fracaso";
-	}
-	
-	return "exito";
-    }
+  
     
     public String login(){
 	

@@ -3,7 +3,7 @@ package uo.sdi.business.impl;
 import uo.sdi.business.UsersService;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
-import uo.sdi.business.impl.classes.UsersAlta;
+import uo.sdi.business.impl.classes.user.UsersAlta;
 import uo.sdi.model.User;
 
 

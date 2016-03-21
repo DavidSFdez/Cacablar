@@ -13,6 +13,8 @@ public interface PersistenceFactory {
 
     UserDao createUserDao();
     
+    TripDao createTripDao();
+    
 	
 	
 	// ... otros m��todos factoria para Daos de otras entidades del modelo ...

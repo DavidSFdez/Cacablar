@@ -1,4 +1,4 @@
-package uo.sdi.business.impl.classes;
+package uo.sdi.business.impl.classes.user;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.infrastructure.Factories;

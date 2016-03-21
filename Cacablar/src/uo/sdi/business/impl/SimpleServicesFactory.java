@@ -3,6 +3,7 @@ package uo.sdi.business.impl;
 
 import uo.sdi.business.LoginService;
 import uo.sdi.business.ServicesFactory;
+import uo.sdi.business.TripsService;
 import uo.sdi.business.UsersService;
 
 public class SimpleServicesFactory implements ServicesFactory {
@@ -17,6 +18,12 @@ public class SimpleServicesFactory implements ServicesFactory {
 	public LoginService createLoginService() {
 	    
 	    return new SimpleLoginService();
+	}
+
+	@Override
+	public TripsService createTripsService() {
+	    
+	    return new SimpleTripsService();
 	}
 
 	
