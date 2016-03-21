@@ -13,6 +13,7 @@ import uo.sdi.model.User;
 public class UserBean implements Serializable{
 
     private User user;
+   
     
     public UserBean(){
 	user = new User();
@@ -25,7 +26,14 @@ public class UserBean implements Serializable{
     public void setUser(User user) {
         this.user = user;
     }
-    
+    public boolean isNotLogged()
+    {
+	return user.getId()==null;
+    }
+    public boolean isLogged()
+    {
+	return user.getId()!=null;
+    }
     public String registrarse(){
 	
 	if(user.getId()!=null){
