@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14246831526460" configfile="/Notaneitorv3_0/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf14585735255690" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14585735255691 pf14585735255692" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="registrarse.xhtml" id="pf14585735255693" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14585735255694 pf14585735255695" inlinks="pf14585735255691" path="/registrarse.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="principal.xhtml" id="pf14585735255696" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14585735255692" path="/principal.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14585735255697" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf14585735255694 pf14585735255695" path="/login.xhtml"/>
+  <links id="pf14585735255691" target="pf14585735255693" source="pf14585735255690" outcome="exito" fromaction="#{user.registrarse}"/>
+  <links id="pf14585735255692" target="pf14585735255696" source="pf14585735255690" outcome="exito" fromaction="#{user.login}"/>
+  <links id="pf14585735255694" target="pf14585735255697" source="pf14585735255693" outcome="exito" fromaction="#{registro.registrarse}"/>
+  <links id="pf14585735255695" target="pf14585735255697" source="pf14585735255693" outcome="fracaso"/>
+</pageflow:Pageflow>

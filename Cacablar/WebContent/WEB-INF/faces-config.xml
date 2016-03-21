@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{user.registrarse}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/registrarse.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{user.login}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/principal.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/registrarse.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{registro.registrarse}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>fracaso</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>
