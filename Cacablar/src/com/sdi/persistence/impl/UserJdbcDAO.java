@@ -22,7 +22,7 @@ public class UserJdbcDAO implements UsersDao {
     // que sacarlas a un sistema de configuración:
     // xml, properties, descriptores de despliege, etc
     String SQL_DRV = "org.hsqldb.jdbcDriver";
-    String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+    String SQL_URL = "jdbc\\:hsqldb\\:hsql\\://localhost";
 
     /*
      * public List<Alumno> getAlumnos() { PreparedStatement ps = null; ResultSet
