@@ -37,7 +37,7 @@ public class UserBean implements Serializable{
     
     public String login(){
 	
-	user = Factories.services.createLoginService().verify(user.getName(), user.getPassword());
+	user = Factories.services.createLoginService().verify(user.getLogin(), user.getPassword());
 	
 	return user==null? "fracaso" : "exito";
     }
