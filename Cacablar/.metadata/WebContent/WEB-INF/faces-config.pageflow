@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14246831526460" configfile="/Cacablar/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf145858095644211" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" outlinks="pf145858110078026 pf145858110078027" inlinks="pf145858101266718 pf145858110078028 pf145858110078029" path="/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf145858101266720" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf145858101266718 pf145858102265721 pf145858110078030" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" id="pf145858102265722" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf145858110078028 pf145858110078029" inlinks="pf145858102265721 pf145858110078026" path="/register.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="principal.xhtml" id="pf145858110078031" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf145858110078027" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="listTrips.xhtml" id="pf145858110078032" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf145858110078030" path="/listTrips.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="554" y="178" id="pf145858095644211" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14586656830700" inlinks="pf145858101266718" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="178" id="pf145858101266720" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" outlinks="pf145858101266718 pf145858102265721 pf145858110078030" inlinks="pf14586656830700 pf14586656830711 pf14586656830712" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="178" id="pf145858102265722" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14586656830711 pf14586656830712" inlinks="pf145858102265721" path="/register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="principal.xhtml" x="122" y="562" id="pf145858110078031" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listTrips.xhtml" x="554" y="562" id="pf145858110078032" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf145858110078030" path="/listTrips.xhtml"/>
   <links id="pf145858101266718" target="pf145858095644211" source="pf145858101266720" outcome="login"/>
   <links id="pf145858102265721" target="pf145858102265722" source="pf145858101266720" outcome="register"/>
-  <links id="pf145858110078026" target="pf145858102265722" source="pf145858095644211" outcome="exito" fromaction="#{user.registrarse}"/>
-  <links id="pf145858110078027" target="pf145858110078031" source="pf145858095644211" outcome="exito" fromaction="#{user.login}"/>
-  <links id="pf145858110078028" target="pf145858095644211" source="pf145858102265722" outcome="exito" fromaction="#{registro.registrarse}"/>
-  <links id="pf145858110078029" target="pf145858095644211" source="pf145858102265722" outcome="fracaso"/>
   <links id="pf145858110078030" target="pf145858110078032" source="pf145858101266720" outcome="list"/>
+  <links id="pf14586656830700" target="pf145858101266720" source="pf145858095644211" outcome="exito" fromaction="#{user.login}"/>
+  <links id="pf14586656830711" target="pf145858101266720" source="pf145858102265722" outcome="exito" fromaction="#{user.register}"/>
+  <links id="pf14586656830712" target="pf145858101266720" source="pf145858102265722" outcome="fracaso"/>
 </pageflow:Pageflow>
