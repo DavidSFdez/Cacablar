@@ -11,11 +11,11 @@ public class UsersAlta {
 
     public void save(User user) throws EntityAlreadyExistsException {
 	UserDao dao = Factories.persistence.createUserDao();
-	//try {
-		dao.save(user);
-	//}
-	//catch (AlreadyPersistedException ex) {
-	//	throw new EntityAlreadyExistsException("Usuario ya existe " + user, ex);
-	//}
+	
+		try {
+		    dao.save(user);
+		} catch (AlreadyPersistedException e) {
+		    throw new EntityAlreadyExistsException("Usuario ya existe " + user, e);
+		}
 }
 }

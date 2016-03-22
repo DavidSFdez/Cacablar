@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import uo.sdi.persistence.exception.PersistenceException;
 import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
@@ -75,7 +76,8 @@ public class TripDaoJdbcImpl implements TripDao {
 
 	@Override
 	public Long save(Trip dto) {
-		jdbcTemplate.execute("TRIP_INSERT", 
+	    
+	    jdbcTemplate.execute("TRIP_INSERT", 
 				dto.getDeparture().getAddress(), 
 				dto.getDeparture().getCity(), 
 				dto.getDeparture().getState(), 
@@ -107,7 +109,10 @@ public class TripDaoJdbcImpl implements TripDao {
 
 	@Override
 	public int update(Trip dto) {
-		return jdbcTemplate.execute("TRIP_UPDATE", 
+		int salida = -1;
+		
+		
+		    salida = jdbcTemplate.execute("TRIP_UPDATE", 
 				dto.getDeparture().getAddress(), 
 				dto.getDeparture().getCity(), 
 				dto.getDeparture().getState(), 
@@ -136,6 +141,9 @@ public class TripDaoJdbcImpl implements TripDao {
 				
 				dto.getId()
 			);
+		
+	    
+	    return salida;
 	}
 
 	@Override
@@ -173,6 +181,12 @@ public class TripDaoJdbcImpl implements TripDao {
 	@Override
 	public List<Trip> findWhenParticipated(Long id) {
 	    return jdbcTemplate.queryForList("TRIP_FIND_WHEN_PARTICIPATED", new TripMapper(), id, id, id);
+	}
+
+	@Override
+	public List<Trip> findAllActiveToUser(Long idUser) {
+	    
+	    return jdbcTemplate.queryForList("TRIP_FIND_ACTUALES_TO_USER", new TripMapper(), idUser);
 	}
 
 }

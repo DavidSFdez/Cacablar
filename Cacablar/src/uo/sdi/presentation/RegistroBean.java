@@ -10,6 +10,13 @@ import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.User;
 import uo.sdi.model.UserStatus;
 
+/**
+ * 
+ * esta clase sobra
+ * @author D
+ *
+ */
+
 @ManagedBean(name="registro")
 @RequestScoped
 public class RegistroBean implements Serializable{

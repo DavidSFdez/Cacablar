@@ -2,6 +2,10 @@ package uo.sdi.persistence.util;
 
 import java.util.List;
 
+import uo.sdi.persistence.exception.AlreadyPersistedException;
+
+import uo.sdi.persistence.exception.NotPersistedException;
+
 /**
  * Generic interface for all types of Dao
  * @author alb
@@ -16,21 +20,21 @@ public interface GenericDao<T, K> {
 	 * @param dto
 	 * @return The generated key K if any
 	 */
-	K save(T dto);
+	K save(T dto) throws AlreadyPersistedException;
 
 	/**
 	 * Updates a table row with data from a DTO
 	 * @param dto
 	 * @return The number of affected rows (0 or 1)
 	 */
-	int update(T dto);
+	int update(T dto) throws NotPersistedException;
 	
 	/**
 	 * Deletes a table row with the K id key
 	 * @param K key in the table
 	 * @return The number of affected rows (0 or 1)
 	 */
-	int delete(K id);
+	int delete(K id) throws NotPersistedException;
 	
 	T findById(K id);
 	List<T> findAll();

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import uo.sdi.business.exception.EntityAlreadyExistsException;
+import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Trip;
 
@@ -27,31 +29,63 @@ public class TripBean implements Serializable{
     
    public List<Trip> getListActive(){
        List<Trip> trips = null;
-       trips = Factories.services.createTripsService().listActive();
+       try {
+	trips = Factories.services.createTripsService().listActive();
+    } catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+    }
        return trips;
    }
    
    public List<Trip> getListRelated(Long idUser){
        List<Trip> trips = new LinkedList<Trip>();
-       
+       try {
+	trips = Factories.services.createTripsService().listRelated(idUser);
+    } catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+    }
        return trips;
    }
    
-   public String updateTrip(Long idUser){
+   public List<Trip> getListActiveToUser(Long idUser){
        List<Trip> trips = new LinkedList<Trip>();
-       //TODO comprobar que el usuario sea promotor
+       try {
+	trips = Factories.services.createTripsService().listActiveToUser(idUser);
+    } catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+    }
+       return trips;       
+   }
+   
+   public String updateTrip(Long idUser){
 
-       return "fracaso";
+       try {
+	Factories.services.createTripsService().update(trip,idUser);
+    } catch (EntityNotFoundException e) {
+	return "fracaso";
+    }
+       
+       return "exito";
    }
    public String cancelTrip(Long idUser){
-       List<Trip> trips = new LinkedList<Trip>();
-       //TODO comprobar que el usuario sea promotor
-       return "fracaso";
+       
+       try {
+	Factories.services.createTripsService().cancel(trip, idUser);
+    } catch (EntityNotFoundException e) {
+	 return "fracaso";
+    }
+       return "exito";
    }
    public String saveTrip(Long idUser){
-       List<Trip> trips = new LinkedList<Trip>();
-       //TODO comprobar que el usuario existe
-       return "fracaso";
+       try {
+	Factories.services.createTripsService().save(trip, idUser);
+    } catch (EntityAlreadyExistsException e) {
+	 return "fracaso";
+    }
+       return "exito";
    }
    
    
