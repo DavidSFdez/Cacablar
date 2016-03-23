@@ -20,6 +20,10 @@
 			<p>
 				<p:link value="list Trips" outcome="list" />
 			</p>
+			<p>
+				<p:link value="Regist new trip" outcome="registTrip"
+					rendered="#{user.logged}" />
+			</p>
 		</h:form>
 	</ui:define>
 

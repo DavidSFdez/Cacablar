@@ -10,6 +10,8 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FlowEvent;
 
+import uo.sdi.business.exception.EntityAlreadyExistsException;
+import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Trip;
 import uo.sdi.model.Waypoint;
@@ -24,15 +26,15 @@ public class TripWizard implements Serializable {
     private String stateD;
     private String countryD;
     private String zipCodeD;
-    private Double latD=0D;
-    private Double lonD=0D;
+    private Double latD = 0D;
+    private Double lonD = 0D;
     private String addressA;
     private String cityA;
     private String stateA;
     private String countryA;
     private String zipCodeA;
-    private Double latA=0D;
-    private Double lonA=0D;
+    private Double latA = 0D;
+    private Double lonA = 0D;
 
     public Trip getTrip() {
 	return trip;
@@ -42,16 +44,24 @@ public class TripWizard implements Serializable {
 	this.trip = trip;
     }
 
-    public void save(Long UserId) {
-	//TODO 
-	AddressPoint departure = new AddressPoint(addressD, cityD, stateD, countryD,zipCodeD, new Waypoint(latD, lonD));
-	AddressPoint destination = new AddressPoint(addressA, cityA, stateA, countryA,zipCodeA, new Waypoint(latA, lonA));
-	
+    public String save(Long idUser) {
+	// TODO
+	AddressPoint departure = new AddressPoint(addressD, cityD, stateD,
+		countryD, zipCodeD, new Waypoint(latD, lonD));
+	AddressPoint destination = new AddressPoint(addressA, cityA, stateA,
+		countryA, zipCodeA, new Waypoint(latA, lonA));
+
 	trip.setDeparture(departure);
 	trip.setDestination(destination);
-	
-	FacesMessage msg = new FacesMessage("Successful", "Welcome :");
-	FacesContext.getCurrentInstance().addMessage(null, msg);
+
+	try {
+	    Factories.services.createTripsService().save(trip, idUser);
+	} catch (EntityAlreadyExistsException e) {
+
+	    return "fracaso";
+	}
+
+	return "exito";
     }
 
     public String onFlowProcess(FlowEvent event) {
@@ -65,120 +75,119 @@ public class TripWizard implements Serializable {
     }
 
     public String getAddressD() {
-        return addressD;
+	return addressD;
     }
 
     public void setAddressD(String addressD) {
-        this.addressD = addressD;
+	this.addressD = addressD;
     }
 
     public String getCityD() {
-        return cityD;
+	return cityD;
     }
 
     public void setCityD(String cityD) {
-        this.cityD = cityD;
+	this.cityD = cityD;
     }
 
     public String getStateD() {
-        return stateD;
+	return stateD;
     }
 
     public void setStateD(String stateD) {
-        this.stateD = stateD;
+	this.stateD = stateD;
     }
 
     public String getCountryD() {
-        return countryD;
+	return countryD;
     }
 
     public void setCountryD(String countryD) {
-        this.countryD = countryD;
+	this.countryD = countryD;
     }
 
     public String getZipCodeD() {
-        return zipCodeD;
+	return zipCodeD;
     }
 
     public void setZipCodeD(String zipCodeD) {
-        this.zipCodeD = zipCodeD;
+	this.zipCodeD = zipCodeD;
     }
 
     public Double getLatD() {
-        return latD;
+	return latD;
     }
 
     public void setLatD(Double latD) {
-        this.latD = latD;
+	this.latD = latD;
     }
 
     public Double getLonD() {
-        return lonD;
+	return lonD;
     }
 
     public void setLonD(Double lonD) {
-        this.lonD = lonD;
+	this.lonD = lonD;
     }
 
     public String getAddressA() {
-        return addressA;
+	return addressA;
     }
 
     public void setAddressA(String addressA) {
-        this.addressA = addressA;
+	this.addressA = addressA;
     }
 
     public String getCityA() {
-        return cityA;
+	return cityA;
     }
 
     public void setCityA(String cityA) {
-        this.cityA = cityA;
+	this.cityA = cityA;
     }
 
     public String getStateA() {
-        return stateA;
+	return stateA;
     }
 
     public void setStateA(String stateA) {
-        this.stateA = stateA;
+	this.stateA = stateA;
     }
 
     public String getCountryA() {
-        return countryA;
+	return countryA;
     }
 
     public void setCountryA(String countryA) {
-        this.countryA = countryA;
+	this.countryA = countryA;
     }
 
     public String getZipCodeA() {
-        return zipCodeA;
+	return zipCodeA;
     }
 
     public void setZipCodeA(String zipCodeA) {
-        this.zipCodeA = zipCodeA;
+	this.zipCodeA = zipCodeA;
     }
 
     public Double getLatA() {
-        return latA;
+	return latA;
     }
 
     public void setLatA(Double latA) {
-        this.latA = latA;
+	this.latA = latA;
     }
 
     public Double getLonA() {
-        return lonA;
+	return lonA;
     }
 
     public void setLonA(Double lonA) {
-        this.lonA = lonA;
+	this.lonA = lonA;
     }
 
     public void setTrip(Trip trip) {
-        this.trip = trip;
+	this.trip = trip;
     }
-    
-    
+
 }
