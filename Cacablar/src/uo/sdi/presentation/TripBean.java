@@ -38,7 +38,7 @@ public class TripBean implements Serializable{
        return trips;
    }
    
-   public List<Trip> getListRelated(Long idUser){
+   public List<Trip> listRelated(Long idUser){
        List<Trip> trips = new LinkedList<Trip>();
        try {
 	trips = Factories.services.createTripsService().listRelated(idUser);
