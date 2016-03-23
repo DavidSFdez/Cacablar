@@ -14,6 +14,8 @@ public interface PersistenceFactory {
     UserDao createUserDao();
     
     TripDao createTripDao();
+
+    SeatDao createSeatDao();
     
 	
 	

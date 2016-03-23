@@ -18,6 +18,10 @@
 				<f:facet name="header">origen</f:facet>#{var.departure.city}</p:column>
 			<p:column>
 				<f:facet name="header">destino</f:facet>#{var.destination.city}</p:column>
+			<p:column>
+				<p:commandButton value="Solicitar Plaza" rendered="#{!trip.isSitting(user.user.id,var.id)}" />
+				<p:commandButton value="Cancelar Plaza" rendered="#{trip.isSitting(user.user.id,var.id)}" />
+			</p:column>
 		</p:dataTable>
 	</ui:define>
 	<ui:define name="foot">

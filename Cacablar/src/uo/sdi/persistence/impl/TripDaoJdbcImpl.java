@@ -189,4 +189,13 @@ public class TripDaoJdbcImpl implements TripDao {
 	    return jdbcTemplate.queryForList("TRIP_FIND_ACTUALES_TO_USER", new TripMapper(), idUser);
 	}
 
+	@Override
+	public Trip findByIdAndPromoter(Long idTrip, Long idUser) {
+	    
+	    return jdbcTemplate.queryForObject(
+			"TRIP_FIND_BY_ID_AND_PROMOTER", 
+			new TripMapper(), idTrip,idUser
+		);
+	}
+
 }

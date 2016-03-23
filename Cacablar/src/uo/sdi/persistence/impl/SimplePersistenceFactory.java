@@ -2,6 +2,7 @@ package uo.sdi.persistence.impl;
 
 
 import uo.sdi.persistence.PersistenceFactory;
+import uo.sdi.persistence.SeatDao;
 import uo.sdi.persistence.TripDao;
 import uo.sdi.persistence.UserDao;
 
@@ -24,6 +25,12 @@ public class SimplePersistenceFactory implements PersistenceFactory {
     public TripDao createTripDao() {
 	
 	return new TripDaoJdbcImpl();
+    }
+
+    @Override
+    public SeatDao createSeatDao() {
+	// TODO Auto-generated method stub
+	return new SeatDaoJdbcImpl();
     }
 
 

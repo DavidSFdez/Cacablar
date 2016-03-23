@@ -8,4 +8,6 @@ public interface ServicesFactory {
 	
 	TripsService createTripsService();
 
+	SeatsService createSeatsService();
+
 }
