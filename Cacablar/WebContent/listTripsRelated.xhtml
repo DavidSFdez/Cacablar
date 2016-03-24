@@ -9,7 +9,7 @@
    Viajes Promocionados
   </ui:define>
 
-	<ui:define name="body">
+	<ui:define name="content">
 		<p:dataTable id="tablalistado" var="var"
 			value="#{trip.listRelated(user.user.id)}" border="1">
 			<p:column>
@@ -35,8 +35,5 @@
 
 
 		</p:dataTable>
-	</ui:define>
-	<ui:define name="foot">
-		<ui:include src="/snippets/pie-casa.xhtml" />
 	</ui:define>
 </ui:composition>

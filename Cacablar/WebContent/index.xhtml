@@ -7,30 +7,15 @@
 
 	<ui:define name="title">Bienvenido a Cacablar!</ui:define>
 
-	<ui:define name="body">
-
-		<h:form id="form-principal">
-			<p>
-				<p:link value="login" outcome="login" rendered="#{!user.logged}" />
-			</p>
-			<p>
-				<p:link value="register" outcome="register"
-					rendered="#{!user.logged}" />
-			</p>
-			<p>
-				<p:link value="list Trips" outcome="list" />
-			</p>
-			<p>
-				<p:link value="Regist new trip" outcome="registTrip"
-					rendered="#{user.logged}" />
-			</p>
-			<p>
-				<p:link value="list related trips" outcome="listRelated"
-					rendered="#{user.logged}" />
-			</p>
-		</h:form>
+	<ui:define name="content">
+		<p:button value="login" outcome="login" rendered="#{!user.logged}" />
+		<p:button value="register" outcome="register" rendered="#{!user.logged}" />
+		<p:button value="list Trips" outcome="list" />
+		<p:button value="Regist new trip" outcome="registTrip"
+			rendered="#{user.logged}" />
+		<p:button value="list related trips" outcome="listRelated"
+			rendered="#{user.logged}" />
 	</ui:define>
 
-
-
+	<ui:define name="footer"></ui:define>
 </ui:composition>

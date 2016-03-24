@@ -6,32 +6,29 @@
 	template="/templates/template-general.xhtml">
 
 	<ui:define name="title">Login</ui:define>
-	<ui:define name="body">
+
+	<ui:define name="content">
+
 		<h:form id="login" method="POST" action="login">
-			<p:tab></p:tab>
-			<table>
-				<tr>
-					<td>login:</td>
-					<td><p:inputText type="text" required="true"
-							requiredMessage="Introducir nombre" id="userName"
-							value="#{user.user.login}" /> <p:message for="userName"></p:message></td>
-				</tr>
-				<tr>
-					<td>pass:</td>
-					<td><p:inputText type="password" required="true"
-							requiredMessage="Introducir contraseña" id="password"
-							value="#{user.user.password}" /> <p:message for="password" /></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<div align="right">
-							<p:commandButton value="Login" action="#{user.login}" />
-						</div>
-					</td>
-				</tr>
-			</table>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="#nombreUsuario:" />
+				<p:inputText id="username" value="#{user.user.login}"
+					required="true" label="username" />
+
+				<h:outputLabel for="password" value="#Contraseña:" />
+				<p:password id="password" value="#{user.user.password}"
+					required="true" label="password" />
+				<span></span>
+				<p:commandButton value="Login" action="#{user.login}" />
+
+			</h:panelGrid>
+
 		</h:form>
 
+	</ui:define>
+
+	<ui:define name="footer">
+		<ui:include src="/snippets/footer.xhtml" />
 	</ui:define>
 
 </ui:composition>

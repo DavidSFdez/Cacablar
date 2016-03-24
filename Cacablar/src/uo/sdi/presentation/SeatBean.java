@@ -23,12 +23,12 @@ public class SeatBean implements Serializable {
     public boolean isSitting(Long idUser, Long idTrip) {
 	// TODO comprobar el asiento en la otra tabla, que no me acordé de la
 	// puta tabla de mierda nueva
-	/*
-	 * return Factories.services.createSeatsService().findByUserAndTrip(
-	 * idTrip, idUser) == null ? false : true;
-	 */
-	return Factories.services.createSeatsService().findByUserAndTrip(
-		idUser, idTrip) == null ? false : true;
+	
+	  return Factories.services.createSeatsService().findByUserAndTrip(
+	  idTrip, idUser) == null ? false : true;
+	 
+//	return Factories.services.createSeatsService().findByUserAndTrip(
+//		idUser, idTrip) == null ? false : true;
     }
 
     public String request(Long idUser, Long idTrip) {

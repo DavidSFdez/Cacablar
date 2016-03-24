@@ -8,17 +8,40 @@
 
 <f:view locale="#{settings.locale}">
 	<h:head>
+		<!-- 
+			<meta name="viewport" content="width=device-width, initial-scale=1" />  
+			<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css" />
+		-->
 		<title><ui:insert name="title">#{msgs.tituloDefectoCabecera}</ui:insert></title>
 	</h:head>
 	<h:body>
-				<h1>#{msgs.tituloAplicacion1}</h1>
-				<h2>#{msgs.tituloAplicacion2}</h2>
-				<h2><ui:insert name="title">#{msgs.tituloDefectoCabecera}</ui:insert></h2>
-
-			<ui:insert name="body">#{msgs.tituloDefectoCuerpo}</ui:insert>
-		
-			<ui:insert name="foot">#{msgs.tituloPie}</ui:insert>
-
+		<div class="w3-container">
+			<h1>#msgs.tituloAplicacion1</h1>
+			<h2>#msgs.tituloAplicacion2</h2>
+			<h3>
+				<ui:insert name="title">#msgs.tituloDefectoCabecera</ui:insert>
+			</h3>
+		</div>
+		<div class="w3-container">
+			<h:form id="form-nav">
+				<ui:insert name="nav">
+				</ui:insert>
+			</h:form>
+		</div>
+		<div class="w3-container">
+			<h:form id="form-content">
+				<ui:insert name="content">
+			#msgs.tituloDefectoCuerpo
+		</ui:insert>
+			</h:form>
+		</div>
+		<div class="w3-container">
+			<h:form id="form-footer">
+				<ui:insert name="footer">
+					<ui:include src="/snippets/footer.xhtml" />
+				</ui:insert>
+			</h:form>
+		</div>
 	</h:body>
 </f:view>
 </html>

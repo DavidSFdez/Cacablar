@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:column>
+		<f:facet name="header">ID</f:facet>
+		<p:commandLink actionListener="#{seat.view(var.id)}">
+			<h:outputText value="#{var.id}" />
+		</p:commandLink>
+	</p:column>
+	<p:column>
+		<f:facet name="header">#Origen</f:facet>#{var.departure.city}</p:column>
+	<p:column>
+		<f:facet name="header">#Destino</f:facet>#{var.destination.city}</p:column>
+	<p:column>
+		<p:commandButton value="#VerViaje"
+			actionListener="#{seat.view(var.id)}" />
+	</p:column>
+
+</ui:composition>

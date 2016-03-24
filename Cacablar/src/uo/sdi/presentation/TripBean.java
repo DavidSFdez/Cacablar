@@ -99,7 +99,7 @@ public class TripBean implements Serializable {
 	return "exito";
     }
     
-    public String manage(Long idTrip){
+    public String view(Long idTrip){
 	//revisar el facesconfig, no estoy seguro de que sea así como se cambie de página aunque funcione
 	try {
 	    trip = Factories.services.createTripsService().findById(idTrip);
