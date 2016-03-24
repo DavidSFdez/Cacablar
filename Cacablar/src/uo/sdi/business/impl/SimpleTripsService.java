@@ -6,6 +6,7 @@ import uo.sdi.business.TripsService;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.business.impl.classes.trip.TripsCancel;
+import uo.sdi.business.impl.classes.trip.TripsFindById;
 import uo.sdi.business.impl.classes.trip.TripsFindByIdAndPromoter;
 import uo.sdi.business.impl.classes.trip.TripsListActive;
 import uo.sdi.business.impl.classes.trip.TripsListActiveToUser;
@@ -56,6 +57,12 @@ public class SimpleTripsService implements TripsService {
     public Trip findByIdandPromoter(Long idTrip, Long idUser){
 	
 	return new TripsFindByIdAndPromoter().find(idTrip,idUser);
+    }
+
+    @Override
+    public Trip findById(Long idTrip) throws EntityNotFoundException {
+	
+	return new TripsFindById().find(idTrip);
     }
 
   

@@ -11,11 +11,11 @@
 
 		<h:form id="form-principal">
 			<p>
-				<p:link value="login" outcome="login" rendered="#{user.notLogged}" />
+				<p:link value="login" outcome="login" rendered="#{!user.logged}" />
 			</p>
 			<p>
 				<p:link value="register" outcome="register"
-					rendered="#{user.notLogged}" />
+					rendered="#{!user.logged}" />
 			</p>
 			<p>
 				<p:link value="list Trips" outcome="list" />

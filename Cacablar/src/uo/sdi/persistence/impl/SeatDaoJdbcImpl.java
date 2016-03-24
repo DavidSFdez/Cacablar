@@ -88,4 +88,12 @@ public class SeatDaoJdbcImpl implements SeatDao {
 		);
 	}
 
+	@Override
+	public void request(Seat seat) {
+	    jdbcTemplate.execute("APPLICATION_INSERT", 
+			seat.getUserId(),seat.getTripId()
+		);
+	    
+	}
+
 }

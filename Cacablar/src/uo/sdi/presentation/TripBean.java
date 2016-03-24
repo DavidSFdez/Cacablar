@@ -54,18 +54,16 @@ public class TripBean implements Serializable {
 		idTrip, idUser) == null ? false : true;
     }
 
-    public boolean isSitting(Long idTrip, Long idUser) {
-	return Factories.services.createSeatsService().findByUserAndTrip(
-		idTrip, idUser) == null ? false : true;
-    }
-
-    public List<Trip> getListActiveToUser(Long idUser) {
+   public List<Trip> getListActiveToUser(Long idUser) {
 	List<Trip> trips = new LinkedList<Trip>();
+	if (idUser == null)
+	    return getListActive();
 	try {
+
 	    trips = Factories.services.createTripsService().listActiveToUser(
 		    idUser);
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
+	  
 	    e.printStackTrace();
 	}
 	return trips;
@@ -100,5 +98,18 @@ public class TripBean implements Serializable {
 	}
 	return "exito";
     }
+    
+    public String manage(Long idTrip){
+	//revisar el facesconfig, no estoy seguro de que sea así como se cambie de página aunque funcione
+	try {
+	    trip = Factories.services.createTripsService().findById(idTrip);
+	} catch (EntityNotFoundException e) {
+
+	    return "fracaso";
+	}
+	
+	return "exito";
+    }
+    
 
 }

@@ -29,8 +29,8 @@
 			        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			    </p:confirmDialog>
 			<!-- Fin botón cancelar viaje -->
-				<p:commandButton value="Gestionar Plazas" rendered="#{trip.isPromoter(var.id,user.user.id)}"  />
-				<p:commandButton value="Cancelar Plaza" rendered="#{!trip.isSitting(user.user.id,var.id)}" />
+				<p:commandButton value="Gestionar Plazas" rendered="#{trip.isPromoter(var.id,user.user.id)}" action="#{trip.manage(var.id)}" />
+				<p:commandButton value="Cancelar Plaza" rendered="#{seat.isSitting(user.user.id,var.id)}" />
 			</p:column>
 
 
