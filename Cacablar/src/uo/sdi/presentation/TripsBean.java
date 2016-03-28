@@ -2,6 +2,8 @@ package uo.sdi.presentation;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
@@ -15,27 +17,61 @@ import uo.sdi.model.Trip;
 @RequestScoped
 public class TripsBean implements Serializable {
 
-    private Set<Trip> trips;
+    private List<Trip> trips;
+    
+    private List<Trip> tripsToCancel;
+
+    private boolean aux = false;
+
+    
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+
+    public List<Trip> getTripsToCancel() {
+        return tripsToCancel;
+    }
+
+    public void setTripsToCancel(List<Trip> tripsToCancel) {
+        this.tripsToCancel = tripsToCancel;
+    }
+
+    public boolean isAux() {
+	return aux;
+    }
+
+    public void setAux(boolean aux) {
+	this.aux = aux;
+    }
 
     public TripsBean() {
-	trips = new HashSet<>();
+	trips = new LinkedList<>();
+	tripsToCancel = new LinkedList<>();
     }
 
     public void cancel(Trip trip) {
 
-	if (!trips.add(trip))
-	    trips.remove(trip);
+	if(tripsToCancel.contains(trip))
+	    tripsToCancel.remove(trip);
+	else
+	    tripsToCancel.add(trip);
 
     }
 
     public boolean value(Trip trip) {
-	return trips.contains(trip);
+
+	return tripsToCancel.contains(trip);
     }
 
     public String cancelTrips(long idUser) {
 
 	try {
-	    for (Trip trip : trips)
+	    for (Trip trip : tripsToCancel)
 		Factories.services.createTripsService().cancel(trip, idUser);
 	} catch (EntityNotFoundException e) {
 	    // rollback?
@@ -44,4 +80,47 @@ public class TripsBean implements Serializable {
 
 	return "exito";
     }
+
+    public List<Trip> getListActive() {
+	List<Trip> trips = null;
+	try {
+	    trips = Factories.services.createTripsService().listActive();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	this.trips=trips;
+	return trips;
+    }
+
+    public List<Trip> listRelated(Long idUser) {
+	List<Trip> trips = new LinkedList<Trip>();
+	try {
+	    trips = Factories.services.createTripsService().listRelated(idUser);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	this.trips=trips;
+	return trips;
+    }
+
+    public List<Trip> getListActiveToUser(Long idUser) {
+	List<Trip> trips = new LinkedList<Trip>();
+
+	if (idUser == null){
+	    this.trips=trips;
+	    return getListActive();
+	}
+
+	try {
+
+	    trips = Factories.services.createTripsService().listActiveToUser(
+		    idUser);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+
+	this.trips=trips;
+	return trips;
+    }
+
 }

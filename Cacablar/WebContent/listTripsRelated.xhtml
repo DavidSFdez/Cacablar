@@ -11,7 +11,7 @@
 
 	<ui:define name="content">
 		<p:dataTable id="tablalistado" var="var"
-			value="#{trip.listRelated(user.user.id)}" border="1">
+			value="#{trips.listRelated(user.user.id)}" border="1">
 
 			<ui:include src="/snippets/TripTableBody.xhtml" />
 
@@ -22,7 +22,8 @@
 
 			<p:column>
 				<f:facet name="header">#Controles</f:facet>
-				<p:selectBooleanCheckbox value="#{trips.value(var)}"
+				<!-- Aquí iría una llamada al método value pero no funciona así que tendremos que buscar una forma equivalente -->
+				<p:selectBooleanCheckbox value="#{trips.aux}"
 					rendered="#{trip.isPromoter(var.id,user.user.id)}">
 					<p:ajax listener="#{trips.cancel(var)}" />
 				</p:selectBooleanCheckbox>
@@ -32,7 +33,8 @@
 		</p:dataTable>
 		<!-- Botón para cancelar el viaje -->
 		<p:commandButton value="Cancelar Viaje(s)"
-			action="#{trips.cancelTrips(user.user.id)">
+			action="#{trips.cancelTrips(user.user.id)}">
+			<p:ajax listener="#{trips.trips}" update="tablalistado"></p:ajax>
 			<p:confirm header="Confirmation"
 				message="Borrar viajes seleccionados ¿Estás seguro?"
 				icon="ui-icon-alert"></p:confirm>
