@@ -12,15 +12,17 @@
 		<p:column>
 			<f:facet name="header">#Comment</f:facet>#{var.comment}</p:column>
 		<p:column>
-			<f:facet name="header">#Actions</f:facet>#{var.status}</p:column>
+			<f:facet name="header">#Status</f:facet>#{var.status}</p:column>
 		<h:form
-			rendered="#{trip.trip.promoterId == user.user.id || var.userId == user.user.id}">
+			rendered="#{seat.isSitting(user.user.id,trip.trip.id) || trip.isPromoter(trip.trip.id,user.user.id)}">
 			<p:column>
 				<f:facet name="header">#Action</f:facet>
-					Aqui va un boton para cancelar el asiento actual(var)
+					<p:commandButton value="#Cancelar plaza"
+				action="#{seat.CancelSeat(user.user.id,trip.trip.id)}" />
+					<!-- Aqui va un boton para cancelar el asiento actual(var)
 					Esta disponible para el promotor y para el usuario que se sienta
 					El boton llama a un metodo de Seats que es candelar asiento
-					Se usa ajax para hacer el update de "asientos" de esta manera que se actualiza la tabla de asientos únicamente por ajax al cancelar el asiento
+					Se usa ajax para hacer el update de "asientos" de esta manera que se actualiza la tabla de asientos únicamente por ajax al cancelar el asiento -->
 			</p:column>
 		</h:form>
 	</p:dataTable>

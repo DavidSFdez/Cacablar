@@ -118,7 +118,7 @@
 				<h:outputText value="#{trip.trip.availablePax}"
 					styleClass="outputLabel" />
 			</h:panelGrid>
-			
+
 			<!-- 	Estoy relacionado con este viaje: #{trip.isUserRetated(user.user.id)} -->
 
 			<!--	Si estas conectado se ven los datos del viaje -->
@@ -126,7 +126,7 @@
 				<p:separator rendered="#{user.logged}" />
 
 				<ui:include src="/snippets/privateTripData.xhtml" />
-				
+
 			</h:form>
 
 
