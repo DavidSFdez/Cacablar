@@ -1,4 +1,4 @@
-package uo.sdi.business.impl.classes.seat;
+package uo.sdi.business.impl.classes.application;
 
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
@@ -7,7 +7,7 @@ import uo.sdi.persistence.exception.NotPersistedException;
 
 public class ApplicationFind {
 
-    public Application find(Long idUser, Long id) throws EntityNotFoundException {
+    public Application find(Long id, Long idUser) throws EntityNotFoundException {
 	Long[] ids = {idUser, id};
 	
 	try {

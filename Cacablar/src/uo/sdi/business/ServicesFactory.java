@@ -9,5 +9,7 @@ public interface ServicesFactory {
 	TripsService createTripsService();
 
 	SeatsService createSeatsService();
+	
+	ApplicationService createApplicationService();
 
 }

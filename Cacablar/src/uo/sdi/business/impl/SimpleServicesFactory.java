@@ -1,6 +1,7 @@
 package uo.sdi.business.impl;
 
 
+import uo.sdi.business.ApplicationService;
 import uo.sdi.business.LoginService;
 import uo.sdi.business.SeatsService;
 import uo.sdi.business.ServicesFactory;
@@ -31,6 +32,12 @@ public class SimpleServicesFactory implements ServicesFactory {
 	public SeatsService createSeatsService() {
 	    
 	    return new SimpleSeatsService();
+	}
+
+	@Override
+	public ApplicationService createApplicationService() {
+	    
+	    return new SimpleApplicationsService();
 	}
 
 	

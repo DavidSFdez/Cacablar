@@ -14,25 +14,34 @@
 			value="#{trip.listRelated(user.user.id)}" border="1">
 
 			<ui:include src="/snippets/TripTableBody.xhtml" />
-			
+
 			<p:column>
-			<f:facet name="header">#Estado</f:facet>
+				<f:facet name="header">#Estado</f:facet>
 			PROMOTOR, PENDIENTE, ADMITIDO, SIN_PLAZA o EXCLUIDO
 			</p:column>
 
 			<p:column>
-			<f:facet name="header">#Controles</f:facet>
-				<!-- Botón para cancelar el viaje -->
-				<p:commandButton value="Cancelar Viaje" rendered="#{trip.isPromoter(var.id,user.user.id)}">
-					<p:confirm header="Confirmation" message="¿Estás seguro?" icon="ui-icon-alert"></p:confirm>
-				</p:commandButton>
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Si" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="No" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
+				<f:facet name="header">#Controles</f:facet>
+				<p:selectBooleanCheckbox value="#{trips.value(var)}"
+					rendered="#{trip.isPromoter(var.id,user.user.id)}">
+					<p:ajax listener="#{trips.cancel(var)}" />
+				</p:selectBooleanCheckbox>
+
+
 			</p:column>
 		</p:dataTable>
+		<!-- Botón para cancelar el viaje -->
+		<p:commandButton value="Cancelar Viaje(s)"
+			action="#{trips.cancelTrips(user.user.id)">
+			<p:confirm header="Confirmation"
+				message="Borrar viajes seleccionados ¿Estás seguro?"
+				icon="ui-icon-alert"></p:confirm>
+		</p:commandButton>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Si" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
 	</ui:define>
 </ui:composition>
