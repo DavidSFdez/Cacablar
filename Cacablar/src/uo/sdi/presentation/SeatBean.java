@@ -19,6 +19,13 @@ public class SeatBean implements Serializable {
     public SeatBean() {
 	this.seat = new Seat();
     }
+    
+    public String view(Long idTrip){
+	
+	
+	
+	return "exito";
+    }
 
     public boolean isSitting(Long idUser, Long idTrip) {
 	// TODO comprobar el asiento en la otra tabla, que no me acordé de la

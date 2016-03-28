@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
+import uo.sdi.model.Seat;
 import uo.sdi.model.Trip;
 
 @ManagedBean(name = "trip")
@@ -52,6 +53,15 @@ public class TripBean implements Serializable {
     public boolean isPromoter(Long idTrip, Long idUser) {
 	return Factories.services.createTripsService().findByIdandPromoter(
 		idTrip, idUser) == null ? false : true;
+    }
+    
+    public List<Seat> getSeats()
+    {
+	List<Seat> seats = new LinkedList<Seat>();
+	if(trip.getId()!=null)
+	seats = Factories.services.createSeatsService().findByTrip(trip.getId());
+	
+	return seats;
     }
 
    public List<Trip> getListActiveToUser(Long idUser) {
@@ -104,11 +114,19 @@ public class TripBean implements Serializable {
 	try {
 	    trip = Factories.services.createTripsService().findById(idTrip);
 	} catch (EntityNotFoundException e) {
-
+	    System.out.println("Fracaso view trip");
 	    return "fracaso";
 	}
 	
 	return "exito";
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
     }
     
 

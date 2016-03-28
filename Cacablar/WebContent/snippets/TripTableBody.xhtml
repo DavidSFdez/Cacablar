@@ -6,7 +6,7 @@
 
 	<p:column>
 		<f:facet name="header">ID</f:facet>
-		<p:commandLink actionListener="#{seat.view(var.id)}">
+		<p:commandLink action="#{seat.view(var.id)}">
 			<h:outputText value="#{var.id}" />
 		</p:commandLink>
 	</p:column>
@@ -16,7 +16,7 @@
 		<f:facet name="header">#Destino</f:facet>#{var.destination.city}</p:column>
 	<p:column>
 		<p:commandButton value="#VerViaje"
-			actionListener="#{seat.view(var.id)}" />
+			action="#{trip.view(var.id)}" />
 	</p:column>
 
 </ui:composition>

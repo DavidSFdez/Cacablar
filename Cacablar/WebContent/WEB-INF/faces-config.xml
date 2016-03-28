@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
 	<navigation-rule>
-	<from-view-id>*</from-view-id>
-	<navigation-case>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
 			<from-outcome>home</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
@@ -66,6 +66,14 @@
 		<from-view-id>/listTripsRelated.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{trip.manage(var.id)}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/showTrip.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/listTrips.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{trip.view(var.id)}</from-action>
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/showTrip.xhtml</to-view-id>
 		</navigation-case>

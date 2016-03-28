@@ -49,6 +49,8 @@ public class AddressPoint {
 	public Waypoint getWaypoint() {
 		return waypoint;
 	}
+	
+	
 
 	@Override
 	public String toString() {
