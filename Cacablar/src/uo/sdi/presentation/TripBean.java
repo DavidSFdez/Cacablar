@@ -26,27 +26,7 @@ public class TripBean implements Serializable {
 	trip = new Trip();
     }
 
-    public List<Trip> getListActive() {
-	List<Trip> trips = null;
-	try {
-	    trips = Factories.services.createTripsService().listActive();
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-	return trips;
-    }
-
-    public List<Trip> listRelated(Long idUser) {
-	List<Trip> trips = new LinkedList<Trip>();
-	try {
-	    trips = Factories.services.createTripsService().listRelated(idUser);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-	return trips;
-    }
-
-    public boolean isPromoter(Long idTrip, Long idUser) {
+   public boolean isPromoter(Long idTrip, Long idUser) {
 	return Factories.services.createTripsService().findByIdandPromoter(
 		idTrip, idUser) == null ? false : true;
     }
@@ -63,22 +43,6 @@ public class TripBean implements Serializable {
 	if (trip.getId() != null)
 	    applications = Factories.services.createSeatsService().findApplicationByTrip(trip.getId());
 	return applications;
-    }
-
-    public List<Trip> getListActiveToUser(Long idUser) {
-	List<Trip> trips = new LinkedList<Trip>();
-	
-	if (idUser == null)
-	    return getListActive();
-	
-	try {
-
-	    trips = Factories.services.createTripsService().listActiveToUser(idUser);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-	
-	return trips;
     }
 
     public String updateTrip(Long idUser) {

@@ -9,7 +9,7 @@
 
 	<ui:define name="content">
 		<p:dataTable id="tablalistado" var="var"
-			value="#{trip.getListActiveToUser(user.user.id)}" border="1">
+			value="#{trips.getListActiveToUser(user.user.id)}" border="1">
 		<!-- 			
 			Porqué es necesario diferenciar al pripio usuario al mostar todos los activos?
 		-->

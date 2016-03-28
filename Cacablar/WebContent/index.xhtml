@@ -8,15 +8,18 @@
 	<ui:define name="title">Bienvenido a Cacablar!</ui:define>
 
 	<ui:define name="content">
-		<p:button value="login" outcome="login" rendered="#{!user.logged}" />
-		<p:button value="register" outcome="register" rendered="#{!user.logged}" />
-		<p:button value="list Trips" outcome="list" />
-		<p:button value="Regist new trip" outcome="registTrip"
-			rendered="#{user.logged}" />
-		<p:button value="list related trips" outcome="listRelated"
-			rendered="#{user.logged}" />
-			<p:button value="logout(No hace nada)"
-			rendered="#{user.logged}" />
+		<p:growl id="index">
+			<p:button value="login" outcome="login" rendered="#{!user.logged}" />
+			<p:button value="register" outcome="register"
+				rendered="#{!user.logged}" />
+			<p:button value="list Trips" outcome="list" />
+			<p:button value="Regist new trip" outcome="registTrip"
+				rendered="#{user.logged}" />
+			<p:button value="list related trips" outcome="listRelated"
+				rendered="#{user.logged}" />
+			<p:commandButton value="logout" rendered="#{user.logged}"
+				action="#{user.logout}" ajax="false" />
+		</p:growl>
 	</ui:define>
 
 	<ui:define name="footer"></ui:define>
