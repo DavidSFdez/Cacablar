@@ -30,9 +30,18 @@ public class SeatBean implements Serializable {
     public boolean isSitting(Long idUser, Long idTrip) {
 	// TODO comprobar el asiento en la otra tabla, que no me acordé de la
 	// puta tabla de mierda nueva
+	// * Este comprueba que tiene asiento, habrá que hacer un BeanApplication en el que se compruebe si tiene una appalication y desde algun sitio (viaje seguramente) se comprobarán las cosas
 	
-	  return Factories.services.createSeatsService().findByUserAndTrip(
-	  idTrip, idUser) == null ? false : true;
+	// Try-cacths en vez de ifs. Welcome to the slow way!
+	try {
+	    Factories.services.createSeatsService().findByUserAndTrip(idTrip, idUser);
+	    return true;
+	} catch (EntityNotFoundException e) {
+	    return false;
+	}
+	
+//	  return Factories.services.createSeatsService().findByUserAndTrip(
+//	  idTrip, idUser) == null ? false : true;
 	 
 //	return Factories.services.createSeatsService().findByUserAndTrip(
 //		idUser, idTrip) == null ? false : true;

@@ -5,21 +5,19 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/template-general.xhtml">
 
-	<ui:define name="title">
-   Detalles Viaje (sería un puntazo poner el id del viaje aquí)
-  </ui:define>
+	<ui:define name="title">Detalles Viaje #{trip.trip.id}</ui:define>
 
 	<ui:define name="content">
 		<h:form id="showTrip" action="showTrip">
 			<h:panelGrid columns="2">
 				<h:outputText value="Promotor: " />
-				<h:outputText value="#{trip.trip.promoterId}"
-					styleClass="outputLabel" />
-					
+				<h:outputText value="#{trip.trip.promoterId}" styleClass="outputLabel" />
 				<h:outputText value="Viaje Id: " />
-				<h:outputText value="#{trip.trip.id}"
-					styleClass="outputLabel" />
+				<h:outputText value="#{trip.trip.id}" styleClass="outputLabel" />
 			</h:panelGrid>
+			
+			
+
 			<h:panelGrid id="DataTrip" columns="3" columnClasses="grid,grid,grid">
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Calle Salida: " />
@@ -91,46 +89,44 @@
 
 				<h:panelGrid columns="2" columnClasses="label, value">
 					<h:outputText value="Fecha Cierre: " />
-					<h:outputText value="#{trip.trip.closingDate}" styleClass="outputLabel" />
+					<h:outputText value="#{trip.trip.closingDate}"
+						styleClass="outputLabel" />
 
 					<h:outputText value="Coste: " />
 					<h:outputText value="#{trip.trip.estimatedCost}"
 						styleClass="outputLabel" />
 
 					<h:outputText value="Descripción o comentarios: " />
-					<h:outputText value="#{trip.trip.comments}" styleClass="outputLabel" />
+					<h:outputText value="#{trip.trip.comments}"
+						styleClass="outputLabel" />
 
 					<h:outputText value="Número de plazas " />
 					<h:outputText value="#{trip.trip.maxPax}" styleClass="outputLabel" />
 
 					<h:outputText value="Plazas disponibles: " />
-					<h:outputText value="#{trip.trip.availablePax}" styleClass="outputLabel" />
+					<h:outputText value="#{trip.trip.availablePax}"
+						styleClass="outputLabel" />
 
 					<h:outputText />
 					<h:outputText />
 				</h:panelGrid>
 			</h:panelGrid>
-	
-	<p:dataTable id="tablavars" var="var"
-			value="#{trip.getSeats()}" border="1">
-					<h:outputText value="User Id: " />
-					<h:outputText value="#{var.userId}" styleClass="outputLabel" />
 
-					<h:outputText value="Status: " />
-					<h:outputText value="#{var.status}"
-						styleClass="outputLabel" />
+			<p:dataTable id="tablavars" var="var" value="#{trip.getSeats()}"
+				border="1">
+				<h:outputText value="User Id: " />
+				<h:outputText value="#{var.userId}" styleClass="outputLabel" />
 
-					<h:outputText value="Comentario: " />
-					<h:outputText value="#{var.comment}" styleClass="outputLabel" />
+				<h:outputText value="Status: " />
+				<h:outputText value="#{var.status}" styleClass="outputLabel" />
 
-					<h:outputText />
-					<h:outputText />
-		</p:dataTable>
-		
+				<h:outputText value="Comentario: " />
+				<h:outputText value="#{var.comment}" styleClass="outputLabel" />
+
+				<h:outputText />
+				<h:outputText />
+			</p:dataTable>
+
 		</h:form>
-	</ui:define>
-
-	<ui:define name="foot">
-		<ui:include src="/snippets/pie-casa.xhtml" />
 	</ui:define>
 </ui:composition>

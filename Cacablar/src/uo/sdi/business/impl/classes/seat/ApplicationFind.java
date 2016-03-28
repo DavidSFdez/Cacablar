@@ -2,19 +2,21 @@ package uo.sdi.business.impl.classes.seat;
 
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
-import uo.sdi.model.Seat;
+import uo.sdi.model.Application;
 import uo.sdi.persistence.exception.NotPersistedException;
 
-public class SeatsFindByUserAndTrip {
+public class ApplicationFind {
 
-    public Seat find(Long idUser,Long idTrip) throws EntityNotFoundException {
-	Long[] ids = {idUser, idTrip};
+    public Application find(Long idUser, Long id) throws EntityNotFoundException {
+	Long[] ids = {idUser, id};
 	
 	try {
-	    return Factories.persistence.createSeatDao().findById(ids);
+	    return Factories.persistence.createApplicationDao().findById(ids);
 	} catch (NotPersistedException e) {
 	    throw new EntityNotFoundException();
 	}
     }
+    
+
 
 }

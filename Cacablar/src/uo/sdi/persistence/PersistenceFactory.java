@@ -17,8 +17,7 @@ public interface PersistenceFactory {
 
     SeatDao createSeatDao();
     
-	
-	
-	// ... otros m��todos factoria para Daos de otras entidades del modelo ...
+    ApplicationDao createApplicationDao();
+    
 }
 

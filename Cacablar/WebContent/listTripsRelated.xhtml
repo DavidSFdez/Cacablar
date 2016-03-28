@@ -12,28 +12,27 @@
 	<ui:define name="content">
 		<p:dataTable id="tablalistado" var="var"
 			value="#{trip.listRelated(user.user.id)}" border="1">
-			<p:column>
-				<f:facet name="header">ID</f:facet>#{var.id}</p:column>
-			<p:column>
-				<f:facet name="header">origen</f:facet>#{var.departure.city}</p:column>
-			<p:column>
-				<f:facet name="header">destino</f:facet>#{var.destination.city}</p:column>
-			<p:column>
-			<!-- Botón para cancelar el viaje -->
-				<p:commandButton value="Cancelar Viaje" rendered="#{trip.isPromoter(var.id,user.user.id)}">
-       			 <p:confirm header="Confirmation" message="¿Estás seguro?" icon="ui-icon-alert" />
-    			</p:commandButton>
 
-			    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-			        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			    </p:confirmDialog>
-			<!-- Fin botón cancelar viaje -->
-				<p:commandButton value="Gestionar Plazas" rendered="#{trip.isPromoter(var.id,user.user.id)}" action="#{trip.manage(var.id)}" />
-				<p:commandButton value="Cancelar Plaza" rendered="#{seat.isSitting(user.user.id,var.id)}" />
+			<ui:include src="/snippets/TripTableBody.xhtml" />
+			
+			<p:column>
+			<f:facet name="header">#Estado</f:facet>
+			PROMOTOR, PENDIENTE, ADMITIDO, SIN_PLAZA o EXCLUIDO
 			</p:column>
 
-
+			<p:column>
+			<f:facet name="header">#Controles</f:facet>
+				<!-- Botón para cancelar el viaje -->
+				<p:commandButton value="Cancelar Viaje" rendered="#{trip.isPromoter(var.id,user.user.id)}">
+					<p:confirm header="Confirmation" message="¿Estás seguro?" icon="ui-icon-alert"></p:confirm>
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:column>
 		</p:dataTable>
 	</ui:define>
 </ui:composition>

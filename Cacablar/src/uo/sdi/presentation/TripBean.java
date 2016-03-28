@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
+import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
 import uo.sdi.model.Trip;
 
@@ -17,9 +18,6 @@ import uo.sdi.model.Trip;
 @RequestScoped
 public class TripBean implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
     Trip trip;
@@ -33,7 +31,6 @@ public class TripBean implements Serializable {
 	try {
 	    trips = Factories.services.createTripsService().listActive();
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return trips;
@@ -44,7 +41,6 @@ public class TripBean implements Serializable {
 	try {
 	    trips = Factories.services.createTripsService().listRelated(idUser);
 	} catch (Exception e) {
-
 	    e.printStackTrace();
 	}
 	return trips;
@@ -54,33 +50,32 @@ public class TripBean implements Serializable {
 	return Factories.services.createTripsService().findByIdandPromoter(
 		idTrip, idUser) == null ? false : true;
     }
-    
-    public List<Seat> getSeats()
-    {
+
+    public List<Seat> getSeats() {
 	List<Seat> seats = new LinkedList<Seat>();
-	if(trip.getId()!=null)
-	seats = Factories.services.createSeatsService().findByTrip(trip.getId());
-	
+	if (trip.getId() != null)
+	    seats = Factories.services.createSeatsService().findByTrip(trip.getId());
+
 	return seats;
     }
 
-   public List<Trip> getListActiveToUser(Long idUser) {
+    public List<Trip> getListActiveToUser(Long idUser) {
 	List<Trip> trips = new LinkedList<Trip>();
+	
 	if (idUser == null)
 	    return getListActive();
+	
 	try {
 
-	    trips = Factories.services.createTripsService().listActiveToUser(
-		    idUser);
+	    trips = Factories.services.createTripsService().listActiveToUser(idUser);
 	} catch (Exception e) {
-	  
 	    e.printStackTrace();
 	}
+	
 	return trips;
     }
 
     public String updateTrip(Long idUser) {
-
 	try {
 	    Factories.services.createTripsService().update(trip, idUser);
 	} catch (EntityNotFoundException e) {
@@ -108,26 +103,57 @@ public class TripBean implements Serializable {
 	}
 	return "exito";
     }
-    
-    public String view(Long idTrip){
-	//revisar el facesconfig, no estoy seguro de que sea así como se cambie de página aunque funcione
+
+    public String view(Long idTrip) {
+	// revisar el facesconfig, no estoy seguro de que sea así como se cambie
+	// de página aunque funcione
 	try {
 	    trip = Factories.services.createTripsService().findById(idTrip);
 	} catch (EntityNotFoundException e) {
 	    System.out.println("Fracaso view trip");
 	    return "fracaso";
 	}
-	
+
 	return "exito";
     }
 
     public Trip getTrip() {
-        return trip;
+	return trip;
     }
 
     public void setTrip(Trip trip) {
-        this.trip = trip;
+	this.trip = trip;
     }
     
+    /**
+     * Si el usuario es primitor, participante o ha pedido plaza
+     */
+    public boolean isUserRetated(Long idUser){
+	if(trip.getPromoterId().equals(idUser))
+	    // Es promotor
+	    return true;
+	
+	Seat seat;
+	try {
+	    // Si tiene asiento
+	    seat =  Factories.services.createSeatsService().findByUserAndTrip(idUser, trip.getId());
+	    // Lo tiene
+	    return true;
+	} catch (EntityNotFoundException ignored) {
+	    // No tiene asiento
+	}
+	
+	Application application;
+	try {
+	    // Si tiene petición
+	    application =  Factories.services.createSeatsService().findApplication(idUser, trip.getId());
+	    // La tiene
+	    return true;
+	} catch (EntityNotFoundException ignored) {
+	    // No tiene petición
+	}
+	
+	return false;
+    }
 
 }
