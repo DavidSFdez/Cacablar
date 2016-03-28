@@ -5,113 +5,132 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/template-general.xhtml">
 
+
+
 	<ui:define name="title">Detalles Viaje #{trip.trip.id}</ui:define>
 
 	<ui:define name="content">
 		<h:form id="showTrip" action="showTrip">
+
+
 			<h:panelGrid columns="2">
-				<h:outputText value="Promotor: " />
-				<h:outputText value="#{trip.trip.promoterId}" styleClass="outputLabel" />
+				<h:outputText value="Promotor: " rendered="#{user.logged}" />
+				<h:outputText value="#{trip.trip.promoterId}"
+					styleClass="outputLabel" rendered="#{user.logged}" />
+
 				<h:outputText value="Viaje Id: " />
 				<h:outputText value="#{trip.trip.id}" styleClass="outputLabel" />
 			</h:panelGrid>
-			
-			
 
-			<h:panelGrid id="DataTrip" columns="3" columnClasses="grid,grid,grid">
-				<h:panelGrid columns="2" columnClasses="label, value">
-					<h:outputText value="Calle Salida: " />
-					<h:outputText value="#{trip.trip.departure.address}"
-						styleClass="outputLabel" />
+			<h3>Origen</h3>
 
-					<h:outputText value="Ciudad Salida: " />
-					<h:outputText value="#{trip.trip.departure.city}"
-						styleClass="outputLabel" />
+			<h:panelGrid columns="2">
+				<h:outputText value="Calle Salida: " />
+				<h:outputText value="#{trip.trip.departure.address}"
+					styleClass="outputLabel" />
 
-					<h:outputText value="Provincia Salida: " />
-					<h:outputText value="#{trip.trip.departure.state}"
-						styleClass="outputLabel" />
+				<h:outputText value="Ciudad Salida: " />
+				<h:outputText value="#{trip.trip.departure.city}"
+					styleClass="outputLabel" />
 
-					<h:outputText value="País salida: " />
-					<h:outputText value="#{trip.trip.departure.country}"
-						styleClass="outputLabel" />
+				<h:outputText value="Provincia Salida: " />
+				<h:outputText value="#{trip.trip.departure.state}"
+					styleClass="outputLabel" />
 
-					<h:outputText value="Codigo Postal Salida: " />
-					<h:outputText value="#{trip.trip.departure.zipCode}"
-						styleClass="outputLabel" />
+				<h:outputText value="País salida: " />
+				<h:outputText value="#{trip.trip.departure.country}"
+					styleClass="outputLabel" />
 
-					<h:outputText value="Coordenadas latitud Salida: " />
-					<h:outputText value="#{trip.trip.departure.waypoint.lat}"
-						styleClass="outputLabel" />
+				<h:outputText value="Codigo Postal Salida: " />
+				<h:outputText value="#{trip.trip.departure.zipCode}"
+					styleClass="outputLabel" />
 
-					<h:outputText value="Coordenadas longitud salida: " />
-					<h:outputText value="#{trip.trip.departure.waypoint.lon}"
-						styleClass="outputLabel" />
+				<h:outputText value="Coordenadas latitud Salida: " />
+				<h:outputText value="#{trip.trip.departure.waypoint.lat}"
+					styleClass="outputLabel" />
 
-					<h:outputText value="Fecha salida: " />
-					<h:outputText value="#{trip.trip.departureDate}"
-						styleClass="outputLabel" />
-				</h:panelGrid>
+				<h:outputText value="Coordenadas longitud salida: " />
+				<h:outputText value="#{trip.trip.departure.waypoint.lon}"
+					styleClass="outputLabel" />
 
-				<h:panelGrid columns="2" columnClasses="label, value">
-					<h:outputText value="Calle Destino: " />
-					<h:outputText value="#{trip.trip.destination.address}"
-						styleClass="outputLabel" />
+				<h:outputText value="Fecha salida: " />
+				<h:outputText value="#{trip.trip.departureDate}"
+					styleClass="outputLabel" />
 
-					<h:outputText value="Calle Ciudad: " />
-					<h:outputText value="#{trip.trip.destination.city}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Provincia Destino: " />
-					<h:outputText value="#{trip.trip.destination.state}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="País Destino: " />
-					<h:outputText value="#{trip.trip.destination.country}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Codigo Postal Destino: " />
-					<h:outputText value="#{trip.trip.destination.zipCode}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Coordenadas latitud Destino: " />
-					<h:outputText value="#{trip.trip.destination.waypoint.lat}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Coordenadas longitud Destino: " />
-					<h:outputText value="#{trip.trip.destination.waypoint.lon}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Fecha Llegada: " />
-					<h:outputText value="#{trip.trip.arrivalDate}"
-						styleClass="outputLabel" />
-				</h:panelGrid>
-
-				<h:panelGrid columns="2" columnClasses="label, value">
-					<h:outputText value="Fecha Cierre: " />
-					<h:outputText value="#{trip.trip.closingDate}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Coste: " />
-					<h:outputText value="#{trip.trip.estimatedCost}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Descripción o comentarios: " />
-					<h:outputText value="#{trip.trip.comments}"
-						styleClass="outputLabel" />
-
-					<h:outputText value="Número de plazas " />
-					<h:outputText value="#{trip.trip.maxPax}" styleClass="outputLabel" />
-
-					<h:outputText value="Plazas disponibles: " />
-					<h:outputText value="#{trip.trip.availablePax}"
-						styleClass="outputLabel" />
-
-					<h:outputText />
-					<h:outputText />
-				</h:panelGrid>
 			</h:panelGrid>
 
+			<h3>Destino</h3>
+
+			<h:panelGrid columns="2">
+				<h:outputText value="Calle Destino: " />
+				<h:outputText value="#{trip.trip.destination.address}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Calle Ciudad: " />
+				<h:outputText value="#{trip.trip.destination.city}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Provincia Destino: " />
+				<h:outputText value="#{trip.trip.destination.state}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="País Destino: " />
+				<h:outputText value="#{trip.trip.destination.country}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Codigo Postal Destino: " />
+				<h:outputText value="#{trip.trip.destination.zipCode}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Coordenadas latitud Destino: " />
+				<h:outputText value="#{trip.trip.destination.waypoint.lat}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Coordenadas longitud Destino: " />
+				<h:outputText value="#{trip.trip.destination.waypoint.lon}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Fecha Llegada: " />
+				<h:outputText value="#{trip.trip.arrivalDate}"
+					styleClass="outputLabel" />
+
+			</h:panelGrid>
+
+			<h3>Sobre el viaje</h3>
+
+			<h:panelGrid columns="2">
+
+				<h:outputText value="Fecha Cierre: " />
+				<h:outputText value="#{trip.trip.closingDate}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Coste: " />
+				<h:outputText value="#{trip.trip.estimatedCost}"
+					styleClass="outputLabel" />
+
+				<h:outputText value="Descripción o comentarios: " />
+				<h:outputText value="#{trip.trip.comments}" styleClass="outputLabel" />
+
+				<h:outputText value="Número de plazas " />
+				<h:outputText value="#{trip.trip.maxPax}" styleClass="outputLabel" />
+
+				<h:outputText value="Plazas disponibles: " />
+				<h:outputText value="#{trip.trip.availablePax}"
+					styleClass="outputLabel" />
+			</h:panelGrid>
+			
+			<!-- 	Estoy relacionado con este viaje: #{trip.isUserRetated(user.user.id)} -->
+
+			<!--	Si estas conectado se ven los datos del viaje -->
+			<h:form rendered="#{user.logged}">
+				<p:separator rendered="#{user.logged}" />
+
+				<ui:include src="/snippets/privateTripData.xhtml" />
+				
+			</h:form>
+
+
+			<!--
 			<p:dataTable id="tablavars" var="var" value="#{trip.getSeats()}"
 				border="1">
 				<h:outputText value="User Id: " />
@@ -126,6 +145,9 @@
 				<h:outputText />
 				<h:outputText />
 			</p:dataTable>
+
+			-->
+
 
 		</h:form>
 	</ui:define>

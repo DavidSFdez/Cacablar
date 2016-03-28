@@ -5,6 +5,7 @@ import java.util.List;
 import uo.sdi.business.SeatsService;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
+import uo.sdi.business.impl.classes.seat.ApplicationByTrip;
 import uo.sdi.business.impl.classes.seat.ApplicationFind;
 import uo.sdi.business.impl.classes.seat.SeatsCancelSeat;
 import uo.sdi.business.impl.classes.seat.SeatsFindByTrip;
@@ -42,6 +43,12 @@ public class SimpleSeatsService implements SeatsService{
     public Application findApplication(Long idUser, Long id) throws EntityNotFoundException {
 	ApplicationFind action = new ApplicationFind();
 	return action.find(idUser, id);
+    }
+
+    @Override
+    public List<Application> findApplicationByTrip(Long id) {
+	ApplicationByTrip action = new ApplicationByTrip();
+	return action.find(id);
     }
 
 }

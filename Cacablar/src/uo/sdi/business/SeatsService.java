@@ -16,9 +16,11 @@ public interface SeatsService {
 
    //Peticiones de asientos
    void request(Long idTrip, Long idUser) throws EntityAlreadyExistsException;
+   List<Application> findApplicationByTrip(Long id);
    Application findApplication(Long idUser, Long id) throws EntityNotFoundException;
    
    //Comun
    void cancelSeat(Long idUser, Long idTrip) throws EntityNotFoundException;
+
 
 }

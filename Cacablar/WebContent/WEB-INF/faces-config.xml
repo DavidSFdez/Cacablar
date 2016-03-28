@@ -34,6 +34,7 @@
 			<to-view-id>/listTripsRelated.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
@@ -42,6 +43,7 @@
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/register.xhtml</from-view-id>
 		<navigation-case>
@@ -54,6 +56,7 @@
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/registerTrip.xhtml</from-view-id>
 		<navigation-case>
@@ -62,14 +65,16 @@
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/listTripsRelated.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{trip.manage(var.id)}</from-action>
+		<from-action>#{trip.view(var.id)}</from-action>
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/showTrip.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/listTrips.xhtml</from-view-id>
 		<navigation-case>

@@ -55,8 +55,14 @@ public class TripBean implements Serializable {
 	List<Seat> seats = new LinkedList<Seat>();
 	if (trip.getId() != null)
 	    seats = Factories.services.createSeatsService().findByTrip(trip.getId());
-
 	return seats;
+    }
+    
+    public List<Application> getApplications() {
+	List<Application> applications = new LinkedList<>();
+	if (trip.getId() != null)
+	    applications = Factories.services.createSeatsService().findApplicationByTrip(trip.getId());
+	return applications;
     }
 
     public List<Trip> getListActiveToUser(Long idUser) {
@@ -133,21 +139,19 @@ public class TripBean implements Serializable {
 	    // Es promotor
 	    return true;
 	
-	Seat seat;
 	try {
 	    // Si tiene asiento
-	    seat =  Factories.services.createSeatsService().findByUserAndTrip(idUser, trip.getId());
-	    // Lo tiene
+	    Factories.services.createSeatsService().findByUserAndTrip(idUser, trip.getId());
+	    // Está sentado
 	    return true;
 	} catch (EntityNotFoundException ignored) {
 	    // No tiene asiento
 	}
 	
-	Application application;
 	try {
 	    // Si tiene petición
-	    application =  Factories.services.createSeatsService().findApplication(idUser, trip.getId());
-	    // La tiene
+	    Factories.services.createSeatsService().findApplication(idUser, trip.getId());
+	    // Tiene peticion
 	    return true;
 	} catch (EntityNotFoundException ignored) {
 	    // No tiene petición

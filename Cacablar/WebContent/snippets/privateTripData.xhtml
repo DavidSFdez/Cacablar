@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h3>Pasajeros</h3>
+	<p:dataTable id="asientos" var="var" value="#{trip.getSeats()}"
+		border="1">
+		<p:column>
+			<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
+		<p:column>
+			<f:facet name="header">#Comment</f:facet>#{var.comment}</p:column>
+		<p:column>
+			<f:facet name="header">#Actions</f:facet>#{var.status}</p:column>
+		<h:form
+			rendered="#{trip.trip.promoterId == user.user.id || var.userId == user.user.id}">
+			<p:column>
+				<f:facet name="header">#Action</f:facet>
+					Aqui va un boton para cancelar el asiento actual(var)
+					Esta disponible para el promotor y para el usuario que se sienta
+					El boton llama a un metodo de Seats que es candelar asiento
+					Se usa ajax para hacer el update de "asientos" de esta manera que se actualiza la tabla de asientos únicamente por ajax al cancelar el asiento
+			</p:column>
+		</h:form>
+	</p:dataTable>
+
+	<h:form rendered="#{trip.trip.promoterId == user.user.id}">
+		<h3>Peticiones</h3>
+		<p:dataTable id="peticiones" var="var"
+			value="#{trip.getApplications()}"
+			rendered="#{trip.trip.promoterId == user.user.id}" border="1">
+			<p:column>
+				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
+			<p:column>
+				<f:facet name="header">#Actions</f:facet>
+		Aqui (O en dos columnas separadas) se añaden los botones de cancelar y aceptar
+		* Aceptar: Se borra de TApplications y aparece en TSEATS en estado aceptado
+		* Cancelar: Se borra de TApplications y aparece en TSEATS en estado cancelado
+		* Si quedan 0 plazas libres todos los demás asientos de TAPPLICATIONS se borran y se añaden en TSEATS como SIN_PLAZA (esto no estoy seguro, el estado sin plaza es nuevo de esta entrega)
+		</p:column>
+		</p:dataTable>
+	</h:form>
+</ui:composition>
