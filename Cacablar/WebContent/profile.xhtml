@@ -8,18 +8,21 @@
 	<ui:define name="title">Perfil</ui:define>
 
 	<ui:define name="content">
-		<p:dataTable id="tablalistado" var="var" value="#{trip.getListActiveToUser(user.user.id)}"
-			border="1">
-			<p:column>
-				<f:facet name="header">ID</f:facet>#{var.id}</p:column>
-			<p:column>
-				<f:facet name="header">origen</f:facet>#{var.departure.city}</p:column>
-			<p:column>
-				<f:facet name="header">destino</f:facet>#{var.destination.city}</p:column>
-			<p:column>
-				<p:commandButton value="Solicitar Plaza" rendered="#{!seat.isSitting(user.user.id,var.id)}" action="#{seat.solicite(user.user.id,var.id)}"/>
-				<p:commandButton value="Cancelar Plaza" rendered="#{seat.isSitting(user.user.id,var.id)}" />
-			</p:column>
-		</p:dataTable>
+			<p:dataTable id="tablalistado" var="var"
+				value="#{trip.getListActiveToUser(user.user.id)}" border="1">
+				<p:column>
+					<f:facet name="header">ID</f:facet>#{var.id}</p:column>
+				<p:column>
+					<f:facet name="header">origen</f:facet>#{var.departure.city}</p:column>
+				<p:column>
+					<f:facet name="header">destino</f:facet>#{var.destination.city}</p:column>
+				<p:column>
+					<p:commandButton value="Solicitar Plaza"
+						rendered="#{seat.isSitting(user.user.id,var.id)}"
+						action="#{seat.solicite(user.user.id,var.id)}" />
+					<p:commandButton value="Cancelar Plaza"
+						rendered="#{!seat.isSitting(user.user.id,var.id)}" />
+				</p:column>
+			</p:dataTable>
 	</ui:define>
 </ui:composition>
