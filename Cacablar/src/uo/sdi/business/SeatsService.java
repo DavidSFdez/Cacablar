@@ -21,7 +21,7 @@ public interface SeatsService {
    Application findApplication(Long idUser, Long id) throws EntityNotFoundException;
    
    //Comun
-   void cancelSeat(Long idUser, Long idTrip) throws EntityNotFoundException;
+   void cancelSeat(Seat seat) throws EntityNotFoundException;
    void seatsToUpdate(List<Application> applications) throws EntityAlreadyExistsException;
 
 

@@ -32,26 +32,28 @@ public class SeatBean implements Serializable {
 	// A diferencia del otro lado que lo hice en dos métodos esto lo hago
 	// todo en servicios porque creo que es la forma más correcta
 
-	try {
-	    Factories.services.createApplicationService().updateApplication(
+	
+	    try {
+		Factories.services.createApplicationService().updateApplication(
 		    application, SeatStatus.ACCEPTED);
-	} catch (NotPersistedException e) {
-	    return "fracaso";
-	} catch (EntityAlreadyExistsException e) {
-	    return "fracaso";
-	}
+	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
+		 return "fracaso";
+	    }
+	
 
 	return "exito";
     }
 
     public String refuseRequest(Application application) {
 
-	try {
-	    Factories.services.createApplicationService().updateApplication(
-	    	application, SeatStatus.EXCLUDED);
-	} catch (NotPersistedException | EntityAlreadyExistsException e) {
-	    return "fracaso";
-	}
+	
+	    try {
+		Factories.services.createApplicationService().updateApplication(
+			application, SeatStatus.EXCLUDED);
+	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
+		 return "fracaso";
+	    }
+	
 
 	return "exito";
     }
@@ -67,10 +69,10 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-    public String cancelSeat(Long idUser, Long idTrip) {
+    public String cancelSeat(Seat seat) {
 
 	try {
-	    Factories.services.createSeatsService().cancelSeat(idUser, idTrip);
+	    Factories.services.createSeatsService().cancelSeat(seat);
 	} catch (EntityNotFoundException e) {
 	    return "fracaso";
 	}

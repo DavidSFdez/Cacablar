@@ -31,8 +31,8 @@ public class SimpleSeatsService implements SeatsService{
     }
 
     @Override
-    public void cancelSeat(Long idUser, Long idTrip) throws EntityNotFoundException {
-	new SeatsCancelSeat().cancel(idUser,idTrip);
+    public void cancelSeat(Seat seat) throws EntityNotFoundException {
+	new SeatsCancelSeat().cancel(seat);
     }
 
     @Override
