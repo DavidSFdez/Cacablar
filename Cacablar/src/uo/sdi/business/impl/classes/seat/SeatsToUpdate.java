@@ -19,7 +19,7 @@ public class SeatsToUpdate {
 	try {
 	    for (Application a : applications) {
 		Seat seatToUpdate = new Seat();
-		seatToUpdate.setComment("Viaje cerrado");
+		seatToUpdate.setComment("Sin Plaza");
 		seatToUpdate.setStatus(SeatStatus.SIN_PLAZA);
 		seatToUpdate.setTripId(a.getTripId());
 		seatToUpdate.setUserId(a.getUserId());

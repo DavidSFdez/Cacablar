@@ -39,6 +39,10 @@ public class TripBean implements Serializable {
 	//borrarlas de applications
 	//APPLICATION_DELETE_TO_UPDATE=DELETE FROM TAPPLICATIONS where appliedtrips_id = (select id from ttrips where status=1)
 	
+	//P.D.-> Tal vez convenga juntar los dos últimos métodos en la capa de negocio, tú qué opinas?
+	//Lo he hecho en métodos separados por la movida de que pertenecen a diferentes DAO
+	
+	
 	Factories.services.createTripsService().updateTripsStatus();
 	List<Application> applications = Factories.services.createApplicationService().getToUpdate();
 	try {

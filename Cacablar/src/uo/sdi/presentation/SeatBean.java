@@ -8,7 +8,10 @@ import javax.faces.bean.RequestScoped;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
+import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
+import uo.sdi.model.SeatStatus;
+import uo.sdi.persistence.exception.NotPersistedException;
 
 @ManagedBean(name = "seat")
 @RequestScoped
@@ -25,7 +28,34 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-   
+    public String acceptRequest(Application application) {
+	// A diferencia del otro lado que lo hice en dos métodos esto lo hago
+	// todo en servicios porque creo que es la forma más correcta
+
+	try {
+	    Factories.services.createApplicationService().updateApplication(
+		    application, SeatStatus.ACCEPTED);
+	} catch (NotPersistedException e) {
+	    return "fracaso";
+	} catch (EntityAlreadyExistsException e) {
+	    return "fracaso";
+	}
+
+	return "exito";
+    }
+
+    public String refuseRequest(Application application) {
+
+	try {
+	    Factories.services.createApplicationService().updateApplication(
+	    	application, SeatStatus.EXCLUDED);
+	} catch (NotPersistedException | EntityAlreadyExistsException e) {
+	    return "fracaso";
+	}
+
+	return "exito";
+    }
+
     public String request(Long idUser, Long idTrip) {
 
 	try {

@@ -3,12 +3,16 @@ package uo.sdi.business.impl;
 import java.util.List;
 
 import uo.sdi.business.ApplicationService;
+import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.business.impl.classes.application.ApplicationsFind;
 import uo.sdi.business.impl.classes.application.ApplicationsGetToUpdate;
 import uo.sdi.business.impl.classes.application.ApplicationsRemove;
+import uo.sdi.business.impl.classes.application.ApplicationsUpdate;
 import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
+import uo.sdi.model.SeatStatus;
+import uo.sdi.persistence.exception.NotPersistedException;
 
 public class SimpleApplicationsService implements ApplicationService{
 
@@ -28,6 +32,13 @@ public class SimpleApplicationsService implements ApplicationService{
     public List<Application> getToUpdate() {
 	
 	return new ApplicationsGetToUpdate().find();
+    }
+
+    @Override
+    public void updateApplication(Application application,SeatStatus status) throws EntityAlreadyExistsException, EntityNotFoundException {
+
+	new ApplicationsUpdate().updateToSeat(application,status);
+	
     }
 
 }
