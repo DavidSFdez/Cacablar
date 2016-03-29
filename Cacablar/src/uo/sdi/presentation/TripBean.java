@@ -13,6 +13,7 @@ import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
+import uo.sdi.model.SeatStatus;
 import uo.sdi.model.Trip;
 
 @ManagedBean(name = "trip")
@@ -78,16 +79,12 @@ public class TripBean implements Serializable {
     public boolean isSitting(Long idUser) {
 
 	try {
-	    Factories.services.createSeatsService().findByUserAndTrip(idUser,
+	   Seat seat = Factories.services.createSeatsService().findByUserAndTrip(idUser,
 		    trip.getId());
-
+	   if(!seat.getStatus().equals(SeatStatus.ACCEPTED))
+	       return false;
 	} catch (EntityNotFoundException e) {
-	    try {
-		Factories.services.createApplicationService().find(
-			trip.getId(), idUser);
-	    } catch (EntityNotFoundException e1) {
-		return false;
-	    }
+	   return false;
 	}
 
 	return true;

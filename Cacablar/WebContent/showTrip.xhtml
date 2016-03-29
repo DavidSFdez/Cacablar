@@ -122,8 +122,8 @@
 			<p>Estoy relacionado con este viaje: #{trip.isUserRelated(user.user.id)}</p>
 			<p>Soy el promotor? :  #{trip.isPromoter(user.user.id)}</p>
 			<p>Estoy pendiente? :  #{trip.isUserInApplications(user.user.id)}</p>
-			<p>me han cancelado oa cpetado la plaza? :  #{trip.isUserInSeats(user.user.id)}</p>
-			<p>Tengo solicitada plaza en este viaje? (pendiente o aceptado): #{trip.isSitting(user.user.id)}</p>
+			<p>me han cancelado o aceptado la plaza? :  #{trip.isUserInSeats(user.user.id)}</p>
+			<p>Tengo plaza en este viaje? (tabla seats estado aceptado): #{trip.isSitting(user.user.id)}</p>
 
 			<!--	Si estas conectado se ven los datos del viaje -->
 			<h:form rendered="#{user.logged}">
