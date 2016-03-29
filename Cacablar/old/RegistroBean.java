@@ -17,8 +17,6 @@ import uo.sdi.model.UserStatus;
  *
  */
 
-@ManagedBean(name="registro")
-@RequestScoped
 public class RegistroBean implements Serializable{
 
     private String login;

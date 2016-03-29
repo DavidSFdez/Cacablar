@@ -119,7 +119,10 @@
 					styleClass="outputLabel" />
 			</h:panelGrid>
 
-			<!-- 	Estoy relacionado con este viaje: #{trip.isUserRetated(user.user.id)} -->
+			<p>Estoy relacionado con este viaje: #{trip.isUserRetated(user.user.id)}</p>
+			<p>Soy el promotor? :  #{trip.isUserPromotor(user.user.id)}</p>
+			<p>Estoy pendiente? :  #{trip.isUserInApplications(user.user.id)}</p>
+			<p>me han cancelado oa cpetado la plaza? :  #{trip.isUserInSeats(user.user.id)}</p>
 
 			<!--	Si estas conectado se ven los datos del viaje -->
 			<h:form rendered="#{user.logged}">

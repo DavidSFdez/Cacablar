@@ -26,7 +26,7 @@ public class TripBean implements Serializable {
 	trip = new Trip();
     }
 
-   public boolean isPromoter(Long idTrip, Long idUser) {
+    public boolean isPromoter(Long idTrip, Long idUser) {
 	return Factories.services.createTripsService().findByIdandPromoter(
 		idTrip, idUser) == null ? false : true;
     }
@@ -34,14 +34,16 @@ public class TripBean implements Serializable {
     public List<Seat> getSeats() {
 	List<Seat> seats = new LinkedList<Seat>();
 	if (trip.getId() != null)
-	    seats = Factories.services.createSeatsService().findByTrip(trip.getId());
+	    seats = Factories.services.createSeatsService().findByTrip(
+		    trip.getId());
 	return seats;
     }
-    
+
     public List<Application> getApplications() {
 	List<Application> applications = new LinkedList<>();
 	if (trip.getId() != null)
-	    applications = Factories.services.createSeatsService().findApplicationByTrip(trip.getId());
+	    applications = Factories.services.createSeatsService()
+		    .findApplicationByTrip(trip.getId());
 	return applications;
     }
 
@@ -94,34 +96,45 @@ public class TripBean implements Serializable {
     public void setTrip(Trip trip) {
 	this.trip = trip;
     }
-    
+
     /**
      * Si el usuario es primitor, participante o ha pedido plaza
      */
-    public boolean isUserRetated(Long idUser){
-	if(trip.getPromoterId().equals(idUser))
-	    // Es promotor
+    public boolean isUserRelated(Long idUser) {
+	if (isUserPromotor(idUser))
 	    return true;
-	
-	try {
-	    // Si tiene asiento
-	    Factories.services.createSeatsService().findByUserAndTrip(idUser, trip.getId());
-	    // Está sentado
+
+	if (isUserInSeats(idUser))
 	    return true;
-	} catch (EntityNotFoundException ignored) {
-	    // No tiene asiento
-	}
-	
-	try {
-	    // Si tiene petición
-	    Factories.services.createSeatsService().findApplication(idUser, trip.getId());
-	    // Tiene peticion
+
+	if (isUserInApplications(idUser))
 	    return true;
-	} catch (EntityNotFoundException ignored) {
-	    // No tiene petición
-	}
-	
+
 	return false;
+    }
+
+    public boolean isUserPromotor(Long idUser) {
+	return trip.getPromoterId().equals(idUser);
+    }
+
+    public boolean isUserInSeats(Long idUser) {
+	try {
+	    Factories.services.createSeatsService().findByUserAndTrip(idUser,
+		    trip.getId());
+	    return true;
+	} catch (EntityNotFoundException ignored) {
+	    return false;
+	}
+    }
+
+    public boolean isUserInApplications(Long idUser) {
+	try {
+	    Factories.services.createSeatsService().findApplication(idUser,
+		    trip.getId());
+	    return true;
+	} catch (EntityNotFoundException ignored) {
+	    return false;
+	}
     }
 
 }

@@ -15,18 +15,13 @@ public class BeanSettings implements Serializable {
     private static final Locale ENGLISH = new Locale("en");
     private static final Locale SPANISH = new Locale("es");
     private Locale locale = new Locale("es");
- 
-    // Es sólo a modo de traza.
+
     @PreDestroy
     public void end() {
 	System.out.println("BeanSettings - PreDestroy");
     }
 
     public Locale getLocale() {
-	// Aqui habria que cambiar algo de código para coger locale del
-	// navegador
-	// la primera vez que se accede a getLocale(), de momento dejamos como
-	// idioma de partida “es”
 	return (locale);
     }
 
