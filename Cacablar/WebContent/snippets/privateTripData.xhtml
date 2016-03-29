@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h3>Pasajeros</h3>
+	<h3>#Pasajeros</h3>
 	<p:dataTable id="asientos" var="var" value="#{trip.getSeats()}"
 		border="1">
 		<p:column>
@@ -13,19 +13,15 @@
 			<f:facet name="header">#Comment</f:facet>#{var.comment}</p:column>
 		<p:column>
 			<f:facet name="header">#Status</f:facet>#{var.status}</p:column>
-		<h:form
-			rendered="#{seat.isSitting(user.user.id,trip.trip.id) || trip.isPromoter(trip.trip.id,user.user.id)}">
-			<p:column>
-				<f:facet name="header">#Action</f:facet>
-					<p:commandButton value="#Cancelar plaza"
-				action="#{seat.CancelSeat(user.user.id,trip.trip.id)}" />
-					<!-- Aqui va un boton para cancelar el asiento actual(var)
-					Esta disponible para el promotor y para el usuario que se sienta
-					El boton llama a un metodo de Seats que es candelar asiento
-					Se usa ajax para hacer el update de "asientos" de esta manera que se actualiza la tabla de asientos únicamente por ajax al cancelar el asiento -->
+		<p:column>
+			<f:facet name="header">#Action</f:facet>
+					<p:commandButton value="#Cancelar plaza" action="#{seat.cancelSeat(user.user.id,trip.trip.id)}" rendered="#{trip.isSitting(user.user.id) and var.userId == user.user.id}" />
 			</p:column>
-		</h:form>
+	
 	</p:dataTable>
+	
+	 <h:outputText value="Su petición todavía se encuentra pendiente: " />
+	 <p:commandButton value="#Cancelar solicitud" action="#{trip.cancelApplication(user.user.id,trip.trip.id)}" rendered="#{trip.isUserInApplications(user.user.id)}" />
 
 	<h:form rendered="#{trip.trip.promoterId == user.user.id}">
 		<h3>Peticiones</h3>

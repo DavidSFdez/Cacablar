@@ -13,6 +13,7 @@ import uo.sdi.business.impl.classes.trip.TripsListActiveToUser;
 import uo.sdi.business.impl.classes.trip.TripsListRelated;
 import uo.sdi.business.impl.classes.trip.TripsSave;
 import uo.sdi.business.impl.classes.trip.TripsUpdate;
+import uo.sdi.business.impl.classes.trip.TripsUpdateTripsStatus;
 import uo.sdi.model.Trip;
 
 public class SimpleTripsService implements TripsService {
@@ -63,6 +64,12 @@ public class SimpleTripsService implements TripsService {
     public Trip findById(Long idTrip) throws EntityNotFoundException {
 	
 	return new TripsFindById().find(idTrip);
+    }
+
+    @Override
+    public void updateTripsStatus() {
+	new TripsUpdateTripsStatus().update();
+	
     }
 
   

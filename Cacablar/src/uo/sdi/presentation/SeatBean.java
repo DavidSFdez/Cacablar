@@ -25,33 +25,7 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-    public boolean isSitting(Long idUser, Long idTrip) {
-	// TODO comprobar el asiento en la otra tabla, que no me acordé de la
-	// puta tabla de mierda nueva
-	// * Este comprueba que tiene asiento, habrá que hacer un
-	// BeanApplication
-	// en el que se compruebe si tiene una appalication y desde algun sitio
-	// (viaje seguramente)
-	// se comprobarán las cosas
-
-	// Try-cacths en vez de ifs. Welcome to the slow way!
-	try {
-	    Factories.services.createSeatsService().findByUserAndTrip(idUser,
-		    idTrip);
-
-	} catch (EntityNotFoundException e) {
-	    try {
-		Factories.services.createApplicationService().find(idTrip,
-			idUser);
-	    } catch (EntityNotFoundException e1) {
-		return false;
-	    }
-	}
-
-	return true;
-
-    }
-
+   
     public String request(Long idUser, Long idTrip) {
 
 	try {
@@ -63,7 +37,7 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-    public String CancelSeat(Long idUser, Long idTrip) {
+    public String cancelSeat(Long idUser, Long idTrip) {
 
 	try {
 	    Factories.services.createSeatsService().cancelSeat(idUser, idTrip);

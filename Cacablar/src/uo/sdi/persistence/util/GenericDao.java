@@ -36,7 +36,7 @@ public interface GenericDao<T, K> {
 	 */
 	int delete(K id) throws NotPersistedException;
 	
-	T findById(K id) throws NotPersistedException;
+	T findById(K id);
 	List<T> findAll();
 	
 }

@@ -119,10 +119,11 @@
 					styleClass="outputLabel" />
 			</h:panelGrid>
 
-			<p>Estoy relacionado con este viaje: #{trip.isUserRetated(user.user.id)}</p>
-			<p>Soy el promotor? :  #{trip.isUserPromotor(user.user.id)}</p>
+			<p>Estoy relacionado con este viaje: #{trip.isUserRelated(user.user.id)}</p>
+			<p>Soy el promotor? :  #{trip.isPromoter(user.user.id)}</p>
 			<p>Estoy pendiente? :  #{trip.isUserInApplications(user.user.id)}</p>
 			<p>me han cancelado oa cpetado la plaza? :  #{trip.isUserInSeats(user.user.id)}</p>
+			<p>Tengo solicitada plaza en este viaje? (pendiente o aceptado): #{trip.isSitting(user.user.id)}</p>
 
 			<!--	Si estas conectado se ven los datos del viaje -->
 			<h:form rendered="#{user.logged}">
@@ -131,26 +132,6 @@
 				<ui:include src="/snippets/privateTripData.xhtml" />
 
 			</h:form>
-
-
-			<!--
-			<p:dataTable id="tablavars" var="var" value="#{trip.getSeats()}"
-				border="1">
-				<h:outputText value="User Id: " />
-				<h:outputText value="#{var.userId}" styleClass="outputLabel" />
-
-				<h:outputText value="Status: " />
-				<h:outputText value="#{var.status}" styleClass="outputLabel" />
-
-				<h:outputText value="Comentario: " />
-				<h:outputText value="#{var.comment}" styleClass="outputLabel" />
-
-				<h:outputText />
-				<h:outputText />
-			</p:dataTable>
-
-			-->
-
 
 		</h:form>
 	</ui:define>

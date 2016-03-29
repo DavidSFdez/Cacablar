@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -25,10 +26,72 @@ public class TripBean implements Serializable {
     public TripBean() {
 	trip = new Trip();
     }
+    
+    @PostConstruct
+    private void actualizar()
+    {
+	//para que compruebes si está bien
+	//actualizar estado de viajes ->
+	//TRIP_UPDATE_STATUS=UPDATE ttrips SET status = 1 where availablepax>=maxpax AND closingdate < CURRENT_TIMESTAMP
+	//recoger las peticiones pendientes de application para ponerlas a sin plaza->
+	//APPLICATION_FIND_TO_UPDATE=SELECT * FROM TAPPLICATIONS where appliedtrips_id = (select id from ttrips where status = 1)
+	//borrarlas de applications
+	//APPLICATION_DELETE_TO_UPDATE=DELETE FROM TAPPLICATIONS where appliedtrips_id = (select id from ttrips where status=1)
+	
+	Factories.services.createTripsService().updateTripsStatus();
+	List<Application> applications = Factories.services.createApplicationService().getToUpdate();
+	try {
+	    Factories.services.createSeatsService().seatsToUpdate(applications);
+	} catch (EntityAlreadyExistsException e) {
+	  
+	}
+	
+    }
 
-    public boolean isPromoter(Long idTrip, Long idUser) {
+    public boolean isPromoter(Long idUser) {
 	return Factories.services.createTripsService().findByIdandPromoter(
-		idTrip, idUser) == null ? false : true;
+		trip.getId(), idUser) == null ? false : true;
+    }
+
+    public boolean isInApplications(Long idUser) {
+	try {
+	    Factories.services.createApplicationService().find(trip.getId(),
+		    idUser);
+	} catch (EntityNotFoundException e1) {
+	    return false;
+	}
+	return true;
+    }
+
+    public boolean isInSeats(Long idUser) {
+	try {
+	    Factories.services.createSeatsService().findByUserAndTrip(idUser,
+		    trip.getId());
+
+	} catch (EntityNotFoundException e) {
+	    return false;
+	}
+	return true;
+
+    }
+
+    public boolean isSitting(Long idUser) {
+
+	try {
+	    Factories.services.createSeatsService().findByUserAndTrip(idUser,
+		    trip.getId());
+
+	} catch (EntityNotFoundException e) {
+	    try {
+		Factories.services.createApplicationService().find(
+			trip.getId(), idUser);
+	    } catch (EntityNotFoundException e1) {
+		return false;
+	    }
+	}
+
+	return true;
+
     }
 
     public List<Seat> getSeats() {
@@ -45,6 +108,18 @@ public class TripBean implements Serializable {
 	    applications = Factories.services.createSeatsService()
 		    .findApplicationByTrip(trip.getId());
 	return applications;
+    }
+
+    public Application getApplicationUser(Long idUser) {
+
+	try {
+	    if (trip.getId() != null)
+		return Factories.services.createApplicationService().find(
+			trip.getId(), idUser);
+	} catch (EntityNotFoundException e) {
+	    return null;
+	}
+	return null;
     }
 
     public String updateTrip(Long idUser) {
@@ -101,7 +176,7 @@ public class TripBean implements Serializable {
      * Si el usuario es primitor, participante o ha pedido plaza
      */
     public boolean isUserRelated(Long idUser) {
-	if (isUserPromotor(idUser))
+	if (isPromoter(idUser))
 	    return true;
 
 	if (isUserInSeats(idUser))
@@ -113,28 +188,38 @@ public class TripBean implements Serializable {
 	return false;
     }
 
-    public boolean isUserPromotor(Long idUser) {
-	return trip.getPromoterId().equals(idUser);
-    }
-
     public boolean isUserInSeats(Long idUser) {
 	try {
 	    Factories.services.createSeatsService().findByUserAndTrip(idUser,
 		    trip.getId());
-	    return true;
-	} catch (EntityNotFoundException ignored) {
+
+	} catch (EntityNotFoundException e) {
 	    return false;
 	}
+	return true;
+
     }
 
     public boolean isUserInApplications(Long idUser) {
 	try {
-	    Factories.services.createSeatsService().findApplication(idUser,
-		    trip.getId());
-	    return true;
-	} catch (EntityNotFoundException ignored) {
+	    Factories.services.createApplicationService().find(trip.getId(),
+		    idUser);
+	} catch (EntityNotFoundException e1) {
 	    return false;
 	}
+	return true;
+    }
+
+    public String cancelApplication(Long idUser, Long idTrip) {
+
+	try {
+	    Factories.services.createApplicationService()
+		    .remove(idUser, idTrip);
+	} catch (EntityNotFoundException e) {
+	    return "fracaso";
+	}
+
+	return "exito";
     }
 
 }

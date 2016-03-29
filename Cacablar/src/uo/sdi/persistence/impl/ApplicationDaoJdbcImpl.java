@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import uo.sdi.persistence.exception.NotPersistedException;
+
 import uo.sdi.model.Application;
 import uo.sdi.persistence.ApplicationDao;
 import uo.sdi.persistence.util.JdbcTemplate;
@@ -47,7 +49,7 @@ public class ApplicationDaoJdbcImpl implements ApplicationDao {
 	}
 
 	@Override
-	public Application findById(Long[] ids) {
+	public Application findById(Long[] ids){
 		return jdbcTemplate.queryForObject(
 				"APPLICATION_FIND_BY_ID", 
 				new ApplicationMapper(), 
@@ -79,6 +81,21 @@ public class ApplicationDaoJdbcImpl implements ApplicationDao {
 				new ApplicationMapper(), 
 				tripId
 			);
+	}
+
+	@Override
+	public List<Application> findToUpdate() {
+	    return jdbcTemplate.queryForList(
+			"APPLICATION_FIND_TO_UPDATE", 
+			new ApplicationMapper()
+		);
+	}
+
+	@Override
+	public int deleteToUpdate() {
+	    return jdbcTemplate.execute("APPLICATION_DELETE_TO_UPDATE"
+		);
+	    
 	}
 
 }

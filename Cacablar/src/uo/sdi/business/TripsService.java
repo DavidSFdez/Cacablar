@@ -16,6 +16,7 @@ public interface TripsService {
     void save(Trip trip,Long idUser) throws EntityAlreadyExistsException;
     Trip findByIdandPromoter(Long idTrip, Long idUser);
     Trip findById(Long idTrip) throws EntityNotFoundException;
+    void updateTripsStatus();
     
    
 }

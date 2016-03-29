@@ -24,7 +24,7 @@
 				<f:facet name="header">#Controles</f:facet>
 				<!-- Aquí iría una llamada al método value pero no funciona así que tendremos que buscar una forma equivalente -->
 				<p:selectBooleanCheckbox value="#{trips.aux}"
-					rendered="#{trip.isPromoter(var.id,user.user.id)}">
+					rendered="#{trip.isPromoter(user.user.id)}">
 					<p:ajax listener="#{trips.cancel(var)}" />
 				</p:selectBooleanCheckbox>
 
