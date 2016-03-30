@@ -17,7 +17,7 @@
 			<f:facet name="header">#Action</f:facet>
 			<p:commandButton value="#Cancelar plaza"
 				action="#{seat.cancelSeat(var)}"
-				rendered="#{(trip.isSitting(user.user.id) and var.userId == user.user.id) || trip.isPromoter(user.user.id)}" />
+				rendered="#{(trip.isSitting(user.user.id) and var.userId == user.user.id) || (trip.isPromoter(user.user.id) and var.status.accepted)}" />
 		</p:column>
 
 	</p:dataTable>

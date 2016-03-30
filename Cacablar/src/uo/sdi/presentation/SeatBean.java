@@ -65,7 +65,6 @@ public class SeatBean implements Serializable {
 	} catch (EntityAlreadyExistsException e) {
 	    return "fracaso";
 	}
-
 	return "exito";
     }
 
