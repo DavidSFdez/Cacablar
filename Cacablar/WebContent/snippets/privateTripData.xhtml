@@ -33,7 +33,7 @@
 			action="#{seat.request(user.user.id,trip.trip.id)}" />
 	</h:form>
 
-	<h:form rendered="#{trip.isPromoter(user.user.id)}">
+	<h:panelGroup rendered="#{trip.isPromoter(user.user.id)}">
 		<h3>#Peticiones</h3>
 		<p:dataTable id="peticiones" var="var"
 			value="#{trip.getApplications()}" border="1">
@@ -41,9 +41,10 @@
 				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
 			<p:column>
 				<f:facet name="header">#Actions</f:facet>
-				<p:commandButton value="Aceptar" action="#{seat.acceptRequest(var)}"/>
-				<p:commandButton value="Rechazar" action="#{seat.refuseRequest(var)}"/>
-		</p:column>
+				<p:commandButton value="#Aceptar" action="#{seat.acceptRequest(var)}" ajax="false" />
+				<p:commandButton value="#Rechazar"
+					action="#{seat.refuseRequest(var)}" />
+			</p:column>
 		</p:dataTable>
-	</h:form>
+	</h:panelGroup>
 </ui:composition>
