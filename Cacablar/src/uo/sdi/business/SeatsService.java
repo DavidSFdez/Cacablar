@@ -7,7 +7,6 @@ import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
-import uo.sdi.model.SeatStatus;
 
 public interface SeatsService {
     

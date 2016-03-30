@@ -5,14 +5,12 @@ import java.util.List;
 import uo.sdi.business.ApplicationService;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
+import uo.sdi.business.impl.classes.application.ApplicationCancel;
+import uo.sdi.business.impl.classes.application.ApplicationsAccept;
 import uo.sdi.business.impl.classes.application.ApplicationsFind;
 import uo.sdi.business.impl.classes.application.ApplicationsGetToUpdate;
 import uo.sdi.business.impl.classes.application.ApplicationsRemove;
-import uo.sdi.business.impl.classes.application.ApplicationsUpdate;
 import uo.sdi.model.Application;
-import uo.sdi.model.Seat;
-import uo.sdi.model.SeatStatus;
-import uo.sdi.persistence.exception.NotPersistedException;
 
 public class SimpleApplicationsService implements ApplicationService{
 
@@ -35,10 +33,16 @@ public class SimpleApplicationsService implements ApplicationService{
     }
 
     @Override
-    public void updateApplication(Application application,SeatStatus status) throws EntityAlreadyExistsException, EntityNotFoundException {
+    public void acceptApplication(Application application) throws EntityAlreadyExistsException, EntityNotFoundException {
 
-	new ApplicationsUpdate().updateToSeat(application,status);
+	new ApplicationsAccept().execute(application);
 	
+    }
+
+    @Override
+    public void cancelApplication(Application application)
+	    throws EntityAlreadyExistsException, EntityNotFoundException {
+	new ApplicationCancel().execute(application);
     }
 
 }

@@ -101,7 +101,7 @@
 
 			<h3>Sobre el viaje</h3>
 
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="2" id="sobreViaje">
 
 				<h:outputText value="Fecha Cierre: " />
 				<h:outputText value="#{trip.trip.closingDate}"
@@ -129,9 +129,9 @@
 			<p>Tengo plaza en este viaje? (tabla seats estado aceptado): #{trip.isSitting(user.user.id)}</p>
 
 			<!--	Si estas conectado se ven los datos del viaje -->
-			<h:form rendered="#{user.logged}">
+			<h:form id='PasajerosPeticiones' rendered="#{user.logged}">
 			
-				<p:separator rendered="#{user.logged}" />
+				<p:separator/>
 
 				<ui:include src="/snippets/privateTripData.xhtml" />
 

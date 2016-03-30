@@ -10,13 +10,13 @@ import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
-import uo.sdi.model.SeatStatus;
-import uo.sdi.persistence.exception.NotPersistedException;
 
 @ManagedBean(name = "seat")
 @RequestScoped
 public class SeatBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     private Seat seat;
 
     public SeatBean() {
@@ -28,14 +28,21 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-    public String acceptRequest(Application application) {
+    public String acceptApplication(Application application) {
 	// A diferencia del otro lado que lo hice en dos métodos esto lo hago
 	// todo en servicios porque creo que es la forma más correcta
-
+	
+	// yo tmb creo que es correcto 
+	// He realizado muchos cambios en este
+	// updateApplication(application, SeatStatus.ACCEPTED);
+	/*
+	 *  updateApplication(application, SeatStatus.ACCEPTED);
+	 *  Quito el status aceptado. Cuandoa ceptas una peticion ya se sabe que está aceptada.
+	 *  El metodo pasa  llamarce AcceptApplication (el update quedaba muy raro)
+	 */
 	
 	    try {
-		Factories.services.createApplicationService().updateApplication(
-		    application, SeatStatus.ACCEPTED);
+		Factories.services.createApplicationService().acceptApplication(application);
 	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
 		 return "fracaso";
 	    }
@@ -44,12 +51,9 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-    public String refuseRequest(Application application) {
-
-	
+    public String cancelApplication(Application application) {
 	    try {
-		Factories.services.createApplicationService().updateApplication(
-			application, SeatStatus.EXCLUDED);
+		Factories.services.createApplicationService().cancelApplication(application);
 	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
 		 return "fracaso";
 	    }

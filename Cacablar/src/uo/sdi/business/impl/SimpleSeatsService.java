@@ -14,7 +14,6 @@ import uo.sdi.business.impl.classes.seat.SeatsRequest;
 import uo.sdi.business.impl.classes.seat.SeatsToUpdate;
 import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
-import uo.sdi.model.SeatStatus;
 
 public class SimpleSeatsService implements SeatsService{
 

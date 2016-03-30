@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import uo.sdi.persistence.exception.PersistenceException;
 import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;

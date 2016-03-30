@@ -121,7 +121,7 @@ public class TripBean implements Serializable {
 	try {
 	    Seat seat = Factories.services.createSeatsService()
 		    .findByUserAndTrip(idUser, trip.getId());
-	    if (!seat.getStatus().equals(SeatStatus.ACCEPTED))
+	    if (!seat.getStatus().equals(SeatStatus.ADMITIDO))
 		return false;
 	} catch (EntityNotFoundException e) {
 	    return false;
@@ -250,8 +250,7 @@ public class TripBean implements Serializable {
     public String cancelApplication(Long idUser, Long idTrip) {
 
 	try {
-	    Factories.services.createApplicationService()
-		    .remove(idUser, idTrip);
+	    Factories.services.createApplicationService().remove(idUser, idTrip);
 	} catch (EntityNotFoundException e) {
 	    return "fracaso";
 	}

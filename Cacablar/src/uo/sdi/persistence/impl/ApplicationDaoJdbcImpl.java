@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import uo.sdi.persistence.exception.NotPersistedException;
-
 import uo.sdi.model.Application;
 import uo.sdi.persistence.ApplicationDao;
 import uo.sdi.persistence.util.JdbcTemplate;
@@ -95,6 +93,12 @@ public class ApplicationDaoJdbcImpl implements ApplicationDao {
 	public int deleteToUpdate() {
 	    return jdbcTemplate.execute("APPLICATION_DELETE_TO_UPDATE"
 		);
+	    
+	}
+
+	@Override
+	public void acceptApplication(Long[] ids) {
+	    // TODO Toda la actualización del application a seat
 	    
 	}
 

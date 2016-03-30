@@ -4,8 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:panelGroup>
 	<h3>#Pasajeros</h3>
-	<p:dataTable id="asientos" var="var" value="#{trip.getSeats()}"
+	<p:dataTable  var="var" value="#{trip.getSeats()}"
 		border="1">
 		<p:column>
 			<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
@@ -20,6 +21,7 @@
 				rendered="#{( trip.isSitting(user.user.id) and var.userId == user.user.id ) || (trip.isPromoter(user.user.id) and var.status.accepted)}" />
 		</p:column>
 	</p:dataTable>
+	</h:panelGroup>
 
 	<h:form rendered="#{trip.isUserInApplications(user.user.id)}">
 		<h:outputText value="#Su petición todavía se encuentra pendiente: " />
@@ -34,16 +36,47 @@
 
 	<h:panelGroup rendered="#{trip.isPromoter(user.user.id)}">
 		<h3>#Peticiones</h3>
-		<p:dataTable id="peticiones" var="var"
+		<p:dataTable  var="var"
 			value="#{trip.getApplications()}" border="1">
 			<p:column>
 				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
 			<p:column>
 				<f:facet name="header">#Actions</f:facet>
-				<p:commandButton value="#Aceptar" action="#{seat.acceptRequest(var)}" ajax="false" />
-				<p:commandButton value="#Rechazar"
-					action="#{seat.refuseRequest(var)}" />
+				<p:commandButton value="#Aceptar" action="#{seat.acceptApplication(var)}"  immediate="true" 
+						update = "@all"  >
+					<!-- 	update = "form-content:showTrip:sobreViaje, form-content:showTrip:PasajerosPeticiones"  > -->
+					<f:param name="id" value="#{trip.id}" />
+				</p:commandButton>
+				<p:commandButton value="#Rechazar" action="#{seat.cancelApplication(var)}"  immediate="true" 
+						update = "@all"  >
+					<f:param name="id" value="#{trip.id}" />
+				</p:commandButton>
 			</p:column>
 		</p:dataTable>
 	</h:panelGroup>
+
+
+<!-- 	Carga de ajax -->
+	<p:ajaxStatus style="display:none;margin-bottom:2em;height:24px;">
+		<f:facet name="default">
+			<h:outputText value="Status: StandBy" />
+		</f:facet>
+
+		<f:facet name="start">
+			<h:graphicImage library="images" name="ajax_loader_blue_512.gif" />
+		</f:facet>
+
+		<f:facet name="complete">
+			<h:outputText value="Status: Completed" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+				<h:graphicImage library="images" name="ajax_loader_blue_512.gif" />
+	</p:dialog>
+
 </ui:composition>

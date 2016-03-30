@@ -3,7 +3,6 @@ package uo.sdi.persistence.util;
 import java.util.List;
 
 import uo.sdi.persistence.exception.AlreadyPersistedException;
-
 import uo.sdi.persistence.exception.NotPersistedException;
 
 /**

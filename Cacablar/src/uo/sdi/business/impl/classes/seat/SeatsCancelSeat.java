@@ -35,10 +35,10 @@ public class SeatsCancelSeat {
 		&& trip.getClosingDate().after(new Date())) {
 	    trip.setAvailablePax(trip.getAvailablePax() - 1);
 	    trip.setStatus(TripStatus.OPEN);
-	    seat.setStatus(SeatStatus.EXCLUDED);
+	    seat.setStatus(SeatStatus.EXCLUIDO);
 	} else if (trip.getClosingDate().after(new Date())) {
 	    trip.setAvailablePax(trip.getAvailablePax() - 1);
-	    seat.setStatus(SeatStatus.EXCLUDED);
+	    seat.setStatus(SeatStatus.EXCLUIDO);
 	} else
 	    throw new BusinessException("El viaje ya pasó");
 

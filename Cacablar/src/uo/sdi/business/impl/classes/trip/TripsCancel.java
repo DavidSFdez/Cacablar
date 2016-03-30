@@ -1,11 +1,10 @@
 package uo.sdi.business.impl.classes.trip;
 
 import uo.sdi.business.exception.EntityNotFoundException;
-import uo.sdi.persistence.exception.NotPersistedException;
-
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
+import uo.sdi.persistence.exception.NotPersistedException;
 
 public class TripsCancel {
 

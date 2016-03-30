@@ -1,10 +1,8 @@
 package uo.sdi.presentation;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -16,6 +14,8 @@ import uo.sdi.model.Trip;
 @ManagedBean(name = "trips")
 @RequestScoped
 public class TripsBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private List<Trip> trips;
     

@@ -14,6 +14,8 @@ import uo.sdi.model.UserStatus;
 @SessionScoped
 public class UserBean implements Serializable {
 
+    private static final long serialVersionUID = -6981760995314343162L;
+    
     private User user;
 
     public UserBean() {

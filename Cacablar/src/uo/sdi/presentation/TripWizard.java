@@ -3,10 +3,8 @@ package uo.sdi.presentation;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FlowEvent;
 
@@ -20,6 +18,8 @@ import uo.sdi.model.Waypoint;
 @ViewScoped
 public class TripWizard implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     private Trip trip = new Trip();
     private String addressD;
     private String cityD;

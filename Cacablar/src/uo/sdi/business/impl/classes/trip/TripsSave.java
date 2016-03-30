@@ -1,10 +1,10 @@
 package uo.sdi.business.impl.classes.trip;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
-import uo.sdi.persistence.exception.AlreadyPersistedException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Trip;
 import uo.sdi.model.TripStatus;
+import uo.sdi.persistence.exception.AlreadyPersistedException;
 
 public class TripsSave {
 

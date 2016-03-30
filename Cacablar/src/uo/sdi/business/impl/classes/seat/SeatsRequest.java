@@ -3,7 +3,6 @@ package uo.sdi.business.impl.classes.seat;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Seat;
-import uo.sdi.model.SeatStatus;
 import uo.sdi.persistence.SeatDao;
 
 public class SeatsRequest {
