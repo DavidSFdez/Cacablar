@@ -52,6 +52,12 @@ public class Trip {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public String getStringId() {
+		return id+"";
+	}
+
+
 
 	public AddressPoint getDestination() {
 		return destination;

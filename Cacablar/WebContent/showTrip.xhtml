@@ -7,11 +7,13 @@
 
 
 
-	<ui:define name="title">Detalles Viaje #{trip.trip.id}</ui:define>
+	<ui:define name="title">Detalles Viaje #{param['id']}</ui:define>
 
-	<ui:define name="content">
+	<ui:define name="content">	
 		<h:form id="showTrip" action="showTrip">
-
+		
+		<p>El valor que viene por parametro es #{param['id']}</p>
+		<p>El valor que viene en el managedproperty del bean es #{trip.id}</p>
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Promotor: " rendered="#{user.logged}" />

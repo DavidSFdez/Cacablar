@@ -17,18 +17,17 @@
 			<f:facet name="header">#Action</f:facet>
 			<p:commandButton value="#Cancelar plaza"
 				action="#{seat.cancelSeat(var)}"
-				rendered="#{(trip.isSitting(user.user.id) and var.userId == user.user.id) || (trip.isPromoter(user.user.id) and var.status.accepted)}" />
+				rendered="#{( trip.isSitting(user.user.id) and var.userId == user.user.id ) || (trip.isPromoter(user.user.id) and var.status.accepted)}" />
 		</p:column>
-
 	</p:dataTable>
 
 	<h:form rendered="#{trip.isUserInApplications(user.user.id)}">
 		<h:outputText value="#Su petición todavía se encuentra pendiente: " />
-		<p:commandButton value="#Cancelar solicitud"
-			action="#{trip.cancelApplication(user.user.id,trip.trip.id)}" />
+		<p:commandButton value="#Cancelar solicitud" action="#{trip.cancelApplication(user.user.id,trip.trip.id)}" />
 	</h:form>
-	<!--  Peta pero funciona (wtf) -->
-	<h:form rendered="#{!trip.isUserRelated(user.user.id)}">
+	
+	<!--  Peta pero funciona (wtf) (He puesto el == false en vez de ! para que eclipse no llore -->
+	<h:form rendered="#{trip.isUserRelated(user.user.id) == false}">
 		<p:commandButton value="#Solicitar Plaza"
 			action="#{seat.request(user.user.id,trip.trip.id)}" />
 	</h:form>

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
@@ -23,6 +24,9 @@ public class TripBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     Trip trip;
+    
+    @ManagedProperty("#{param.id}")
+    String id;
 
     public TripBean() {
 	trip = new Trip();
@@ -41,6 +45,17 @@ public class TripBean implements Serializable {
 	
 	//P.D.-> Tal vez convenga juntar los dos últimos métodos en la capa de negocio, tú qué opinas?
 	//Lo he hecho en métodos separados por la movida de que pertenecen a diferentes DAO
+	
+	
+	// Jorge:
+	// Un solo metodo de servicio sería lo correcto si es una unica accion logica 
+	// Ya la clase de accion (clase en package uo.sdi.business.impl.classes) llamará a dos DAOS
+	
+	
+	{ //	Cargar el viaje con ID que venga en los parametros
+	    
+	    //TODO aqui esto. el ID es el managedPorppertyyID
+	}
 	
 	
 	Factories.services.createTripsService().updateTripsStatus();
@@ -223,4 +238,14 @@ public class TripBean implements Serializable {
 	return "exito";
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
+    
 }

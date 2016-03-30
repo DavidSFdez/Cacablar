@@ -6,16 +6,28 @@
 
 	<p:column>
 		<f:facet name="header">ID</f:facet>
+		
+		
+<!-- 	CommandLink	
 		<p:commandLink action="#{seat.view(var.id)}">
 			<h:outputText value="#{var.id}" />
-		</p:commandLink>
+		</p:commandLink> -->
+		
+	<p:link outcome="showTrip" value="#{var.stringId}">
+		<f:param name="id" value="#{var.stringId}" />
+	</p:link>
+		
+		
 	</p:column>
 	<p:column>
 		<f:facet name="header">#Origen</f:facet>#{var.departure.city}</p:column>
 	<p:column>
 		<f:facet name="header">#Destino</f:facet>#{var.destination.city}</p:column>
 	<p:column>
-		<p:commandButton value="#VerViaje" action="#{trip.view(var.id)}" />
+		<!-- <p:commandButton value="#VerViaje" action="#{trip.view(var.id)}" /> -->
+		<p:button outcome="showTrip" value="#{var.stringId}">
+			<f:param name="id" value="#{var.stringId}" />
+		</p:button>
 	</p:column>
 
 </ui:composition>
