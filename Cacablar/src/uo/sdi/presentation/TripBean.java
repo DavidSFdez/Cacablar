@@ -1,5 +1,6 @@
 package uo.sdi.presentation;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +9,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
@@ -24,48 +27,66 @@ public class TripBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     Trip trip;
-    
+
     @ManagedProperty("#{param.id}")
     String id;
 
     public TripBean() {
 	trip = new Trip();
     }
-    
+
     @PostConstruct
-    private void actualizar()
-    {
-	//para que compruebes si está bien
-	//actualizar estado de viajes ->
-	//TRIP_UPDATE_STATUS=UPDATE ttrips SET status = 1 where availablepax>=maxpax AND closingdate < CURRENT_TIMESTAMP
-	//recoger las peticiones pendientes de application para ponerlas a sin plaza->
-	//APPLICATION_FIND_TO_UPDATE=SELECT * FROM TAPPLICATIONS where appliedtrips_id = (select id from ttrips where status = 1)
-	//borrarlas de applications
-	//APPLICATION_DELETE_TO_UPDATE=DELETE FROM TAPPLICATIONS where appliedtrips_id = (select id from ttrips where status=1)
-	
-	//P.D.-> Tal vez convenga juntar los dos últimos métodos en la capa de negocio, tú qué opinas?
-	//Lo he hecho en métodos separados por la movida de que pertenecen a diferentes DAO
-	
-	
+    private void actualizar() {
+	// para que compruebes si está bien
+	// actualizar estado de viajes ->
+	// TRIP_UPDATE_STATUS=UPDATE ttrips SET status = 1 where
+	// availablepax>=maxpax AND closingdate < CURRENT_TIMESTAMP
+	// recoger las peticiones pendientes de application para ponerlas a sin
+	// plaza->
+	// APPLICATION_FIND_TO_UPDATE=SELECT * FROM TAPPLICATIONS where
+	// appliedtrips_id = (select id from ttrips where status = 1)
+	// borrarlas de applications
+	// APPLICATION_DELETE_TO_UPDATE=DELETE FROM TAPPLICATIONS where
+	// appliedtrips_id = (select id from ttrips where status=1)
+
+	// P.D.-> Tal vez convenga juntar los dos últimos métodos en la capa de
+	// negocio, tú qué opinas?
+	// Lo he hecho en métodos separados por la movida de que pertenecen a
+	// diferentes DAO
+
 	// Jorge:
-	// Un solo metodo de servicio sería lo correcto si es una unica accion logica 
-	// Ya la clase de accion (clase en package uo.sdi.business.impl.classes) llamará a dos DAOS
+	// Un solo metodo de servicio sería lo correcto si es una unica accion
+	// logica
+	// Ya la clase de accion (clase en package uo.sdi.business.impl.classes)
+	// llamará a dos DAOS
+
+	// Cargar el viaje con ID que venga en los parametros
+	cargarViaje: {
+
+	System.out.println(id);
 	
-	
-	{ //	Cargar el viaje con ID que venga en los parametros
-	    
-	    //TODO aqui esto. el ID es el managedPorppertyyID
+	    if (null == id) {
+		break cargarViaje;
+	    }
+	    try {
+		trip = Factories.services.createTripsService().findById(
+			Long.parseLong(id));
+	    } catch (NumberFormatException e) {
+		// El id no era un número
+	    } catch (EntityNotFoundException e) {
+		// No existe tal viaje
+	    }
 	}
-	
-	
+
 	Factories.services.createTripsService().updateTripsStatus();
-	List<Application> applications = Factories.services.createApplicationService().getToUpdate();
+	List<Application> applications = Factories.services
+		.createApplicationService().getToUpdate();
 	try {
 	    Factories.services.createSeatsService().seatsToUpdate(applications);
 	} catch (EntityAlreadyExistsException e) {
-	  
+
 	}
-	
+
     }
 
     public boolean isPromoter(Long idUser) {
@@ -98,12 +119,12 @@ public class TripBean implements Serializable {
     public boolean isSitting(Long idUser) {
 
 	try {
-	   Seat seat = Factories.services.createSeatsService().findByUserAndTrip(idUser,
-		    trip.getId());
-	   if(!seat.getStatus().equals(SeatStatus.ACCEPTED))
-	       return false;
+	    Seat seat = Factories.services.createSeatsService()
+		    .findByUserAndTrip(idUser, trip.getId());
+	    if (!seat.getStatus().equals(SeatStatus.ACCEPTED))
+		return false;
 	} catch (EntityNotFoundException e) {
-	   return false;
+	    return false;
 	}
 
 	return true;
@@ -239,13 +260,19 @@ public class TripBean implements Serializable {
     }
 
     public String getId() {
-        return id;
+	return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+	this.id = id;
     }
 
-    
-    
+    public void checkTripNotNull() throws IOException {
+	if(null == trip.getId()){
+        	ExternalContext ec = FacesContext.getCurrentInstance()
+        		.getExternalContext();
+        	ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
+	}
+    }
+
 }

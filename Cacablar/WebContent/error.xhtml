@@ -5,20 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/template-general.xhtml">
 
-	<ui:define name="titulo">
-      #{msgs.tituloHead}
-    </ui:define>
+	<ui:define name="title">ERROR</ui:define>
 
-	<ui:define name="cuerpo">
-		<p:panel header="#{msgs.tituloOperacionError}">
-		 <h1>#{msgs.mensajeError1}</h1>
-		 <p>#{msgs.mensajeError2}</p>
-		 <p>#{msgs.mensajeError3}</p>
-		 </p:panel>
-	</ui:define>
-
-	<ui:define name="pie">
-		<ui:include src="/snippets/pie-casa.xhtml" />
+	<ui:define name="content">
+		<h1>#Error</h1>
 	</ui:define>
 
 </ui:composition>
