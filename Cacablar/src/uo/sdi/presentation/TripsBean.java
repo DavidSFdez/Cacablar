@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Trip;
@@ -67,6 +68,9 @@ public class TripsBean implements Serializable {
 	    tripsToCancel = new LinkedList<>();
 	} catch (EntityNotFoundException e) {
 	    // rollback?
+	    return "fracaso";
+	} catch (EntityAlreadyExistsException e) {
+	    // TODO Auto-generated catch block
 	    return "fracaso";
 	}
 

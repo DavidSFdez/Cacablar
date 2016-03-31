@@ -175,6 +175,8 @@ public class TripBean implements Serializable {
 	    Factories.services.createTripsService().cancel(trip, idUser);
 	} catch (EntityNotFoundException e) {
 	    return "fracaso";
+	} catch (EntityAlreadyExistsException e) {
+	    return "fracaso";
 	}
 	return "exito";
     }

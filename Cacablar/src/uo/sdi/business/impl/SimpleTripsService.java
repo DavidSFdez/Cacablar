@@ -43,7 +43,7 @@ public class SimpleTripsService implements TripsService {
     }
 
     @Override
-    public void cancel(Trip trip,Long idUser) throws EntityNotFoundException {
+    public void cancel(Trip trip,Long idUser) throws EntityNotFoundException, EntityAlreadyExistsException {
 	new TripsCancel().cancel(trip,idUser);
 	
     }
