@@ -18,27 +18,25 @@ public class TripsBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private List<Trip> trips;
-    
+
     private List<Trip> tripsToCancel;
 
     private boolean aux = false;
 
-    
-
     public List<Trip> getTrips() {
-        return trips;
+	return trips;
     }
 
     public void setTrips(List<Trip> trips) {
-        this.trips = trips;
+	this.trips = trips;
     }
 
     public List<Trip> getTripsToCancel() {
-        return tripsToCancel;
+	return tripsToCancel;
     }
 
     public void setTripsToCancel(List<Trip> tripsToCancel) {
-        this.tripsToCancel = tripsToCancel;
+	this.tripsToCancel = tripsToCancel;
     }
 
     public boolean isAux() {
@@ -54,15 +52,6 @@ public class TripsBean implements Serializable {
 	tripsToCancel = new LinkedList<>();
     }
 
-    public void cancel(Trip trip) {
-
-	if(tripsToCancel.contains(trip))
-	    tripsToCancel.remove(trip);
-	else
-	    tripsToCancel.add(trip);
-
-    }
-
     public boolean value(Trip trip) {
 
 	return tripsToCancel.contains(trip);
@@ -71,8 +60,11 @@ public class TripsBean implements Serializable {
     public String cancelTrips(long idUser) {
 
 	try {
-	    for (Trip trip : tripsToCancel)
-		Factories.services.createTripsService().cancel(trip, idUser);
+	    if (tripsToCancel != null && tripsToCancel.size() != 0)
+		for (Trip trip : tripsToCancel)
+		    Factories.services.createTripsService()
+			    .cancel(trip, idUser);
+	    tripsToCancel = new LinkedList<>();
 	} catch (EntityNotFoundException e) {
 	    // rollback?
 	    return "fracaso";
@@ -88,7 +80,7 @@ public class TripsBean implements Serializable {
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
-	this.trips=trips;
+	this.trips = trips;
 	return trips;
     }
 
@@ -99,15 +91,15 @@ public class TripsBean implements Serializable {
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
-	this.trips=trips;
+	this.trips = trips;
 	return trips;
     }
 
     public List<Trip> getListActiveToUser(Long idUser) {
 	List<Trip> trips = new LinkedList<Trip>();
 
-	if (idUser == null){
-	    this.trips=trips;
+	if (idUser == null) {
+	    this.trips = trips;
 	    return getListActive();
 	}
 
@@ -119,7 +111,7 @@ public class TripsBean implements Serializable {
 	    e.printStackTrace();
 	}
 
-	this.trips=trips;
+	this.trips = trips;
 	return trips;
     }
 
