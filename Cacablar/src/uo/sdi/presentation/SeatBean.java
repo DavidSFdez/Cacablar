@@ -28,39 +28,7 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-    public String acceptApplication(Application application) {
-	// A diferencia del otro lado que lo hice en dos métodos esto lo hago
-	// todo en servicios porque creo que es la forma más correcta
-	
-	// yo tmb creo que es correcto 
-	// He realizado muchos cambios en este
-	// updateApplication(application, SeatStatus.ACCEPTED);
-	/*
-	 *  updateApplication(application, SeatStatus.ACCEPTED);
-	 *  Quito el status aceptado. Cuandoa ceptas una peticion ya se sabe que está aceptada.
-	 *  El metodo pasa  llamarce AcceptApplication (el update quedaba muy raro)
-	 */
-	
-	    try {
-		Factories.services.createApplicationService().acceptApplication(application);
-	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
-		 return "fracaso";
-	    }
-	
-
-	return "exito";
-    }
-
-    public String cancelApplication(Application application) {
-	    try {
-		Factories.services.createApplicationService().cancelApplication(application);
-	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
-		 return "fracaso";
-	    }
-	
-
-	return "exito";
-    }
+  
 
     public String request(Long idUser, Long idTrip) {
 

@@ -42,12 +42,12 @@
 				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
 			<p:column>
 				<f:facet name="header">#Actions</f:facet>
-				<p:commandButton value="#Aceptar" action="#{seat.acceptApplication(var)}"  immediate="true" 
+				<p:commandButton value="#Aceptar" action="#{trip.acceptApplication(var)}"  immediate="true" 
 						update = "@all"  >
 					<!-- 	update = "form-content:showTrip:sobreViaje, form-content:showTrip:PasajerosPeticiones"  > -->
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
-				<p:commandButton value="#Rechazar" action="#{seat.cancelApplication(var)}"  immediate="true" 
+				<p:commandButton value="#Rechazar" action="#{trip.cancelApplication(var)}"  immediate="true" 
 						update = "@all"  >
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
