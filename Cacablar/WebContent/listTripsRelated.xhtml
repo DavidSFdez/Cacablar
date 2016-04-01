@@ -22,15 +22,19 @@
 				#{var.status}
 			</p:column>
 
+			<p:column>
+				<p:button outcome="updateTrip" value="#Modificar">
+					<f:param name="updateTrip" value="#{var.stringId}" />
+				</p:button>
+			</p:column>
 			<p:column selectionMode="multiple"
 				style="width:16px;text-align:center" />
-
 		</p:dataTable>
 
 		<!-- Botón para cancelar el viaje -->
 		<p:commandButton value="Cancelar Viaje(s)"
-			action="#{trips.cancelTrips(user.user.id)}"	update="@all">
-			
+			action="#{trips.cancelTrips(user.user.id)}" update="@all">
+
 			<p:confirm header="Confirmation"
 				message="Cancelar viajes seleccionados ¿Estás seguro?"
 				icon="ui-icon-alert"></p:confirm>

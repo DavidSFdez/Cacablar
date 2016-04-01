@@ -181,7 +181,8 @@
                     </h:panelGrid>
                 </h:panelGrid>
  
-                <p:commandButton value="Submit" action="#{wizard.save(user.user.id)}" update="growl" process="@this"/>
+                <p:commandButton value="#Submit" action="#{wizard.save(user.user.id)}" update="growl" process="@this" rendered="#{wizard.update==false}"/>
+                <p:commandButton value="#Modificar" action="#{wizard.save(user.user.id)}" update="growl" process="@this" rendered="#{wizard.update}"/>
             </p:panel>
         </p:tab>
     </p:wizard>

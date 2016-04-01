@@ -16,9 +16,11 @@ import uo.sdi.persistence.exception.NotPersistedException;
 public class SeatsCancelSeat {
 
     public void cancel(Seat seat) throws EntityNotFoundException {
+	
 	SeatDao sd = Factories.persistence.createSeatDao();
 	TripDao td = Factories.persistence.createTripDao();
 	Long[] ids = { seat.getUserId(), seat.getTripId() };
+	
 	Seat s = sd.findById(ids);
 
 	if (s == null)

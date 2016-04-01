@@ -68,12 +68,10 @@
 
 	<navigation-rule>
 		<from-view-id>/listTripsRelated.xhtml</from-view-id>
-		<!-- Este caso de navegación es con el comman viejo -->
-		<!-- <navigation-case>
-				<from-action>#{trip.view(var.id)}</from-action> 
-				<from-outcome>exito</from-outcome> 
-				<to-view-id>/showTrip.xhtml</to-view-id> 
-			</navigation-case> -->
+		<navigation-case>
+			<from-outcome>updateTrip</from-outcome>
+			<to-view-id>/registerTrip.xhtml</to-view-id>
+		</navigation-case>
 		<navigation-case>
 			<from-outcome>showTrip</from-outcome>
 			<to-view-id>/showTrip.xhtml</to-view-id>
@@ -83,10 +81,8 @@
 	<navigation-rule>
 		<from-view-id>/listTrips.xhtml</from-view-id>
 		<!-- Este caso de navegación es con el comman viejo -->
-		<!-- <navigation-case> 
-				<from-action>#{trip.view(var.id)}</from-action> 
-				<from-outcome>exito</from-outcome>
-				<to-view-id>/showTrip.xhtml</to-view-id> 
+		<!-- <navigation-case> <from-action>#{trip.view(var.id)}</from-action> 
+			<from-outcome>exito</from-outcome> <to-view-id>/showTrip.xhtml</to-view-id> 
 			</navigation-case> -->
 		<navigation-case>
 			<from-outcome>showTrip</from-outcome>

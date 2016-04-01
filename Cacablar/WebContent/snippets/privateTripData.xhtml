@@ -4,51 +4,55 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:panelGroup>
-	<h3>#Pasajeros</h3>
-	<p:dataTable  var="var" value="#{trip.getSeats()}"
-		border="1">
-		<p:column>
-			<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
-		<p:column>
-			<f:facet name="header">#Comment</f:facet>#{var.comment}</p:column>
-		<p:column>
-			<f:facet name="header">#Status</f:facet>#{var.status}</p:column>
-		<p:column>
-			<f:facet name="header">#Action</f:facet>
-			<p:commandButton value="#Cancelar plaza"
-				action="#{seat.cancelSeat(var)}"
-				rendered="#{( trip.isSitting(user.user.id) and var.userId == user.user.id ) || (trip.isPromoter(user.user.id) and var.status.accepted)}" />
-		</p:column>
-	</p:dataTable>
+	<h:panelGroup>
+		<h3>#Pasajeros</h3>
+		<p:dataTable var="var" value="#{trip.getSeats()}" border="1">
+			<p:column>
+				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
+			<p:column>
+				<f:facet name="header">#Comment</f:facet>#{var.comment}</p:column>
+			<p:column>
+				<f:facet name="header">#Status</f:facet>#{var.status}</p:column>
+			<p:column>
+				<f:facet name="header">#Action</f:facet>
+				<p:commandButton value="#Cancelar plaza"
+					action="#{seat.cancelSeat(var)}"
+					rendered="#{( trip.isSitting(user.user.id) and var.userId == user.user.id ) || (trip.isPromoter(user.user.id) and var.status.accepted)}"
+					immediate="true" update="@all" />
+			</p:column>
+		</p:dataTable>
 	</h:panelGroup>
 
 	<h:form rendered="#{trip.isUserInApplications(user.user.id)}">
 		<h:outputText value="#Su petición todavía se encuentra pendiente: " />
-		<p:commandButton value="#Cancelar solicitud" action="#{trip.cancelApplication(user.user.id,trip.trip.id)}" />
+		<p:commandButton value="#Cancelar solicitud"
+			action="#{trip.cancelApplication(user.user.id,trip.trip.id)}"
+			immediate="true" update="@all" />
 	</h:form>
-	
+
 	<!--  Peta pero funciona (wtf) (He puesto el == false en vez de ! para que eclipse no llore -->
 	<h:form rendered="#{trip.isUserRelated(user.user.id) == false}">
 		<p:commandButton value="#Solicitar Plaza"
-			action="#{seat.request(user.user.id,trip.trip.id)}" />
+			action="#{seat.request(user.user.id,trip.trip.id)}" immediate="true"
+			update="@all" />
 	</h:form>
 
 	<h:panelGroup rendered="#{trip.isPromoter(user.user.id)}">
 		<h3>#Peticiones</h3>
-		<p:dataTable  var="var"
-			value="#{trip.getApplications()}" border="1">
+		<p:dataTable var="var" value="#{trip.getApplications()}" border="1">
 			<p:column>
 				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
 			<p:column>
 				<f:facet name="header">#Actions</f:facet>
-				<p:commandButton value="#Aceptar" action="#{trip.acceptApplication(var)}"  immediate="true" 
-						update = "@all"  >
+				<p:commandButton value="#Aceptar"
+					action="#{trip.acceptApplication(var)}" immediate="true"
+					update="@all">
 					<!-- 	update = "form-content:showTrip:sobreViaje, form-content:showTrip:PasajerosPeticiones"  > -->
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
-				<p:commandButton value="#Rechazar" action="#{trip.cancelApplication(var)}"  immediate="true" 
-						update = "@all"  >
+				<p:commandButton value="#Rechazar"
+					action="#{trip.cancelApplication(var)}" immediate="true"
+					update="@all">
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
 			</p:column>
@@ -56,7 +60,7 @@
 	</h:panelGroup>
 
 
-<!-- 	Carga de ajax 
+	<!-- 	Carga de ajax 
 	<p:ajaxStatus style="display:none;margin-bottom:2em;height:24px;">
 		<f:facet name="default">
 			<h:outputText value="Status: StandBy" />

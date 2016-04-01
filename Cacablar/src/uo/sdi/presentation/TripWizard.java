@@ -3,12 +3,16 @@ package uo.sdi.presentation;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.view.facelets.Facelet;
 
 import org.primefaces.event.FlowEvent;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
+import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Trip;
@@ -19,7 +23,7 @@ import uo.sdi.model.Waypoint;
 public class TripWizard implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     private Trip trip = new Trip();
     private String addressD;
     private String cityD;
@@ -35,6 +39,56 @@ public class TripWizard implements Serializable {
     private String zipCodeA;
     private Double latA = 0D;
     private Double lonA = 0D;
+    private boolean isUpdate = false;
+
+    @ManagedProperty("#{param.id}")
+    String id;
+
+    @PostConstruct
+    public void updateTripData() {
+
+	if (id != null) {
+	    try {
+		this.trip = Factories.services.createTripsService().findById(Long.parseLong(id));
+	    } catch (NumberFormatException | EntityNotFoundException e) {
+		
+	    }
+
+	    this.addressD = trip.getDeparture().getAddress();
+	    this.cityD = trip.getDeparture().getCity();
+	    this.countryD = trip.getDeparture().getCountry();
+	    this.latD = trip.getDeparture().getWaypoint().getLat();
+	    this.lonD = trip.getDeparture().getWaypoint().getLon();
+	    this.stateD = trip.getDeparture().getState();
+	    this.zipCodeD = trip.getDeparture().getZipCode();
+
+	    this.addressA = trip.getDestination().getAddress();
+	    this.cityA = trip.getDestination().getCity();
+	    this.countryA = trip.getDestination().getCountry();
+	    this.latA = trip.getDestination().getWaypoint().getLat();
+	    this.lonA = trip.getDestination().getWaypoint().getLon();
+	    this.stateA = trip.getDestination().getState();
+	    this.zipCodeA = trip.getDestination().getZipCode();
+
+	    this.isUpdate = true;
+	}
+    }
+
+    public String getId() {
+	return id;
+    }
+
+    public void setId(String id) {
+	this.id = id;
+    }
+
+    public boolean isUpdate() {
+	return isUpdate;
+    }
+
+    public void setUpdate(boolean isUpdate) {
+	this.isUpdate = isUpdate;
+    }
 
     public Trip getTrip() {
 	return trip;
@@ -44,8 +98,29 @@ public class TripWizard implements Serializable {
 	this.trip = trip;
     }
 
+    public String update(Long idUser) {
+
+	try {
+
+	    AddressPoint departure = new AddressPoint(addressD, cityD, stateD,
+		    countryD, zipCodeD, new Waypoint(latD, lonD));
+	    AddressPoint destination = new AddressPoint(addressA, cityA,
+		    stateA, countryA, zipCodeA, new Waypoint(latA, lonA));
+
+	    trip.setDeparture(departure);
+	    trip.setDestination(destination);
+
+	    Factories.services.createTripsService().update(trip, idUser);
+	    this.isUpdate = false;
+	   
+	} catch (EntityNotFoundException e) {
+	    return "false";
+	}
+
+	return "exito";
+    }
+
     public String save(Long idUser) {
-	// TODO
 	AddressPoint departure = new AddressPoint(addressD, cityD, stateD,
 		countryD, zipCodeD, new Waypoint(latD, lonD));
 	AddressPoint destination = new AddressPoint(addressA, cityA, stateA,

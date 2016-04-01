@@ -12,7 +12,7 @@ public class TripsUpdate {
 	try{
 	Factories.persistence.createTripDao().update(trip);
 	}catch (NotPersistedException ex) {
-		throw new EntityNotFoundException("Alumno no eliminado " + trip, ex);
+		throw new EntityNotFoundException();
 	}
     }
 
