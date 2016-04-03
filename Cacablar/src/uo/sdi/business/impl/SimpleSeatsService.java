@@ -31,6 +31,9 @@ public class SimpleSeatsService implements SeatsService{
 
     @Override
     public void cancelSeat(Seat seat) throws EntityNotFoundException {
+	//TODO quitar syso
+	System.out.println("SimpleSeatService :: CancelSeat");
+	System.out.println("Seat:: user: "+ seat.getUserId()+" trip: "+ seat.getTripId());
 	new SeatsCancelSeat().cancel(seat);
     }
 

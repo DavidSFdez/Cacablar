@@ -9,6 +9,10 @@
 			<from-outcome>home</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 	<navigation-rule>
@@ -74,6 +78,15 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>showTrip</from-outcome>
+			<to-view-id>/showTrip.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>/showTrip.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{seat.cancelSeat}</from-action>
+			<from-outcome>exito</from-outcome>
 			<to-view-id>/showTrip.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

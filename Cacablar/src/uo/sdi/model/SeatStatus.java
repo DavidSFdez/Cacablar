@@ -1,7 +1,7 @@
 package uo.sdi.model;
 
 public enum SeatStatus {
-    PENDIENTE, ADMITIDO, SIN_PLAZA, EXCLUIDO;
+    ADMITIDO, EXCLUIDO, PENDIENTE, SIN_PLAZA;
 
     public boolean isAccepted()
     {
