@@ -14,19 +14,21 @@ import uo.sdi.persistence.exception.NotPersistedException;
 
 public class ApplicationCancel {
 
-    public void execute(Application application) throws EntityNotFoundException, EntityAlreadyExistsException {
+    public void execute(Application application)
+	    throws EntityNotFoundException, EntityAlreadyExistsException {
 	Long[] ids = { application.getUserId(), application.getTripId() };
 	// ids[0] = userId
 	// ids[1] = tripId
-	
+
 	// El asiento que se va a crear
 	Seat seat = new Seat();
 	seat.setUserId(ids[0]);
 	seat.setTripId(ids[1]);
 	seat.setStatus(SeatStatus.EXCLUIDO);
 	// seat.setComment(comment);
-	
-	ApplicationDao applicationDao = Factories.persistence.createApplicationDao();
+
+	ApplicationDao applicationDao = Factories.persistence
+		.createApplicationDao();
 	SeatDao seatDao = Factories.persistence.createSeatDao();
 	Transaction transaction = Factories.persistence.createTransaction();
 

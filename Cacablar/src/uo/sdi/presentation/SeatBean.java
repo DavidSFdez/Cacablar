@@ -40,19 +40,7 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
    
-    public String cancelSeat(Seat seat) {
-	//TODO quitar syso
-	System.out.println("Bean seat :: CancelSeat");
-	System.out.println("Seat:: user: "+ seat.getUserId()+" trip: "+ seat.getTripId());
-	try {
-	    Factories.services.createSeatsService().cancelSeat(seat);
-	} catch (EntityNotFoundException e) {
-	    return "fracaso";
-	}
-
-	return "exito";
-    }
-
+    
     public Seat getSeat() {
 	return seat;
     }

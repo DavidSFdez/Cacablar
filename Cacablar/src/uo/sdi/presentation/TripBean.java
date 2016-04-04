@@ -69,8 +69,7 @@ public class TripBean implements Serializable {
 		break cargarViaje;
 	    }
 	    try {
-		trip = Factories.services.createTripsService().findById(
-			Long.parseLong(id));
+		actualizarTrip();
 	    } catch (NumberFormatException e) {
 		// El id no era un número
 	    } catch (EntityNotFoundException e) {
@@ -291,8 +290,7 @@ public class TripBean implements Serializable {
   	
   	    try {
   		Factories.services.createApplicationService().acceptApplication(application);
-  		trip = Factories.services.createTripsService().findById(
-			Long.parseLong(id));
+  		actualizarTrip();
   	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
   		 return "fracaso";
   	    }
@@ -300,6 +298,11 @@ public class TripBean implements Serializable {
 
   	return "exito";
       }
+
+    private void actualizarTrip() throws EntityNotFoundException {
+	trip = Factories.services.createTripsService().findById(
+		Long.parseLong(id));
+    }
 
       public String cancelApplication(Application application) {
   	    try {
@@ -311,5 +314,18 @@ public class TripBean implements Serializable {
 
   	return "exito";
       }
+      
+      public String cancelSeat(Seat seat) {
+		
+		try {
+		    Factories.services.createSeatsService().cancelSeat(seat);
+		    actualizarTrip();
+		} catch (EntityNotFoundException e) {
+		    return "fracaso";
+		}
+
+		return "exito";
+	    }
+
 
 }

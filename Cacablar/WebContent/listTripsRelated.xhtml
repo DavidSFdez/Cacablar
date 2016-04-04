@@ -23,7 +23,7 @@
 			</p:column>
 
 			<p:column>
-				<p:button outcome="updateTrip" value="#Modificar">
+				<p:button outcome="updateTrip" value="#Modificar" rendered="#{trip.isPromoter(user.user.id)}">
 					<f:param name="updateTrip" value="#{var.stringId}" />
 				</p:button>
 			</p:column>

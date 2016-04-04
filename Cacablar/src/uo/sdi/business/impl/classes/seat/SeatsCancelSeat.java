@@ -17,10 +17,6 @@ import uo.sdi.persistence.exception.NotPersistedException;
 public class SeatsCancelSeat {
 
     public void cancel(Seat seatAux) throws EntityNotFoundException {
-	
-	//TODO quitar syso
-	System.out.println("SeatsCancelSeats (persistencia) :: cancel");
-	System.out.println("Seat:: user: "+ seatAux.getUserId()+" trip: "+ seatAux.getTripId());
 
 	// Daos y transacción
 	SeatDao sd = Factories.persistence.createSeatDao();
@@ -45,12 +41,12 @@ public class SeatsCancelSeat {
 
 	if (trip.getAvailablePax() == trip.getMaxPax()
 		&& trip.getClosingDate().after(new Date())) {
-	    trip.setAvailablePax(trip.getAvailablePax() - 1);
+	    trip.setAvailablePax(trip.getAvailablePax() + 1);
 	    trip.setStatus(TripStatus.OPEN);
 	    seat.setStatus(SeatStatus.EXCLUIDO);
 
 	} else if (trip.getClosingDate().after(new Date())) {
-	    trip.setAvailablePax(trip.getAvailablePax() - 1);
+	    trip.setAvailablePax(trip.getAvailablePax() + 1);
 	    seat.setStatus(SeatStatus.EXCLUIDO);
 
 	} else
