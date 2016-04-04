@@ -64,12 +64,12 @@
 	<navigation-rule>
 		<from-view-id>/manageTrip.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{wizard.save}</from-action>
+			<from-action>#{wizard.save(user.user.id)}</from-action>
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-		<from-action>#{wizard.updateTrip}</from-action>
+		<from-action>#{wizard.updateTrip(user.user.id)}</from-action>
 		<from-outcome>exito</from-outcome>
 		<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>

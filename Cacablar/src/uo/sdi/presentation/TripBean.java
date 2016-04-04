@@ -2,6 +2,7 @@ package uo.sdi.presentation;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,8 +64,8 @@ public class TripBean implements Serializable {
 	// Cargar el viaje con ID que venga en los parametros
 	cargarViaje: {
 
-	System.out.println(id);
-	
+	    System.out.println(id);
+
 	    if (null == id) {
 		break cargarViaje;
 	    }
@@ -248,17 +249,6 @@ public class TripBean implements Serializable {
 	return true;
     }
 
-   /* public String cancelApplication(Long idUser, Long idTrip) {
-
-	try {
-	    Factories.services.createApplicationService().remove(idUser, idTrip);
-	} catch (EntityNotFoundException e) {
-	    return "fracaso";
-	}
-
-	return "exito";
-    }*/
-
     public String getId() {
 	return id;
     }
@@ -268,69 +258,63 @@ public class TripBean implements Serializable {
     }
 
     public void checkTripNotNull() throws IOException {
-	if(null == trip.getId()){
-        	ExternalContext ec = FacesContext.getCurrentInstance()
-        		.getExternalContext();
-        	ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
+	if (null == trip.getId()) {
+	    ExternalContext ec = FacesContext.getCurrentInstance()
+		    .getExternalContext();
+	    ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
 	}
     }
-    
-    public String acceptApplication(Application application) {
-  	// A diferencia del otro lado que lo hice en dos métodos esto lo hago
-  	// todo en servicios porque creo que es la forma más correcta
-  	
-  	// yo tmb creo que es correcto 
-  	// He realizado muchos cambios en este
-  	// updateApplication(application, SeatStatus.ACCEPTED);
-  	/*
-  	 *  updateApplication(application, SeatStatus.ACCEPTED);
-  	 *  Quito el status aceptado. Cuandoa ceptas una peticion ya se sabe que está aceptada.
-  	 *  El metodo pasa  llamarce AcceptApplication (el update quedaba muy raro)
-  	 */
-  	
-  	    try {
-  		Factories.services.createApplicationService().acceptApplication(application);
-  		actualizarTrip();
-  	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
-  		 return "fracaso";
-  	    }
-  	
 
-  	return "exito";
-      }
+    public String acceptApplication(Application application) {
+
+	try {
+	    Factories.services.createApplicationService().acceptApplication(
+		    application);
+	    actualizarTrip();
+	} catch (EntityAlreadyExistsException | EntityNotFoundException e) {
+	    return "fracaso";
+	}
+
+	return "exito";
+    }
 
     private void actualizarTrip() throws EntityNotFoundException {
 	trip = Factories.services.createTripsService().findById(
 		Long.parseLong(id));
     }
 
-      public String cancelApplication(Application application) {
-  	    try {
-  		Factories.services.createApplicationService().cancelApplication(application);
-  	    } catch (EntityAlreadyExistsException | EntityNotFoundException e) {
-  		 return "fracaso";
-  	    }
-  	
+    public String cancelApplication(Application application) {
+	try {
+	    Factories.services.createApplicationService().cancelApplication(
+		    application);
+	} catch (EntityAlreadyExistsException | EntityNotFoundException e) {
+	    return "fracaso";
+	}
 
-  	return "exito";
-      }
-      
-      public String cancelSeat(Seat seat) {
-		
-		try {
-		    Factories.services.createSeatsService().cancelSeat(seat);
-		    actualizarTrip();
-		} catch (EntityNotFoundException e) {
-		    return "fracaso";
-		}
+	return "exito";
+    }
 
-		return "exito";
-	    }
+    public String cancelSeat(Seat seat) {
 
+	try {
+	    Factories.services.createSeatsService().cancelSeat(seat);
+	    actualizarTrip();
+	} catch (EntityNotFoundException e) {
+	    return "fracaso";
+	}
 
-      public boolean isTripVoid(){
-	  if(id==null || id.trim().equals("") || trip==null || trip.getId()==null)
-	      return true;
-	  return false;
-      }
+	return "exito";
+    }
+
+    public boolean isTripVoid() {
+	if (id == null || id.trim().equals("") || trip == null
+		|| trip.getId() == null)
+	    return true;
+	return false;
+    }
+    
+    public boolean isActive()
+    {
+	return trip.getStatus().isOpen();
+    }
 }

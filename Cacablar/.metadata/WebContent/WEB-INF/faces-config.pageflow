@@ -27,7 +27,7 @@
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
   <links id="pf14598000273770" target="pf14598000273773" source="pf145858101266720" outcome="registTrip"/>
-  <links id="pf14598000273771" target="pf145858101266720" source="pf14598000273773" outcome="exito" fromaction="#{wizard.save}"/>
+  <links id="pf14598000273771" target="pf145858101266720" source="pf14598000273773" outcome="exito" fromaction="#{wizard.save(user.user.id)}"/>
   <links id="pf14598000273772" target="pf14598000273773" source="pf14588169600301" outcome="updateTrip"/>
-  <links id="pf14598024847324" target="pf145858101266720" source="pf14598000273773" outcome="exito" fromaction="#{wizard.updateTrip}"/>
+  <links id="pf14598024847324" target="pf145858101266720" source="pf14598000273773" outcome="exito" fromaction="#{wizard.updateTrip(user.user.id)}"/>
 </pageflow:Pageflow>
