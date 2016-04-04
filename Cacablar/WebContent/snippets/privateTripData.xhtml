@@ -18,7 +18,9 @@
 				<p:commandButton value="#Cancelar plaza"
 					action="#{seat.cancelSeat(var)}"
 					rendered="#{( trip.isSitting(user.user.id) and var.userId == user.user.id ) || (trip.isPromoter(user.user.id) and var.status.accepted)}"
-					immediate="true" update="@all" />
+					immediate="true" update="@all" >
+					<f:param name="id" value="#{trip.id}" />
+					</p:commandButton>
 			</p:column>
 		</p:dataTable>
 	</h:panelGroup>
@@ -27,14 +29,18 @@
 		<h:outputText value="#Su petición todavía se encuentra pendiente: " />
 		<p:commandButton value="#Cancelar solicitud"
 			action="#{trip.cancelApplication(user.user.id,trip.trip.id)}"
-			immediate="true" update="@all" />
+			immediate="true" update="@all">
+				<f:param name="id" value="#{trip.id}" />
+			</p:commandButton>
 	</h:form>
 
 	<!--  Peta pero funciona (wtf) (He puesto el == false en vez de ! para que eclipse no llore -->
 	<h:form rendered="#{trip.isUserRelated(user.user.id) == false}">
 		<p:commandButton value="#Solicitar Plaza"
 			action="#{seat.request(user.user.id,trip.trip.id)}" immediate="true"
-			update="@all" />
+			update="@all" >
+			<f:param name="id" value="#{trip.id}" />
+			</p:commandButton>
 	</h:form>
 
 	<h:panelGroup rendered="#{trip.isPromoter(user.user.id)}">
