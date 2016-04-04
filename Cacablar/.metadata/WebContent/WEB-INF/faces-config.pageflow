@@ -5,8 +5,8 @@
   <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="946" id="pf145858102265722" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14586656830711 pf14591943962081" inlinks="pf145858102265721" path="/register.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="principal.xhtml" x="122" y="1714" id="pf145858110078031" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" path="/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="listTrips.xhtml" x="554" y="562" id="pf145858110078032" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf14593361539600" inlinks="pf145858110078030" path="/listTrips.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="registerTrip.xhtml" x="770" y="1148" id="pf14587332387826" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf14587360588667" inlinks="pf14587332387825 pf14597819891720" path="/registerTrip.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="listTripsRelated.xhtml" x="554" y="946" id="pf14588169600301" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf14593361539601 pf14597819891720" inlinks="pf14588169600300" path="/listTripsRelated.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="registerTrip.xhtml" x="770" y="1148" id="pf14587332387826" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14587360588667" inlinks="pf14587332387825" path="/registerTrip.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listTripsRelated.xhtml" x="554" y="946" id="pf14588169600301" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf14593361539601" inlinks="pf14588169600300" path="/listTripsRelated.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="showTrip.xhtml" x="770" y="754" id="pf14588169600303" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf14596799437242" inlinks="pf14593361539601 pf14593361539600 pf14596799437242" path="/showTrip.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1330" id="pf14591443080581" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14591443080570 pf14596812962993" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf14596812962994" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14596812962993" path="/error.xhtml"/>
@@ -24,5 +24,4 @@
   <links id="pf14593361539600" target="pf14588169600303" source="pf145858110078032" outcome="showTrip"/>
   <links id="pf14596799437242" target="pf14588169600303" source="pf14588169600303" outcome="exito" fromaction="#{seat.cancelSeat}"/>
   <links id="pf14596812962993" target="pf14596812962994" source="pf14591443080581" outcome="error"/>
-  <links id="pf14597819891720" target="pf14587332387826" source="pf14588169600301" outcome="exito" fromaction="#{wizard.updateTripData}"/>
 </pageflow:Pageflow>

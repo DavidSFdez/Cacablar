@@ -40,12 +40,14 @@ public class TripWizard implements Serializable {
     private Double latA = 0D;
     private Double lonA = 0D;
     private boolean isUpdate = false;
-
-    public String updateTripData(Long id) {
+    
+    private String id;
+    
+    public String updateTripData() {
 
 	if (id != null) {
 	    try {
-		this.trip = Factories.services.createTripsService().findById(id);
+		this.trip = Factories.services.createTripsService().findById(Long.parseLong(id));
 	    } catch (NumberFormatException | EntityNotFoundException e) {
 
 	    }
@@ -72,6 +74,19 @@ public class TripWizard implements Serializable {
 	}
 	return "fracaso";
     }
+
+    
+
+    public String getId() {
+        return id;
+    }
+
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
 
     public boolean isUpdate() {
