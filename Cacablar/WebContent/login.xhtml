@@ -8,7 +8,7 @@
 	<ui:define name="title">Login</ui:define>
 
 	<ui:define name="content">
-
+	<f:event listener="#{user.checkIfNotLogged}" type="preRenderView"/>
 		<h:form id="login" method="POST" action="login">
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="#nombreUsuario:" />

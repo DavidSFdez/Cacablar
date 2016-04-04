@@ -1,9 +1,12 @@
 package uo.sdi.presentation;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.infrastructure.Factories;
@@ -15,7 +18,7 @@ import uo.sdi.model.UserStatus;
 public class UserBean implements Serializable {
 
     private static final long serialVersionUID = -6981760995314343162L;
-    
+
     private User user;
 
     public UserBean() {
@@ -40,8 +43,6 @@ public class UserBean implements Serializable {
 
     public String register() {
 
-	user.setStatus(UserStatus.ACTIVE);
-
 	// tal vez hacer que el método save devuelva el objeto para recoger el
 	// id
 	try {
@@ -65,11 +66,24 @@ public class UserBean implements Serializable {
 
     public String logout() {
 
-	//if (user.getId() != null)
-	  //  return "fracaso";
-
 	user = new User();
 
 	return "exito";
     }
+
+    public void checkIfNotLogged() throws IOException {
+	if (isLogged()) {
+	    ExternalContext ec = FacesContext.getCurrentInstance()
+		    .getExternalContext();
+	    ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
+	}
+    }
+    
+    public void checkIfLogged() throws IOException {
+   	if (!isLogged()) {
+   	    ExternalContext ec = FacesContext.getCurrentInstance()
+   		    .getExternalContext();
+   	    ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
+   	}
+       }
 }
