@@ -109,11 +109,8 @@
 
 							<h:outputLabel for="maxPax" value="Número de plazas: *" />
 							<p:spinner id="maxPax" value="#{wizard.trip.maxPax}" min="1"
-								required="true" />
+								required="true" rendered="#{wizard.update==false}" />
 
-							<h:outputLabel for="availablePax" value="Plazas disponibles: *" />
-							<p:spinner id="availablePax" value="#{wizard.trip.availablePax}"
-								min="1" max="#{wizard.trip.maxPax}" required="true" />
 
 						</h:panelGrid>
 					</p:panel>
@@ -202,7 +199,7 @@
 
 								<h:outputText value="Plazas disponibles: " />
 								<h:outputText value="#{wizard.trip.availablePax}"
-									styleClass="outputLabel" />
+									styleClass="outputLabel" rendered="#{wizard.update}" />
 
 								<h:outputText />
 								<h:outputText />
@@ -218,7 +215,9 @@
 					</p:panel>
 				</p:tab>
 			</p:wizard>
-
+			<p:commandButton id="precarga" value="precarga"
+				action="#{wizard.preloadTripData}" immediate="true" update="@all"
+				rendered="#{wizard.update==false}" />
 		</h:form>
 	</ui:define>
 

@@ -40,14 +40,43 @@ public class TripWizard implements Serializable {
     private Double latA = 0D;
     private Double lonA = 0D;
     private boolean isUpdate = false;
-    
+
     private String id;
-    
+
+    public void preloadTripData() {
+
+	this.addressD = "direccionSalida";
+	this.cityD = "CiudadSalida";
+	this.countryD = "PaísSalida";
+	this.latD = 0D;
+	this.lonD = 0D;
+	this.stateD = "ProvinciaSalida";
+	this.zipCodeD = "CodigoPostalSalida";
+
+	this.addressA = "direccionLlegada";
+	this.cityA = "CiudadLlegada";
+	this.countryA = "PaísLlegada";
+	this.latA = 0D;
+	this.lonA = 0D;
+	this.stateA = "ProvinciaLlegada";
+	this.zipCodeA = "CodigoPostalLlegada";
+
+	trip.setArrivalDate(new Date());
+	trip.setDepartureDate(new Date());
+	trip.setClosingDate(new Date());
+	trip.setEstimatedCost(0D);
+	trip.setComments("Descripción o comentarios");
+	trip.setAvailablePax(1);
+	trip.setMaxPax(1);
+
+    }
+
     public String updateTripData() {
 
 	if (id != null) {
 	    try {
-		this.trip = Factories.services.createTripsService().findById(Long.parseLong(id));
+		this.trip = Factories.services.createTripsService().findById(
+			Long.parseLong(id));
 	    } catch (NumberFormatException | EntityNotFoundException e) {
 
 	    }
@@ -75,19 +104,13 @@ public class TripWizard implements Serializable {
 	return "fracaso";
     }
 
-    
-
     public String getId() {
-        return id;
+	return id;
     }
-
-
 
     public void setId(String id) {
-        this.id = id;
+	this.id = id;
     }
-
-
 
     public boolean isUpdate() {
 	return isUpdate;
@@ -133,6 +156,7 @@ public class TripWizard implements Serializable {
 	AddressPoint destination = new AddressPoint(addressA, cityA, stateA,
 		countryA, zipCodeA, new Waypoint(latA, lonA));
 
+	trip.setAvailablePax(trip.getMaxPax());
 	trip.setDeparture(departure);
 	trip.setDestination(destination);
 
