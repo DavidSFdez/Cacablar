@@ -328,4 +328,9 @@ public class TripBean implements Serializable {
 	    }
 
 
+      public boolean isTripVoid(){
+	  if(id==null || id.trim().equals("") || trip==null || trip.getId()==null)
+	      return true;
+	  return false;
+      }
 }

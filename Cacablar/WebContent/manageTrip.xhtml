@@ -13,6 +13,7 @@
 	<ui:define name="title">Registrar Viaje</ui:define>
 
 	<ui:define name="content">
+	<f:event listener="#{user.checkIfLogged}" type="preRenderView"/>
 		<h:form id="registrar" action="registrarViaje">
 
 
@@ -210,7 +211,7 @@
 							action="#{wizard.save(user.user.id)}" update="growl"
 							process="@this" rendered="#{wizard.update==false}" />
 						<p:commandButton value="#Modificar"
-							action="#{wizard.save(user.user.id)}" update="growl"
+							action="#{wizard.updateTrip(user.user.id)}" update="growl"
 							process="@this" rendered="#{wizard.update}" />
 					</p:panel>
 				</p:tab>

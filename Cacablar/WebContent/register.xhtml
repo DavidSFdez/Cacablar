@@ -9,6 +9,7 @@
 	<ui:define name="title">Registrarse</ui:define>
 
 	<ui:define name="content">
+	<f:event listener="#{user.checkIfNotLogged}" type="preRenderView"/>
 		<h:form id="registrarse" action="registrarse">
 
 			<h:panelGrid columns="2" id="matchGrid" cellpadding="5">

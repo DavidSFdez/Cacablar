@@ -9,8 +9,7 @@
 	<ui:define name="title">Detalles Viaje #{param['id']}</ui:define>
 
 	<ui:define name="content">	
-		<f:event type="preRenderView" listener="#{trip.checkTripNotNull}" />
-	
+	<f:event listener="#{trip.isTripVoid}" type="preRenderView"/>		
 		<h:form id="showTrip" action="showTrip">
 		
 		<p>El valor que viene por parametro es #{param['id']}</p>

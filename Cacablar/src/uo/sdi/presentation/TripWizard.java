@@ -128,7 +128,7 @@ public class TripWizard implements Serializable {
 	this.trip = trip;
     }
 
-    public String update(Long idUser) {
+    public String updateTrip(Long idUser) {
 
 	try {
 

@@ -8,7 +8,7 @@
 	<ui:define name="title">
    Viajes Promocionados
   </ui:define>
-
+<f:event listener="#{user.checkIfLogged}" type="preRenderView"/>
 	<ui:define name="content">
 		<p:dataTable id="tablalistado" var="var"
 			value="#{trips.listRelated(user.user.id)}"
