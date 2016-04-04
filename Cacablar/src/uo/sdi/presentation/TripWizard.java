@@ -6,8 +6,8 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.view.facelets.Facelet;
 
 import org.primefaces.event.FlowEvent;
 
@@ -41,17 +41,13 @@ public class TripWizard implements Serializable {
     private Double lonA = 0D;
     private boolean isUpdate = false;
 
-    @ManagedProperty("#{param.id}")
-    String id;
-
-    @PostConstruct
-    public void updateTripData() {
+    public String updateTripData(Long id) {
 
 	if (id != null) {
 	    try {
-		this.trip = Factories.services.createTripsService().findById(Long.parseLong(id));
+		this.trip = Factories.services.createTripsService().findById(id);
 	    } catch (NumberFormatException | EntityNotFoundException e) {
-		
+
 	    }
 
 	    this.addressD = trip.getDeparture().getAddress();
@@ -71,16 +67,12 @@ public class TripWizard implements Serializable {
 	    this.zipCodeA = trip.getDestination().getZipCode();
 
 	    this.isUpdate = true;
+
+	    return "exito";
 	}
+	return "fracaso";
     }
 
-    public String getId() {
-	return id;
-    }
-
-    public void setId(String id) {
-	this.id = id;
-    }
 
     public boolean isUpdate() {
 	return isUpdate;
@@ -112,7 +104,7 @@ public class TripWizard implements Serializable {
 
 	    Factories.services.createTripsService().update(trip, idUser);
 	    this.isUpdate = false;
-	   
+
 	} catch (EntityNotFoundException e) {
 	    return "false";
 	}

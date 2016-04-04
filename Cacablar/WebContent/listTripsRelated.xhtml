@@ -23,9 +23,8 @@
 			</p:column>
 
 			<p:column>
-				<p:button outcome="updateTrip" value="#Modificar" rendered="#{trip.isPromoter(user.user.id)}">
-					<f:param name="updateTrip" value="#{var.stringId}" />
-				</p:button>
+				<p:commandButton action="#{wizard.updateTripData(var.id)}"
+					value="#Modificar" rendered="#{trip.isPromoter(user.user.id)}"/>
 			</p:column>
 			<p:column selectionMode="multiple"
 				style="width:16px;text-align:center" />
