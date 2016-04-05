@@ -13,19 +13,19 @@
 	<ui:define name="title">Registrar Viaje</ui:define>
 
 	<ui:define name="content">
-	<f:event listener="#{user.checkIfLogged}" type="preRenderView"/>
+		<f:event listener="#{user.checkIfLogged}" type="preRenderView" />
 		<h:form id="registrar" action="registrarViaje">
 
 
 			<p:growl id="growl" sticky="true" showDetail="true" />
 
-			<p:wizard flowListener="#{wizard.onFlowProcess}">
+			<p:wizard id="w" flowListener="#{wizard.onFlowProcess}">
 				<p:tab id="origen" title="Origen">
 					<p:panel header="Datos salida">
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Calle: *" />
-							<p:inputText value="#{wizard.addressD}" required="true" />
+							<p:inputText id="calle" value="#{wizard.addressD}" required="true" />
 
 							<h:outputText value="Ciudad: *" />
 							<p:inputText value="#{wizard.cityD}" required="true" />
@@ -217,7 +217,7 @@
 				</p:tab>
 			</p:wizard>
 			<p:commandButton id="precarga" value="precarga"
-				action="#{wizard.preloadTripData}" immediate="true" update="@all"
+				action="#{wizard.preloadTripData}" update="w"
 				rendered="#{wizard.update==false}" />
 		</h:form>
 	</ui:define>

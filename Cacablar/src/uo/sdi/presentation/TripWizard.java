@@ -43,6 +43,28 @@ public class TripWizard implements Serializable {
 
     private String id;
 
+    @PostConstruct
+    public void nada(){
+	this.addressD = " ";
+	this.cityD = " ";
+	this.countryD = " ";
+	this.latD = 0D;
+	this.lonD = 0D;
+	this.stateD = " ";
+	this.zipCodeD = " ";
+
+	this.addressA = " ";
+	this.cityA = " ";
+	this.countryA = " ";
+	this.latA = 0D;
+	this.lonA = 0D;
+	this.stateA = " ";
+	this.zipCodeA = " ";
+	trip.setDepartureDate(new Date());
+	
+    }
+    
+    
     public void preloadTripData() {
 
 	this.addressD = "direccionSalida";
