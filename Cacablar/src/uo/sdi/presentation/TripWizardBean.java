@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import uo.sdi.business.exception.BusinessException;
@@ -17,7 +18,7 @@ import uo.sdi.model.Trip;
 import uo.sdi.model.Waypoint;
 
 @ManagedBean(name = "wizardTrip")
-@RequestScoped
+@ViewScoped
 public class TripWizardBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -189,7 +190,6 @@ public class TripWizardBean implements Serializable {
     public String save(Long idUser) {
 	try {
 	
-	    //se pueden cambiar los return por throw y controlar aquí los mensajes
 	    if(!checkAllRight())
 		return "fracaso";
 
