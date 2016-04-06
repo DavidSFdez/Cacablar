@@ -15,6 +15,21 @@
 			<p:growl id="growl" sticky="true" showDetail="true" />
 
 			<h:panelGrid columns="2" columnClasses="label, value">
+<<<<<<< HEAD
+				<h:outputText value="Calle: *" />
+				<p:inputText id="calle" value="#{wizardTrip.addressD}" />
+
+				<h:outputText value="Ciudad: *" />
+				<p:inputText value="#{wizardTrip.cityD}" />
+
+				<h:outputText value="Provincia: *" />
+				<p:inputText value="#{wizardTrip.stateD}" />
+
+				<h:outputText value="País: *" />
+				<p:inputText value="#{wizardTrip.countryD}" />
+
+				<h:outputText value="Código postal: *" />
+				<p:inputText value="#{wizardTrip.zipCodeD}" />
 			
 			<f:facet name="header">
          			<h:outputText value="#{msgs.manageTrip_tabDepature}"/>
@@ -43,15 +58,29 @@
 				<p:inputText value="#{wizardTrip.lonD}" />
 
 
-				<p:outputLabel for="fechaSalida" value="Fecha Salida: " />
-				<p:calendar id="fechaSalida"
-					value="#{wizardTrip.trip.departureDate}"
-					pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}"
-					required="true" />
+				<p:outputLabel for="fechaSalida" value="Fecha Salida: *" />
+				<p:calendar id="fechaSalida" value="#{wizardTrip.trip.departureDate}" />
+
 
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" columnClasses="label, value">
+
+				<h:outputText value="Calle: *" />
+				<p:inputText value="#{wizardTrip.addressA}" />
+
+				<h:outputText value="Ciudad: *" />
+				<p:inputText value="#{wizardTrip.cityA}" />
+
+				<h:outputText value="Provincia: *" />
+				<p:inputText value="#{wizardTrip.stateA}" />
+
+				<h:outputText value="País: *" />
+				<p:inputText value="#{wizardTrip.countryA}" />
+
+				<h:outputText value="Código postal: *" />
+				<p:inputText value="#{wizardTrip.zipCodeA}" />
+=======
 			
 				<f:facet name="header">
          			<h:outputText value="#{msgs.destination}"/>
@@ -71,6 +100,7 @@
 
 				<h:outputText value="#{msgs.zipCode}: *" />
 				<p:inputText value="#{wizardTrip.zipCodeA}" required="true" />
+>>>>>>> origin/master
 
 				<h:outputText value="#{msgs.latitude}:" />
 				<p:inputText value="#{wizardTrip.latA}" />
@@ -78,21 +108,38 @@
 				<h:outputText value="#{msgs.longitude}:" />
 				<p:inputText value="#{wizardTrip.lonA}" />
 
+<<<<<<< HEAD
+				<p:outputLabel for="fechaLlegada" value="Fecha Llegada: *" />
+=======
 				<p:outputLabel for="fechaLlegada" value="#{msgs.arrivalDate}: *" />
+>>>>>>> origin/master
 				<p:calendar id="fechaLlegada" value="#{wizardTrip.trip.arrivalDate}"
 					pattern="MM/dd/yyyy HH:mm:ss"
-					mindate="#{wizardTrip.trip.departureDate}" required="true" />
+					mindate="#{wizardTrip.trip.departureDate}" />
 
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" columnClasses="label, value">
 
+<<<<<<< HEAD
+				<p:outputLabel for="fechaCierre" value="Fecha de cierre: *" />
+=======
 				<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: " />
+>>>>>>> origin/master
 				<p:calendar id="fechaCierre" value="#{wizardTrip.trip.closingDate}"
 					pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}"
-					maxdate="#{wizardTrip.trip.departureDate}" required="true" />
+					maxdate="#{wizardTrip.trip.departureDate}" />
 
 
+<<<<<<< HEAD
+				<h:outputText value="Coste: *" />
+				<p:spinner id="cost" value="#{wizardTrip.trip.estimatedCost}" prefix="€"
+					min="0" />
+
+				<h:outputText value="Descripción o comentarios: *" />
+				<p:inputTextarea rows="3" cols="33" value="#{wizardTrip.trip.comments}"
+					/>
+=======
 				<h:outputText value="#{msgs.estimatedCost}: *" />
 				<p:spinner id="cost" value="#{wizardTrip.trip.estimatedCost}"
 					prefix="€" min="0" required="true" />
@@ -100,10 +147,11 @@
 				<h:outputText value="#{msgs.comments}: *" />
 				<p:inputTextarea rows="3" cols="33"
 					value="#{wizardTrip.trip.comments}" required="true" />
+>>>>>>> origin/master
 
 				<h:outputLabel for="maxPax" value="#{msgs.availablePax}:: *" />
 				<p:spinner id="maxPax" value="#{wizardTrip.trip.maxPax}" min="1"
-					required="true" rendered="#{wizardTrip.update==false}" />
+					rendered="#{wizardTrip.update==false}" />
 
 			</h:panelGrid>
 

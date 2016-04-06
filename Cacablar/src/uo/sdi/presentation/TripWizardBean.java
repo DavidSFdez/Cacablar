@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
@@ -13,41 +14,60 @@ import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Trip;
 import uo.sdi.model.Waypoint;
 
-@ManagedBean(name="wizardTrip")
+@ManagedBean(name = "wizardTrip")
 @RequestScoped
-public class TripWizardBean implements Serializable{
+public class TripWizardBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     private Trip trip = new Trip();
-    private String addressD="";
-    private String cityD="";
-    private String stateD="";
-    private String countryD="";
-    private String zipCodeD="";
+    private String addressD;
+    private String cityD;
+    private String stateD;
+    private String countryD;
+    private String zipCodeD;
     private Double latD = 0D;
     private Double lonD = 0D;
-    private String addressA="";
-    private String cityA="";
-    private String stateA="";
-    private String countryA="";
-    private String zipCodeA="";
+    private String addressA;
+    private String cityA;
+    private String stateA;
+    private String countryA;
+    private String zipCodeA;
     private Double latA = 0D;
     private Double lonA = 0D;
     private boolean isUpdate = false;
-    
+
     private String id;
-    
-    public TripWizardBean(){}
 
-
-    public Trip getTrip() {
-        return trip;
+    public TripWizardBean() {
     }
 
-    
-    
-    
+    private boolean checkAllRight() {
+	if (addressA == null || addressD == null || cityA == null
+		|| cityD == null || stateA == null || stateD == null
+		|| countryA == null || countryD == null || zipCodeA == null
+		|| zipCodeD == null)
+	    return false;
+	
+	if(trip.getDepartureDate()==null || trip.getArrivalDate()==null || trip.getClosingDate()==null)
+	    return false;
+	else if(trip.getDepartureDate().before(trip.getClosingDate()) || trip.getArrivalDate().before(trip.getDepartureDate()))
+	    return false;
+	
+	if(trip.getEstimatedCost()==0D || trip.getMaxPax()==0)
+	    return false;
+	
+	if(trip.getComments()==null)
+	    return false;
+	    
+	return true;
+
+    }
+
+    public Trip getTrip() {
+	return trip;
+    }
+
     public void preloadTripData() {
 
 	this.addressD = "direccionSalida";
@@ -108,10 +128,13 @@ public class TripWizardBean implements Serializable{
 	}
 	return "fracaso";
     }
-    
+
     public String updateTrip(Long idUser) {
 
 	try {
+	    
+	    if(checkAllRight()==false)
+		return "fracaso";
 
 	    AddressPoint departure = new AddressPoint(addressD, cityD, stateD,
 		    countryD, zipCodeD, new Waypoint(latD, lonD));
@@ -132,6 +155,12 @@ public class TripWizardBean implements Serializable{
     }
 
     public String save(Long idUser) {
+	try {
+	
+	    //se pueden cambiar los return por throw y controlar aquí los mensajes
+	    if(!checkAllRight())
+		return "fracaso";
+
 	AddressPoint departure = new AddressPoint(addressD, cityD, stateD,
 		countryD, zipCodeD, new Waypoint(latD, lonD));
 	AddressPoint destination = new AddressPoint(addressA, cityA, stateA,
@@ -141,7 +170,7 @@ public class TripWizardBean implements Serializable{
 	trip.setDeparture(departure);
 	trip.setDestination(destination);
 
-	try {
+	
 	    Factories.services.createTripsService().save(trip, idUser);
 	} catch (EntityAlreadyExistsException e) {
 
@@ -150,176 +179,141 @@ public class TripWizardBean implements Serializable{
 
 	return "exito";
     }
-    
+
     public Date getToday() {
- 	return new Date();
-     }
-    
-    
+	return new Date();
+    }
 
     public String getId() {
-        return id;
+	return id;
     }
-
 
     public void setId(String id) {
-        this.id = id;
+	this.id = id;
     }
-
 
     public void setTrip(Trip trip) {
-        this.trip = trip;
+	this.trip = trip;
     }
-
 
     public String getAddressD() {
-        return addressD;
+	return addressD;
     }
-
 
     public void setAddressD(String addressD) {
-        this.addressD = addressD;
+	this.addressD = addressD;
     }
-
 
     public String getCityD() {
-        return cityD;
+	return cityD;
     }
-
 
     public void setCityD(String cityD) {
-        this.cityD = cityD;
+	this.cityD = cityD;
     }
-
 
     public String getStateD() {
-        return stateD;
+	return stateD;
     }
-
 
     public void setStateD(String stateD) {
-        this.stateD = stateD;
+	this.stateD = stateD;
     }
-
 
     public String getCountryD() {
-        return countryD;
+	return countryD;
     }
-
 
     public void setCountryD(String countryD) {
-        this.countryD = countryD;
+	this.countryD = countryD;
     }
-
 
     public String getZipCodeD() {
-        return zipCodeD;
+	return zipCodeD;
     }
-
 
     public void setZipCodeD(String zipCodeD) {
-        this.zipCodeD = zipCodeD;
+	this.zipCodeD = zipCodeD;
     }
-
 
     public Double getLatD() {
-        return latD;
+	return latD;
     }
-
 
     public void setLatD(Double latD) {
-        this.latD = latD;
+	this.latD = latD;
     }
-
 
     public Double getLonD() {
-        return lonD;
+	return lonD;
     }
-
 
     public void setLonD(Double lonD) {
-        this.lonD = lonD;
+	this.lonD = lonD;
     }
-
 
     public String getAddressA() {
-        return addressA;
+	return addressA;
     }
-
 
     public void setAddressA(String addressA) {
-        this.addressA = addressA;
+	this.addressA = addressA;
     }
-
 
     public String getCityA() {
-        return cityA;
+	return cityA;
     }
-
 
     public void setCityA(String cityA) {
-        this.cityA = cityA;
+	this.cityA = cityA;
     }
-
 
     public String getStateA() {
-        return stateA;
+	return stateA;
     }
-
 
     public void setStateA(String stateA) {
-        this.stateA = stateA;
+	this.stateA = stateA;
     }
-
 
     public String getCountryA() {
-        return countryA;
+	return countryA;
     }
-
 
     public void setCountryA(String countryA) {
-        this.countryA = countryA;
+	this.countryA = countryA;
     }
-
 
     public String getZipCodeA() {
-        return zipCodeA;
+	return zipCodeA;
     }
-
 
     public void setZipCodeA(String zipCodeA) {
-        this.zipCodeA = zipCodeA;
+	this.zipCodeA = zipCodeA;
     }
-
 
     public Double getLatA() {
-        return latA;
+	return latA;
     }
-
 
     public void setLatA(Double latA) {
-        this.latA = latA;
+	this.latA = latA;
     }
-
 
     public Double getLonA() {
-        return lonA;
+	return lonA;
     }
-
 
     public void setLonA(Double lonA) {
-        this.lonA = lonA;
+	this.lonA = lonA;
     }
-
 
     public boolean isUpdate() {
-        return isUpdate;
+	return isUpdate;
     }
-
 
     public void setUpdate(boolean isUpdate) {
-        this.isUpdate = isUpdate;
+	this.isUpdate = isUpdate;
     }
-    
-    
+
 }
