@@ -13,7 +13,7 @@
   <links id="pf145858101266718" target="pf145858095644211" source="pf145858101266720" outcome="login"/>
   <links id="pf145858102265721" target="pf145858102265722" source="pf145858101266720" outcome="register"/>
   <links id="pf145858110078030" target="pf145858110078032" source="pf145858101266720" outcome="list"/>
-  <links id="pf14586656830700" target="pf145858101266720" source="pf145858095644211" outcome="exito" fromaction="#{user.login}"/>
+  <links id="pf14586656830700" target="pf145858101266720" source="pf145858095644211" outcome="exito" redirect="true" fromaction="#{user.login}"/>
   <links id="pf14586656830711" target="pf145858101266720" source="pf145858102265722" outcome="exito" fromaction="#{user.register}"/>
   <links id="pf14588169600300" target="pf14588169600301" source="pf145858101266720" outcome="listRelated"/>
   <links id="pf14591443080570" target="pf145858101266720" source="pf14591443080581" outcome="home"/>

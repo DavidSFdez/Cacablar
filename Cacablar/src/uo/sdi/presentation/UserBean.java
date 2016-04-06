@@ -33,11 +33,13 @@ public class UserBean implements Serializable {
     }
 
     public boolean isNotLogged() {
-	return user.getId() == null;
+	return null == user.getId();
     }
 
     public boolean isLogged() {
-	return user.getId() != null;
+	if(user == null)
+	    return false;
+	return null != user.getId();
     }
 
     public String register() {
@@ -60,7 +62,10 @@ public class UserBean implements Serializable {
 	user = Factories.services.createLoginService().verify(user.getLogin(),
 		user.getPassword());
 
-	return user == null ? "fracaso" : "exito";
+	if(user == null)
+	    user = new User();
+	
+	return user.getId() == null ? "fracaso" : "exito";
     }
 
     public String logout() {
