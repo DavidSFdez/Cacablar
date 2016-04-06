@@ -8,7 +8,7 @@ import uo.sdi.model.Trip;
 
 public interface TripsService {
 
-    List<Trip> listActive() throws Exception;
+    List<Trip> listActive();
     List<Trip> listRelated(Long idUser) throws Exception;
     List<Trip> listActiveToUser(Long idUser) throws Exception;
     void update(Trip trip, Long idUser) throws EntityNotFoundException;

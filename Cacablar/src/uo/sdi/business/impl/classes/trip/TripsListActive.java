@@ -8,7 +8,7 @@ import uo.sdi.model.Trip;
 public class TripsListActive {
 
     
-    public List<Trip> list() throws Exception{
+    public List<Trip> list() {
 	
 	List<Trip> trips = null;
 	

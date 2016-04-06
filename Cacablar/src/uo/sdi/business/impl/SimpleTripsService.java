@@ -19,7 +19,7 @@ import uo.sdi.model.Trip;
 public class SimpleTripsService implements TripsService {
 
     @Override
-    public List<Trip> listActive() throws Exception {
+    public List<Trip> listActive() {
 	return new TripsListActive().list();
     }
 

@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import alb.util.log.Log;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
@@ -37,30 +38,35 @@ public class TripBean implements Serializable {
 
     @PostConstruct
     private void actualizar() {
+	Log.trace("Cargando viaje [" + id + "].");
 	// Cargar el viaje con ID que venga en los parametros
 	cargarViaje: {
 
-	    System.out.println(id);
+	    Log.debug("Id de viaje en petición: [" + id + "].");
 
 	    if (null == id) {
+		Log.error("No hay ID.");
 		break cargarViaje;
 	    }
 	    try {
 		actualizarTrip();
 	    } catch (NumberFormatException e) {
+		Log.error("El ID no es un número.");
 		// El id no era un número
 	    } catch (EntityNotFoundException e) {
+		Log.error("El ID no pertenece a ningun viaje.");
 		// No existe tal viaje
 	    }
 	}
 
+	Log.trace("Actualizando asientos.");
 	Factories.services.createTripsService().updateTripsStatus();
 	List<Application> applications = Factories.services
 		.createApplicationService().getToUpdate();
 	try {
 	    Factories.services.createSeatsService().seatsToUpdate(applications);
 	} catch (EntityAlreadyExistsException e) {
-
+	    Log.trace("Se ha intentado actualizar un asiento ya actuaizado.");
 	}
 
     }
@@ -124,7 +130,6 @@ public class TripBean implements Serializable {
     }
 
     public Application getApplicationUser(Long idUser) {
-
 	try {
 	    if (trip.getId() != null)
 		return Factories.services.createApplicationService().find(
@@ -146,36 +151,40 @@ public class TripBean implements Serializable {
     }
 
     public String cancelTrip(Long idUser) {
-
+	Log.trace("Iniciando cancelación de viaje.");
 	try {
 	    Factories.services.createTripsService().cancel(trip, idUser);
 	} catch (EntityNotFoundException e) {
+	    Log.error("No se ha encontrado el viaje.", e);
 	    return "fracaso";
 	} catch (EntityAlreadyExistsException e) {
+	    Log.error("Los asientos ya están actualizados." + e);
 	    return "fracaso";
 	}
+	Log.info("Viaje cancelado.");
 	return "exito";
     }
 
     public String saveTrip(Long idUser) {
+	Log.trace("Iniciando salva de viaje.");
+	Log.debug("Viaje: "+trip);
 	try {
 	    Factories.services.createTripsService().save(trip, idUser);
 	} catch (EntityAlreadyExistsException e) {
+	    Log.error("Ya existe el viaje.", e);
 	    return "fracaso";
 	}
+	Log.info("Viaje guardado con éxito.");
 	return "exito";
     }
 
     public String view(Long idTrip) {
-	// revisar el facesconfig, no estoy seguro de que sea así como se cambie
-	// de página aunque funcione
 	try {
 	    trip = Factories.services.createTripsService().findById(idTrip);
 	} catch (EntityNotFoundException e) {
-	    System.out.println("Fracaso view trip");
+	    Log.error("Fracaso view trip",e);
 	    return "fracaso";
 	}
-
 	return "exito";
     }
 
@@ -235,7 +244,6 @@ public class TripBean implements Serializable {
 
     public void checkTripNotNull() throws IOException {
 	actualizar();
-	System.out.println(this.id);
 	if (null == trip.getId()) {
 	    ExternalContext ec = FacesContext.getCurrentInstance()
 		    .getExternalContext();
@@ -289,9 +297,8 @@ public class TripBean implements Serializable {
 	    return true;
 	return false;
     }
-    
-    public boolean isActive()
-    {
+
+    public boolean isActive() {
 	return trip.getStatus().isOpen();
     }
 }

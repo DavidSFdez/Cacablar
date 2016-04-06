@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import alb.util.log.Log;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.User;
@@ -43,35 +44,40 @@ public class UserBean implements Serializable {
     }
 
     public String register() {
-
-	// tal vez hacer que el método save devuelva el objeto para recoger el
-	// id
+	Log.trace("Iniciando registro de usuario.");
 	try {
 	    user = Factories.services.createUsersService().saveUser(user);
+	    Log.debug("Usuario encontrado: " + user);
 	} catch (EntityAlreadyExistsException e) {
-
-	    e.printStackTrace();
+	    Log.error("El usuario ya eiste.", e);
 	    return "fracaso";
 	}
-
+	Log.info("El usuario se ha creado con éxito.");
 	return "exito";
     }
 
     public String login() {
-
+	Log.trace("Iniciando identificación de usuario.");
 	user = Factories.services.createLoginService().verify(user.getLogin(),
 		user.getPassword());
-
+	Log.debug("Usuario encontrado: " + user);
 	if(user == null)
 	    user = new User();
 	
-	return user.getId() == null ? "fracaso" : "exito";
+	if(user.getId() == null){
+	    Log.error("No se ha encontrado el usuario");
+	    return "fracaso";
+	}
+	else{
+	    Log.info("Usuario identificado con éxito.");
+	    return "exito";
+	}
     }
 
     public String logout() {
-
+	Log.trace("Iniciando proceso de logout.");
 	user = new User();
-
+	Log.info("Desconectado con éxito.");
 	return "exito";
     }
 

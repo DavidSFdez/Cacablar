@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import alb.util.log.Log;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
@@ -59,63 +60,62 @@ public class TripsBean implements Serializable {
     }
 
     public String cancelTrips(long idUser) {
-
+	Log.trace("Iniciando cancelación del viaje.");
+	Log.debug("Id de usuario cancenando: [" + idUser+"].");
 	try {
 	    if (tripsToCancel != null && tripsToCancel.size() != 0)
 		for (Trip trip : tripsToCancel)
-		    Factories.services.createTripsService()
-			    .cancel(trip, idUser);
+		    Factories.services.createTripsService().cancel(trip, idUser);
 	    tripsToCancel = new LinkedList<>();
 	} catch (EntityNotFoundException e) {
-	    // rollback?
+	    Log.error("No se han contrado los viajes a cancelar.");
 	    return "fracaso";
 	} catch (EntityAlreadyExistsException e) {
-	    // TODO Auto-generated catch block
+	    Log.error("Intento de inserción de entidad repetida en el sistema.");
 	    return "fracaso";
 	}
-
+	Log.info("Viajes cancelados con exito.");
 	return "exito";
     }
 
     public List<Trip> getListActive() {
+	Log.info("Buscando viajes activos.");
 	List<Trip> trips = null;
-	try {
-	    trips = Factories.services.createTripsService().listActive();
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
+	trips = Factories.services.createTripsService().listActive();
 	this.trips = trips;
+	Log.debug("Viajes: "+this.trips);
 	return trips;
     }
 
     public List<Trip> listRelated(Long idUser) {
+	Log.info("Buscando viajes relacionados.");
 	List<Trip> trips = new LinkedList<Trip>();
 	try {
 	    trips = Factories.services.createTripsService().listRelated(idUser);
 	} catch (Exception e) {
-	    e.printStackTrace();
+	    Log.error("ha ocurrido un error.", e);
 	}
 	this.trips = trips;
+	Log.debug("Viajes: "+this.trips);
 	return trips;
     }
 
     public List<Trip> getListActiveToUser(Long idUser) {
+	Log.info("Buscando viajes activos a un usuario.");
 	List<Trip> trips = new LinkedList<Trip>();
-
 	if (idUser == null) {
 	    this.trips = trips;
 	    return getListActive();
 	}
-
 	try {
-
 	    trips = Factories.services.createTripsService().listActiveToUser(
 		    idUser);
 	} catch (Exception e) {
-	    e.printStackTrace();
+	    Log.error("ha ocurrido un error.", e);
 	}
 
 	this.trips = trips;
+	Log.debug("Viajes: "+this.trips);
 	return trips;
     }
 

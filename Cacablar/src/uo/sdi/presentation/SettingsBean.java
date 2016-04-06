@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
+import alb.util.log.Log;
+
 @ManagedBean(name = "settings")
 @SessionScoped
 public class SettingsBean implements Serializable {
@@ -18,7 +20,7 @@ public class SettingsBean implements Serializable {
 
     @PreDestroy
     public void end() {
-	System.out.println("BeanSettings - PreDestroy");
+	Log.info("BeanSettings - PreDestroy");
     }
 
     public Locale getLocale() {
@@ -26,11 +28,13 @@ public class SettingsBean implements Serializable {
     }
 
     public String setSpanish(ActionEvent event) {
+	Log.info("Cambiando idioma a Español.");
 	locale = SPANISH;
 	return null;
     }
 
     public String setEnglish(ActionEvent event) {
+	Log.info("Cambiando idioma a Inglés.");
 	locale = ENGLISH;
 	return null;
     }
