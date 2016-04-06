@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
@@ -13,7 +13,7 @@ import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.Trip;
 
 @ManagedBean(name = "trips")
-@RequestScoped
+@ViewScoped
 public class TripsBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
