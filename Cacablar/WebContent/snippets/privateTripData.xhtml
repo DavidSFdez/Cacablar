@@ -57,8 +57,7 @@
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
 				<p:commandButton value="#{msgs.decline}"
-					action="#{trip.cancelApplication(var)}" immediate="true"
-					update="@all">
+					action="#{trip.cancelApplication(var)}" immediate="true" update="@all">
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
 			</p:column>

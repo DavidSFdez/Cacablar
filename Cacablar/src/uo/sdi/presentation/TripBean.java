@@ -37,29 +37,6 @@ public class TripBean implements Serializable {
 
     @PostConstruct
     private void actualizar() {
-	// para que compruebes si está bien
-	// actualizar estado de viajes ->
-	// TRIP_UPDATE_STATUS=UPDATE ttrips SET status = 1 where
-	// availablepax>=maxpax AND closingdate < CURRENT_TIMESTAMP
-	// recoger las peticiones pendientes de application para ponerlas a sin
-	// plaza->
-	// APPLICATION_FIND_TO_UPDATE=SELECT * FROM TAPPLICATIONS where
-	// appliedtrips_id = (select id from ttrips where status = 1)
-	// borrarlas de applications
-	// APPLICATION_DELETE_TO_UPDATE=DELETE FROM TAPPLICATIONS where
-	// appliedtrips_id = (select id from ttrips where status=1)
-
-	// P.D.-> Tal vez convenga juntar los dos últimos métodos en la capa de
-	// negocio, tú qué opinas?
-	// Lo he hecho en métodos separados por la movida de que pertenecen a
-	// diferentes DAO
-
-	// Jorge:
-	// Un solo metodo de servicio sería lo correcto si es una unica accion
-	// logica
-	// Ya la clase de accion (clase en package uo.sdi.business.impl.classes)
-	// llamará a dos DAOS
-
 	// Cargar el viaje con ID que venga en los parametros
 	cargarViaje: {
 
@@ -257,6 +234,8 @@ public class TripBean implements Serializable {
     }
 
     public void checkTripNotNull() throws IOException {
+	actualizar();
+	System.out.println(this.id);
 	if (null == trip.getId()) {
 	    ExternalContext ec = FacesContext.getCurrentInstance()
 		    .getExternalContext();
@@ -294,7 +273,6 @@ public class TripBean implements Serializable {
     }
 
     public String cancelSeat(Seat seat) {
-
 	try {
 	    Factories.services.createSeatsService().cancelSeat(seat);
 	    actualizarTrip();

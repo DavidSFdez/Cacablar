@@ -25,12 +25,14 @@ public class SettingsBean implements Serializable {
 	return (locale);
     }
 
-    public void setSpanish(ActionEvent event) {
+    public String setSpanish(ActionEvent event) {
 	locale = SPANISH;
+	return null;
     }
 
-    public void setEnglish(ActionEvent event) {
+    public String setEnglish(ActionEvent event) {
 	locale = ENGLISH;
+	return null;
     }
 
 }

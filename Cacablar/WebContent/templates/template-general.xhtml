@@ -15,7 +15,7 @@
 		<title><ui:insert name="title">#{msgs.tituloDefectoCabecera}</ui:insert></title>
 	</h:head>
 	<h:body>
-		<p>#{settings.locale}</p>
+		<!-- <p>#{settings.locale}</p> -->
 
 		<div class="w3-container">
 			<h1></h1>
@@ -28,13 +28,12 @@
 			<h:form id="form-nav">
 				<ui:insert name="nav">
 					<p:menubar id="mimenu">
-						<p:submenu label="#{msgs.Language}" icon="ui-icon-document">
+						<p:submenu style="float:right" label="#{msgs.Language}" icon="ui-icon-document">
 							<p:menuitem id="linkespa" value="#{msgs.spanish}"
 								actionListener="#{settings.setSpanish}" update="@all" />
 							<p:menuitem id="linkingles" value="#{msgs.english}"
 								actionListener="#{settings.setEnglish}" update="@all" />
 						</p:submenu>
-
 					</p:menubar>
 				</ui:insert>
 			</h:form>

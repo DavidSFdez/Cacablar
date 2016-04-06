@@ -14,8 +14,12 @@
 
 		 <p:messages id="messages" showDetail="true" />
 		
-
 			<h:panelGrid columns="2" columnClasses="label, value">
+			
+				<f:facet name="header">
+					<h:outputText value="#{msgs.manageTrip_tabDepature}" />
+				</f:facet>
+			
 				<h:outputText value="#{msgs.address}: *" />
 				<p:inputText id="calle" value="#{wizardTrip.addressD}"  />
 
@@ -39,16 +43,15 @@
 
 				<p:outputLabel for="fechaSalida" value="#{msgs.departureDate}: *" />
 				<p:calendar id="fechaSalida" value="#{wizardTrip.trip.departureDate}"
-					pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}"
-					 />
-
-				<f:facet name="header">
-					<h:outputText value="#{msgs.manageTrip_tabDepature}" />
-				</f:facet>
+					pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}"/>
 
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" columnClasses="label, value">
+			
+				<f:facet name="header">
+					<h:outputText value="#{msgs.manageTrip_tabDestination}" />
+				</f:facet>
 
 				<h:outputText value="#{msgs.address}: *" />
 				<p:inputText value="#{wizardTrip.addressA}"  />
@@ -78,6 +81,12 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" columnClasses="label, value">
+			
+			<f:facet name="header">
+					<h:outputText value="#{msgs.manageTrip_tabData}" />
+				</f:facet>
+			
+			
 
 				<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: *" />
 				<p:calendar id="fechaCierre" value="#{wizardTrip.trip.closingDate}"
