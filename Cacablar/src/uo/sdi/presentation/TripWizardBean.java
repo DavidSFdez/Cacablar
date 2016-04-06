@@ -3,8 +3,10 @@ package uo.sdi.presentation;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
@@ -46,24 +48,54 @@ public class TripWizardBean implements Serializable {
 	if (addressA == null || addressD == null || cityA == null
 		|| cityD == null || stateA == null || stateD == null
 		|| countryA == null || countryD == null || zipCodeA == null
-		|| zipCodeD == null)
+		|| zipCodeD == null){
+	 
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR","Rellena todos los campos gañan");
+	         
+	        addMessage(message);
 	    return false;
+	}
 	
-	if(trip.getDepartureDate()==null || trip.getArrivalDate()==null || trip.getClosingDate()==null)
+	if(trip.getDepartureDate()==null || trip.getArrivalDate()==null || trip.getClosingDate()==null){
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR","Rellena todas fechas gañan");
+	         
+	        addMessage(message);
 	    return false;
-	else if(trip.getDepartureDate().before(trip.getClosingDate()) || trip.getArrivalDate().before(trip.getDepartureDate()))
+	}
+	else if(trip.getDepartureDate().before(trip.getClosingDate()) || trip.getArrivalDate().before(trip.getDepartureDate())){
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR","Fechas introducidas no válidas gañan");
+	         
+	        addMessage(message);
 	    return false;
+	}
 	
-	if(trip.getEstimatedCost()==0D || trip.getMaxPax()==0)
+	if(trip.getEstimatedCost()<=0D){
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR","Precio introducido no válido gañan");
+	         
+	        addMessage(message);
 	    return false;
+	}else if(trip.getMaxPax()<=0)
+	{
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR","Asientos disponibles no válido gañan");
+	         
+	        addMessage(message);
+	        return false;
+	}
 	
-	if(trip.getComments()==null)
+	if(trip.getComments()==null){
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR","No has introducido comentarios o descripción gañán");
+	         
+	        addMessage(message);
 	    return false;
+	}
 	    
 	return true;
 
     }
 
+    private void addMessage(FacesMessage message) {
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     public Trip getTrip() {
 	return trip;
     }

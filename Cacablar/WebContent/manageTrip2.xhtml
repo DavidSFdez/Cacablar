@@ -12,44 +12,24 @@
 
 		<h:form id="registrar" action="registrarViaje">
 
-			<p:growl id="growl" sticky="true" showDetail="true" />
+		 <p:messages id="messages" showDetail="true" />
+		
 
 			<h:panelGrid columns="2" columnClasses="label, value">
-<<<<<<< HEAD
-				<h:outputText value="Calle: *" />
-				<p:inputText id="calle" value="#{wizardTrip.addressD}" />
-
-				<h:outputText value="Ciudad: *" />
-				<p:inputText value="#{wizardTrip.cityD}" />
-
-				<h:outputText value="Provincia: *" />
-				<p:inputText value="#{wizardTrip.stateD}" />
-
-				<h:outputText value="País: *" />
-				<p:inputText value="#{wizardTrip.countryD}" />
-
-				<h:outputText value="Código postal: *" />
-				<p:inputText value="#{wizardTrip.zipCodeD}" />
-			
-			<f:facet name="header">
-         			<h:outputText value="#{msgs.manageTrip_tabDepature}"/>
-      			</f:facet>
-				
 				<h:outputText value="#{msgs.address}: *" />
-				<p:inputText id="calle" value="#{wizardTrip.addressD}"
-					required="true" />
+				<p:inputText id="calle" value="#{wizardTrip.addressD}"  />
 
 				<h:outputText value="#{msgs.city}: *" />
-				<p:inputText value="#{wizardTrip.cityD}" required="true" />
+				<p:inputText value="#{wizardTrip.cityD}"  />
 
 				<h:outputText value="#{msgs.state}: *" />
-				<p:inputText value="#{wizardTrip.stateD}" required="true" />
+				<p:inputText value="#{wizardTrip.stateD}"  />
 
 				<h:outputText value="#{msgs.country}: *" />
-				<p:inputText value="#{wizardTrip.countryD}" required="true" />
+				<p:inputText value="#{wizardTrip.countryD}"  />
 
 				<h:outputText value="#{msgs.zipCode}: *" />
-				<p:inputText value="#{wizardTrip.zipCodeD}" required="true" />
+				<p:inputText value="#{wizardTrip.zipCodeD}"  />
 
 				<h:outputText value="#{msgs.latitude}:" />
 				<p:inputText value="#{wizardTrip.latD}" />
@@ -57,50 +37,33 @@
 				<h:outputText value="#{msgs.longitude}:" />
 				<p:inputText value="#{wizardTrip.lonD}" />
 
+				<p:outputLabel for="fechaSalida" value="#{msgs.departureDate}: *" />
+				<p:calendar id="fechaSalida" value="#{wizardTrip.trip.departureDate}"
+					pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}"
+					 />
 
-				<p:outputLabel for="fechaSalida" value="Fecha Salida: *" />
-				<p:calendar id="fechaSalida" value="#{wizardTrip.trip.departureDate}" />
-
+				<f:facet name="header">
+					<h:outputText value="#{msgs.manageTrip_tabDepature}" />
+				</f:facet>
 
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" columnClasses="label, value">
 
-				<h:outputText value="Calle: *" />
-				<p:inputText value="#{wizardTrip.addressA}" />
-
-				<h:outputText value="Ciudad: *" />
-				<p:inputText value="#{wizardTrip.cityA}" />
-
-				<h:outputText value="Provincia: *" />
-				<p:inputText value="#{wizardTrip.stateA}" />
-
-				<h:outputText value="País: *" />
-				<p:inputText value="#{wizardTrip.countryA}" />
-
-				<h:outputText value="Código postal: *" />
-				<p:inputText value="#{wizardTrip.zipCodeA}" />
-=======
-			
-				<f:facet name="header">
-         			<h:outputText value="#{msgs.destination}"/>
-      			</f:facet>
-				
 				<h:outputText value="#{msgs.address}: *" />
-				<p:inputText value="#{wizardTrip.addressA}" required="true" />
+				<p:inputText value="#{wizardTrip.addressA}"  />
 
 				<h:outputText value="#{msgs.city}: *" />
-				<p:inputText value="#{wizardTrip.cityA}" required="true" />
+				<p:inputText value="#{wizardTrip.cityA}"  />
 
 				<h:outputText value="#{msgs.state}: *" />
-				<p:inputText value="#{wizardTrip.stateA}" required="true" />
+				<p:inputText value="#{wizardTrip.stateA}"  />
 
 				<h:outputText value="#{msgs.country}: *" />
-				<p:inputText value="#{wizardTrip.countryA}" required="true" />
+				<p:inputText value="#{wizardTrip.countryA}"  />
 
 				<h:outputText value="#{msgs.zipCode}: *" />
-				<p:inputText value="#{wizardTrip.zipCodeA}" required="true" />
->>>>>>> origin/master
+				<p:inputText value="#{wizardTrip.zipCodeA}"  />
 
 				<h:outputText value="#{msgs.latitude}:" />
 				<p:inputText value="#{wizardTrip.latA}" />
@@ -108,77 +71,42 @@
 				<h:outputText value="#{msgs.longitude}:" />
 				<p:inputText value="#{wizardTrip.lonA}" />
 
-<<<<<<< HEAD
-				<p:outputLabel for="fechaLlegada" value="Fecha Llegada: *" />
-=======
 				<p:outputLabel for="fechaLlegada" value="#{msgs.arrivalDate}: *" />
->>>>>>> origin/master
 				<p:calendar id="fechaLlegada" value="#{wizardTrip.trip.arrivalDate}"
 					pattern="MM/dd/yyyy HH:mm:ss"
-					mindate="#{wizardTrip.trip.departureDate}" />
-
+					mindate="#{wizardTrip.trip.departureDate}"  />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" columnClasses="label, value">
 
-<<<<<<< HEAD
-				<p:outputLabel for="fechaCierre" value="Fecha de cierre: *" />
-=======
-				<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: " />
->>>>>>> origin/master
+				<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: *" />
 				<p:calendar id="fechaCierre" value="#{wizardTrip.trip.closingDate}"
 					pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}"
-					maxdate="#{wizardTrip.trip.departureDate}" />
+					maxdate="#{wizardTrip.trip.departureDate}"  />
 
-
-<<<<<<< HEAD
-				<h:outputText value="Coste: *" />
-				<p:spinner id="cost" value="#{wizardTrip.trip.estimatedCost}" prefix="€"
-					min="0" />
-
-				<h:outputText value="Descripción o comentarios: *" />
-				<p:inputTextarea rows="3" cols="33" value="#{wizardTrip.trip.comments}"
-					/>
-=======
 				<h:outputText value="#{msgs.estimatedCost}: *" />
-				<p:spinner id="cost" value="#{wizardTrip.trip.estimatedCost}"
-					prefix="€" min="0" required="true" />
+				<p:spinner id="cost" value="#{wizardTrip.trip.estimatedCost}" prefix="€"
+					min="0"  />
 
 				<h:outputText value="#{msgs.comments}: *" />
-				<p:inputTextarea rows="3" cols="33"
-					value="#{wizardTrip.trip.comments}" required="true" />
->>>>>>> origin/master
+				<p:inputTextarea rows="3" cols="33" value="#{wizardTrip.trip.comments}"
+					 />
 
-				<h:outputLabel for="maxPax" value="#{msgs.availablePax}:: *" />
+				<h:outputLabel for="maxPax" value="#{msgs.maxPax}: *" />
 				<p:spinner id="maxPax" value="#{wizardTrip.trip.maxPax}" min="1"
-					rendered="#{wizardTrip.update==false}" />
-
+					 rendered="#{wizardTrip.update==false}" />
 			</h:panelGrid>
-
-			<h:panelGrid columns="2" columnClasses="label, value">
-
-				<h:outputText value="#{msgs.maxPax} " />
-				<h:outputText value="#{wizardTrip.trip.maxPax}"
-					styleClass="outputLabel" rendered="#{wizardTrip.update}" />
-
-				<h:outputText value="#{msgs.availablePax} " />
-				<h:outputText value="#{wizardTrip.trip.availablePax}"
-					styleClass="outputLabel" rendered="#{wizardTrip.update}" />
-
-				<h:outputText />
-				<h:outputText />
-			</h:panelGrid>
-
 
 			<p:commandButton value="#{msgs.accept}"
-				action="#{wizardTrip.save(user.user.id)}" update="growl"
+				action="#{wizardTrip.save(user.user.id)}" update="messages"
 				process="@this" rendered="#{wizardTrip.update==false}" />
 			<p:commandButton value="#{msgs.accept}"
-				action="#{wizardTrip.updateTrip(user.user.id)}" update="growl"
+				action="#{wizardTrip.updateTrip(user.user.id)}" update="messages"
 				process="@this" rendered="#{wizardTrip.update}" />
 
 
-			<p:commandButton id="precarga" value="#{msgs.manageTrip_preloadButtom}"
+			<p:commandButton id="precarga"
+				value="#{msgs.manageTrip_preloadButtom}"
 				action="#{wizardTrip.preloadTripData}" update="@all"
 				rendered="#{wizardTrip.update==false}" />
 		</h:form>

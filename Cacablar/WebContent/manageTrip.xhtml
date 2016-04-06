@@ -26,19 +26,19 @@
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="#{msgs.address}: *" />
 							<p:inputText id="calle" value="#{wizard.addressD}"
-								required="true" />
+								 />
 
 							<h:outputText value="#{msgs.city}: *" />
-							<p:inputText value="#{wizard.cityD}" required="true" />
+							<p:inputText value="#{wizard.cityD}"  />
 
 							<h:outputText value="#{msgs.state}: *" />
-							<p:inputText value="#{wizard.stateD}" required="true" />
+							<p:inputText value="#{wizard.stateD}"  />
 
 							<h:outputText value="#{msgs.country}: *" />
-							<p:inputText value="#{wizard.countryD}" required="true" />
+							<p:inputText value="#{wizard.countryD}"  />
 
 							<h:outputText value="#{msgs.zipCode}: *" />
-							<p:inputText value="#{wizard.zipCodeD}" required="true" />
+							<p:inputText value="#{wizard.zipCodeD}"  />
 
 							<h:outputText value="#{msgs.latitude}:" />
 							<p:inputText value="#{wizard.latD}" />
@@ -49,7 +49,7 @@
 							<p:outputLabel for="fechaSalida" value="#{msgs.departureDate}: *" />
 							<p:calendar id="fechaSalida" value="#{wizard.trip.departureDate}"
 								pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizard.today}"
-								required="true" />
+								 />
 
 						</h:panelGrid>
 					</p:panel>
@@ -60,19 +60,19 @@
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="#{msgs.address}: *" />
-							<p:inputText value="#{wizard.addressA}" required="true" />
+							<p:inputText value="#{wizard.addressA}"  />
 
 							<h:outputText value="#{msgs.city}: *" />
-							<p:inputText value="#{wizard.cityA}" required="true" />
+							<p:inputText value="#{wizard.cityA}"  />
 
 							<h:outputText value="#{msgs.state}: *" />
-							<p:inputText value="#{wizard.stateA}" required="true" />
+							<p:inputText value="#{wizard.stateA}"  />
 
 							<h:outputText value="#{msgs.country}: *" />
-							<p:inputText value="#{wizard.countryA}" required="true" />
+							<p:inputText value="#{wizard.countryA}"  />
 
 							<h:outputText value="#{msgs.zipCode}: *" />
-							<p:inputText value="#{wizard.zipCodeA}" required="true" />
+							<p:inputText value="#{wizard.zipCodeA}"  />
 
 							<h:outputText value="#{msgs.latitude}:" />
 							<p:inputText value="#{wizard.latA}" />
@@ -83,7 +83,7 @@
 							<p:outputLabel for="fechaLlegada" value="#{msgs.arrivalDate}: *" />
 							<p:calendar id="fechaLlegada" value="#{wizard.trip.arrivalDate}"
 								pattern="MM/dd/yyyy HH:mm:ss"
-								mindate="#{wizard.trip.departureDate}" required="true" />
+								mindate="#{wizard.trip.departureDate}"  />
 
 						</h:panelGrid>
 					</p:panel>
@@ -97,19 +97,19 @@
 							<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: *" />
 							<p:calendar id="fechaCierre" value="#{wizard.trip.closingDate}"
 								pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizard.today}"
-								maxdate="#{wizard.trip.departureDate}" required="true" />
+								maxdate="#{wizard.trip.departureDate}"  />
 
 							<h:outputText value="#{msgs.estimatedCost}: *" />
 							<p:spinner id="cost" value="#{wizard.trip.estimatedCost}"
-								prefix="€" min="0" required="true" />
+								prefix="€" min="0"  />
 
 							<h:outputText value="#{msgs.comments}: *" />
 							<p:inputTextarea rows="3" cols="33"
-								value="#{wizard.trip.comments}" required="true" />
+								value="#{wizard.trip.comments}"  />
 
 							<h:outputLabel for="maxPax" value="#{msgs.maxPax}: *" />
 							<p:spinner id="maxPax" value="#{wizard.trip.maxPax}" min="1"
-								required="true" rendered="#{wizard.update==false}" />
+								 rendered="#{wizard.update==false}" />
 
 						</h:panelGrid>
 					</p:panel>
