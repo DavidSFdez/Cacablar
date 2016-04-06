@@ -11,7 +11,6 @@ import javax.faces.context.FacesContext;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.infrastructure.Factories;
 import uo.sdi.model.User;
-import uo.sdi.model.UserStatus;
 
 @ManagedBean(name = "user")
 @SessionScoped

@@ -17,6 +17,8 @@ import uo.sdi.model.Waypoint;
 @RequestScoped
 public class TripWizardBean implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+    
     private Trip trip = new Trip();
     private String addressD="";
     private String cityD="";

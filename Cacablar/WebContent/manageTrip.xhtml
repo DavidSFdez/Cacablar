@@ -10,7 +10,7 @@
 		<f:event listener="#{wizard.updateTripData}" type="preRenderView"></f:event>
 	</f:metadata>
 
-	<ui:define name="title">Registrar Viaje</ui:define>
+	<ui:define name="title">#{msgs.manageTrip_title}</ui:define>
 
 	<ui:define name="content">
 		<f:event listener="#{user.checkIfLogged}" type="preRenderView" />
@@ -20,33 +20,33 @@
 			<p:growl id="growl" sticky="true" showDetail="true" />
 
 			<p:wizard id="w" flowListener="#{wizard.onFlowProcess}">
-				<p:tab id="origen" title="Origen">
-					<p:panel header="Datos salida">
+				<p:tab id="origen" title="#{msgs.manageTrip_tabDepature}">
+					<p:panel header="#{msgs.manageTrip_tabDepature}">
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Calle: *" />
-							<p:inputText id="calle" value="#{wizard.addressD}" required="true" />
+							<h:outputText value="#{msgs.address}: *" />
+							<p:inputText id="calle" value="#{wizard.addressD}"
+								required="true" />
 
-							<h:outputText value="Ciudad: *" />
+							<h:outputText value="#{msgs.city}: *" />
 							<p:inputText value="#{wizard.cityD}" required="true" />
 
-							<h:outputText value="Provincia: *" />
+							<h:outputText value="#{msgs.state}: *" />
 							<p:inputText value="#{wizard.stateD}" required="true" />
 
-							<h:outputText value="País: *" />
+							<h:outputText value="#{msgs.country}: *" />
 							<p:inputText value="#{wizard.countryD}" required="true" />
 
-							<h:outputText value="Código postal: *" />
+							<h:outputText value="#{msgs.zipCode}: *" />
 							<p:inputText value="#{wizard.zipCodeD}" required="true" />
 
-							<h:outputText value="Coordenadas latitud:" />
+							<h:outputText value="#{msgs.latitude}:" />
 							<p:inputText value="#{wizard.latD}" />
 
-							<h:outputText value="Coordenadas longitud" />
+							<h:outputText value="#{msgs.longitude}:" />
 							<p:inputText value="#{wizard.lonD}" />
 
-
-							<p:outputLabel for="fechaSalida" value="Fecha Salida: *" />
+							<p:outputLabel for="fechaSalida" value="#{msgs.departureDate}: *" />
 							<p:calendar id="fechaSalida" value="#{wizard.trip.departureDate}"
 								pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizard.today}"
 								required="true" />
@@ -55,32 +55,32 @@
 					</p:panel>
 				</p:tab>
 
-				<p:tab id="destino" title="Destino">
-					<p:panel header="Datos Destino">
+				<p:tab id="destino" title="#{msgs.destination}">
+					<p:panel header="#{msgs.destination}">
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Calle: *" />
+							<h:outputText value="#{msgs.address}: *" />
 							<p:inputText value="#{wizard.addressA}" required="true" />
 
-							<h:outputText value="Ciudad: *" />
+							<h:outputText value="#{msgs.city}: *" />
 							<p:inputText value="#{wizard.cityA}" required="true" />
 
-							<h:outputText value="Provincia: *" />
+							<h:outputText value="#{msgs.state}: *" />
 							<p:inputText value="#{wizard.stateA}" required="true" />
 
-							<h:outputText value="País: *" />
+							<h:outputText value="#{msgs.country}: *" />
 							<p:inputText value="#{wizard.countryA}" required="true" />
 
-							<h:outputText value="Código postal: *" />
+							<h:outputText value="#{msgs.zipCode}: *" />
 							<p:inputText value="#{wizard.zipCodeA}" required="true" />
 
-							<h:outputText value="Coordenadas latitud:" />
+							<h:outputText value="#{msgs.latitude}:" />
 							<p:inputText value="#{wizard.latA}" />
 
-							<h:outputText value="Coordenadas longitud" />
+							<h:outputText value="#{msgs.longitude}:" />
 							<p:inputText value="#{wizard.lonA}" />
 
-							<p:outputLabel for="fechaLlegada" value="Fecha Llegada: *" />
+							<p:outputLabel for="fechaLlegada" value="#{msgs.arrivalDate}: *" />
 							<p:calendar id="fechaLlegada" value="#{wizard.trip.arrivalDate}"
 								pattern="MM/dd/yyyy HH:mm:ss"
 								mindate="#{wizard.trip.departureDate}" required="true" />
@@ -89,116 +89,123 @@
 					</p:panel>
 				</p:tab>
 
-				<p:tab id="otrosDatos" title="Otros Datos">
-					<p:panel header="Otros Datos">
+				<p:tab id="otrosDatos" title="#{msgs.manageTrip_tabData}">
+					<p:panel header="#{msgs.manageTrip_tabData}">
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 
-							<p:outputLabel for="fechaCierre" value="Fecha de cierre: *" />
+							<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: *" />
 							<p:calendar id="fechaCierre" value="#{wizard.trip.closingDate}"
 								pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizard.today}"
 								maxdate="#{wizard.trip.departureDate}" required="true" />
 
-
-							<h:outputText value="Coste: *" />
+							<h:outputText value="#{msgs.estimatedCost}: *" />
 							<p:spinner id="cost" value="#{wizard.trip.estimatedCost}"
 								prefix="€" min="0" required="true" />
 
-							<h:outputText value="Descripción o comentarios: *" />
+							<h:outputText value="#{msgs.comments}: *" />
 							<p:inputTextarea rows="3" cols="33"
 								value="#{wizard.trip.comments}" required="true" />
 
-							<h:outputLabel for="maxPax" value="Número de plazas: *" />
+							<h:outputLabel for="maxPax" value="#{msgs.maxPax}: *" />
 							<p:spinner id="maxPax" value="#{wizard.trip.maxPax}" min="1"
 								required="true" rendered="#{wizard.update==false}" />
-
 
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
 
-				<p:tab id="confirm" title="Confirmacion">
-					<p:panel header="Confirmacion">
+				<p:tab id="confirm" title="#{msgs.manageTrip_tabConfirm}">
+					<p:panel header="#{msgs.manageTrip_tabConfirm}">
 						<h:panelGrid id="confirmacion" columns="3"
 							columnClasses="grid,grid,grid">
+
 							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Calle Salida: " />
+
+								<h:outputText value="#{msgs.departure}" />
+								<h:outputText value=" " />
+
+								<h:outputText value="#{msgs.address}: " />
 								<h:outputText value="#{wizard.addressD}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Ciudad Salida: " />
+								<h:outputText value="#{msgs.city}: " />
 								<h:outputText value="#{wizard.cityD}" styleClass="outputLabel" />
 
-								<h:outputText value="Provincia Salida: " />
+								<h:outputText value="#{msgs.state}: " />
 								<h:outputText value="#{wizard.stateD}" styleClass="outputLabel" />
 
-								<h:outputText value="País salida: " />
+								<h:outputText value="#{msgs.country}: " />
 								<h:outputText value="#{wizard.countryD}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Codigo Postal Salida: " />
+								<h:outputText value="#{msgs.zipCode}: " />
 								<h:outputText value="#{wizard.zipCodeD}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Coordenadas latitud Salida: " />
+								<h:outputText value="#{msgs.latitude}: " />
 								<h:outputText value="#{wizard.latD}" styleClass="outputLabel" />
 
-								<h:outputText value="Coordenadas longitud salida: " />
+								<h:outputText value="#{msgs.longitude}: " />
 								<h:outputText value="#{wizard.lonD}" styleClass="outputLabel" />
 
-								<h:outputText value="Fecha salida: " />
+								<h:outputText value="#{msgs.departureDate}: " />
 								<h:outputText value="#{wizard.trip.departureDate}"
 									styleClass="outputLabel" />
 							</h:panelGrid>
 
 							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Calle Destino: " />
+
+								<h:outputText value="#{msgs.destination}" />
+								<h:outputText value=" " />
+
+								<h:outputText value="#{msgs.address}: " />
 								<h:outputText value="#{wizard.addressA}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Calle Ciudad: " />
+								<h:outputText value="#{msgs.city}: " />
 								<h:outputText value="#{wizard.cityA}" styleClass="outputLabel" />
 
-								<h:outputText value="Provincia Destino: " />
+								<h:outputText value="#{msgs.state}: " />
 								<h:outputText value="#{wizard.stateA}" styleClass="outputLabel" />
 
-								<h:outputText value="País Destino: " />
+								<h:outputText value="#{msgs.country}: " />
 								<h:outputText value="#{wizard.countryA}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Codigo Postal Destino: " />
+								<h:outputText value="#{msgs.zipCode}: " />
 								<h:outputText value="#{wizard.zipCodeA}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Coordenadas latitud Destino: " />
+								<h:outputText value="#{msgs.latitude}: " />
 								<h:outputText value="#{wizard.latA}" styleClass="outputLabel" />
 
-								<h:outputText value="Coordenadas longitud Destino: " />
+								<h:outputText value="#{msgs.longitude}: " />
 								<h:outputText value="#{wizard.lonA}" styleClass="outputLabel" />
 
-								<h:outputText value="Fecha Llegada: " />
+								<h:outputText value="#{msgs.arrivalDate}: " />
 								<h:outputText value="#{wizard.trip.arrivalDate}"
 									styleClass="outputLabel" />
 							</h:panelGrid>
 
 							<h:panelGrid columns="2" columnClasses="label, value">
-								<h:outputText value="Fecha Cierre: " />
+								<h:outputText value="#{msgs.closingDate}: " />
 								<h:outputText value="#{wizard.trip.closingDate}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Coste: " />
+								<h:outputText value="#{msgs.estimatedCost}: " />
 								<h:outputText value="#{wizard.trip.estimatedCost}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Descripción o comentarios: " />
+								<h:outputText value="#{msgs.comments}: " />
 								<h:outputText value="#{wizard.trip.comments}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Número de plazas " />
+								<h:outputText value="#{msgs.maxPax}: " />
 								<h:outputText value="#{wizard.trip.maxPax}"
 									styleClass="outputLabel" />
 
-								<h:outputText value="Plazas disponibles: " />
+								<h:outputText value="#{msgs.availablePax}: " />
 								<h:outputText value="#{wizard.trip.availablePax}"
 									styleClass="outputLabel" rendered="#{wizard.update}" />
 
@@ -207,16 +214,16 @@
 							</h:panelGrid>
 						</h:panelGrid>
 
-						<p:commandButton value="#Submit"
+						<p:commandButton value="#{msgs.accept}"
 							action="#{wizard.save(user.user.id)}" update="growl"
 							process="@this" rendered="#{wizard.update==false}" />
-						<p:commandButton value="#Modificar"
+						<p:commandButton value="#{msgs.accept}"
 							action="#{wizard.updateTrip(user.user.id)}" update="growl"
 							process="@this" rendered="#{wizard.update}" />
 					</p:panel>
 				</p:tab>
 			</p:wizard>
-			<p:commandButton id="precarga" value="precarga"
+			<p:commandButton id="precarga" value="#{msgs.manageTrip_preloadButtom}"
 				action="#{wizard.preloadTripData}" update="w"
 				rendered="#{wizard.update==false}" />
 		</h:form>

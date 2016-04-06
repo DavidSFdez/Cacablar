@@ -6,9 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import uo.sdi.business.exception.EntityAlreadyExistsException;
-import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
-import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
 
 @ManagedBean(name = "seat")
