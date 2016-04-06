@@ -5,17 +5,17 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<h:panelGroup>
-		<h3>#Pasajeros</h3>
+		<h3>#{msgs.seats}</h3>
 		<p:dataTable var="var" value="#{trip.getSeats()}" border="1">
 			<p:column>
-				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
+				<f:facet name="header">#{msgs.ID}</f:facet>#{var.userId}</p:column>
 			<p:column>
-				<f:facet name="header">#Comment</f:facet>#{var.comment}</p:column>
+				<f:facet name="header">#{msgs.comments}</f:facet>#{var.comment}</p:column>
 			<p:column>
-				<f:facet name="header">#Status</f:facet>#{var.status}</p:column>
+				<f:facet name="header">#{msgs.status}</f:facet>#{var.status}</p:column>
 			<p:column>
-				<f:facet name="header">#Action</f:facet>
-				<p:commandButton value="#Cancelar plaza"
+				<f:facet name="header">#{msgs.actions}</f:facet>
+				<p:commandButton value="#{msgs.cancelSeat}"
 					action="#{trip.cancelSeat(var)}"
 					rendered="#{( trip.isSitting(user.user.id) and var.userId == user.user.id ) || (trip.isPromoter(user.user.id) and var.status.accepted)}"
 					immediate="true" update="@all" >
@@ -26,8 +26,8 @@
 	</h:panelGroup>
 
 	<h:form rendered="#{trip.isUserInApplications(user.user.id)}">
-		<h:outputText value="#Su petición todavía se encuentra pendiente: " />
-		<p:commandButton value="#Cancelar solicitud"
+		<h:outputText value="#{msgs.applicationMessage}" />
+		<p:commandButton value="#{msgs.cancelApplication}"
 			action="#{trip.cancelApplication(user.user.id,trip.trip.id)}"
 			immediate="true" update="@all">
 				<f:param name="id" value="#{trip.id}" />
@@ -36,7 +36,7 @@
 
 	<!--  Peta pero funciona (wtf) (He puesto el == false en vez de ! para que eclipse no llore -->
 	<h:form rendered="#{trip.isUserRelated(user.user.id) == false}">
-		<p:commandButton value="#Solicitar Plaza"
+		<p:commandButton value="#{msgs.requestSeat}"
 			action="#{seat.request(user.user.id,trip.trip.id)}" immediate="true"
 			update="@all" >
 			<f:param name="id" value="#{trip.id}" />
@@ -44,19 +44,19 @@
 	</h:form>
 
 	<h:panelGroup rendered="#{trip.isPromoter(user.user.id)}">
-		<h3>#Peticiones</h3>
+		<h3>#{msgs.applications}</h3>
 		<p:dataTable var="var" value="#{trip.getApplications()}" border="1">
 			<p:column>
-				<f:facet name="header">#IDUser</f:facet>#{var.userId}</p:column>
+				<f:facet name="header">#{msgs.ID}</f:facet>#{var.userId}</p:column>
 			<p:column>
-				<f:facet name="header">#Actions</f:facet>
-				<p:commandButton value="#Aceptar"
+				<f:facet name="header">#{msgs.actions}</f:facet>
+				<p:commandButton value="#{msgs.accept}"
 					action="#{trip.acceptApplication(var)}" immediate="true"
 					update="@all">
 					<!-- 	update = "form-content:showTrip:sobreViaje, form-content:showTrip:PasajerosPeticiones"  > -->
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
-				<p:commandButton value="#Rechazar"
+				<p:commandButton value="#{msgs.decline}"
 					action="#{trip.cancelApplication(var)}" immediate="true"
 					update="@all">
 					<f:param name="id" value="#{trip.id}" />

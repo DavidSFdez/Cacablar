@@ -9,7 +9,7 @@
   <nodes xsi:type="pageflow:PFPage" name="showTrip.xhtml" x="770" y="754" id="pf14588169600303" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf14596799437242" inlinks="pf14593361539601 pf14593361539600 pf14596799437242" path="/showTrip.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1714" id="pf14591443080581" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14591443080570 pf14596812962993" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="338" y="1714" id="pf14596812962994" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14596812962993" path="/error.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="manageTrip.xhtml" id="pf14598000273773" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14598000273771 pf14598024847324" inlinks="pf14598000273770 pf14598000273772" path="/manageTrip.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="manageTrip.xhtml" id="pf14598000273773" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf14598000273771 pf14598024847324" inlinks="pf14598000273770 pf14598000273772" path="/manageTrip.xhtml"/>
   <links id="pf145858101266718" target="pf145858095644211" source="pf145858101266720" outcome="login"/>
   <links id="pf145858102265721" target="pf145858102265722" source="pf145858101266720" outcome="register"/>
   <links id="pf145858110078030" target="pf145858110078032" source="pf145858101266720" outcome="list"/>

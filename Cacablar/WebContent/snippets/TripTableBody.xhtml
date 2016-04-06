@@ -5,8 +5,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<p:column>
-		<f:facet name="header">ID</f:facet>
-		
+		<f:facet name="header">#{msgs.ID}</f:facet>
 		
 <!-- 	CommandLink	
 		<p:commandLink action="#{seat.view(var.id)}">
@@ -17,15 +16,14 @@
 		<f:param name="id" value="#{var.stringId}" />
 	</p:link>
 		
-		
 	</p:column>
 	<p:column>
-		<f:facet name="header">#Origen</f:facet>#{var.departure.city}</p:column>
+		<f:facet name="header">#{msgs.departure}</f:facet>#{var.departure.city}</p:column>
 	<p:column>
-		<f:facet name="header">#Destino</f:facet>#{var.destination.city}</p:column>
+		<f:facet name="header">#{msgs.destination}</f:facet>#{var.destination.city}</p:column>
 	<p:column>
 		<!-- <p:commandButton value="#VerViaje" action="#{trip.view(var.id)}" /> -->
-		<p:button outcome="showTrip" value="Ver Detalles">
+		<p:button outcome="showTrip" value="#{msgs.tripView}">
 			<f:param name="id" value="#{var.stringId}" />
 		</p:button>
 	</p:column>
