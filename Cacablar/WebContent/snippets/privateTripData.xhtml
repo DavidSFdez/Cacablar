@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
+			
 	<h:panelGroup>
 		<h3>#{msgs.seats}</h3>
 		<p:dataTable var="var" value="#{trip.getSeats()}" border="1">
@@ -15,7 +15,7 @@
 				<f:facet name="header">#{msgs.status}</f:facet>#{var.status}</p:column>
 			<p:column>
 				<f:facet name="header">#{msgs.actions}</f:facet>
-				<p:commandButton value="#{msgs.cancelSeat}"
+				<p:commandButton id="cancelButton" value="#{msgs.cancelSeat}"
 					action="#{trip.cancelSeat(var)}"
 					rendered="#{( trip.isSitting(user.user.id) and var.userId == user.user.id ) || (trip.isPromoter(user.user.id) and var.status.accepted)}"
 					immediate="true" update="@all" >
@@ -50,13 +50,13 @@
 				<f:facet name="header">#{msgs.ID}</f:facet>#{var.userId}</p:column>
 			<p:column>
 				<f:facet name="header">#{msgs.actions}</f:facet>
-				<p:commandButton value="#{msgs.accept}"
+				<p:commandButton id="acceptApplication" value="#{msgs.accept}"
 					action="#{trip.acceptApplication(var)}" immediate="true"
 					update="@all">
 					<!-- 	update = "form-content:showTrip:sobreViaje, form-content:showTrip:PasajerosPeticiones"  > -->
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>
-				<p:commandButton value="#{msgs.decline}"
+				<p:commandButton id="cancelApplication" value="#{msgs.decline}"
 					action="#{trip.cancelApplication(var)}" immediate="true" update="@all">
 					<f:param name="id" value="#{trip.id}" />
 				</p:commandButton>

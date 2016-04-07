@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -285,6 +286,10 @@ public class TripBean implements Serializable {
 	    Factories.services.createSeatsService().cancelSeat(seat);
 	    actualizarTrip();
 	} catch (EntityNotFoundException e) {
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+		    "ERROR", "El viaje ya pasó");
+
+	    addMessage(message);
 	    return "fracaso";
 	}
 
@@ -301,4 +306,8 @@ public class TripBean implements Serializable {
     public boolean isActive() {
 	return trip.getStatus().isOpen();
     }
+    
+    private void addMessage(FacesMessage message) {
+   	FacesContext.getCurrentInstance().addMessage(null, message);
+       }
 }
