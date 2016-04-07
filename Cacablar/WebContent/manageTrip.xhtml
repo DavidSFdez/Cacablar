@@ -20,30 +20,30 @@
 						<h:outputText value="#{msgs.manageTrip_tabDepature}" />
 					</f:facet>
 
-					<p:inputText id="calle" value="#{wizardTrip.addressD}" />
+					<p:inputText id="calle" value="#{wizard.addressD}" />
 
 					<h:outputText value="#{msgs.city}: *" />
-					<p:inputText value="#{wizardTrip.cityD}" />
+					<p:inputText value="#{wizard.cityD}" />
 
 					<h:outputText value="#{msgs.state}: *" />
-					<p:inputText value="#{wizardTrip.stateD}" />
+					<p:inputText value="#{wizard.stateD}" />
 
 					<h:outputText value="#{msgs.country}: *" />
-					<p:inputText value="#{wizardTrip.countryD}" />
+					<p:inputText value="#{wizard.countryD}" />
 
 					<h:outputText value="#{msgs.zipCode}: *" />
-					<p:inputText value="#{wizardTrip.zipCodeD}" />
+					<p:inputText value="#{wizard.zipCodeD}" />
 
 					<h:outputText value="#{msgs.latitude}:" />
-					<p:inputText value="#{wizardTrip.latD}" />
+					<p:inputText value="#{wizard.latD}" />
 
 					<h:outputText value="#{msgs.longitude}:" />
-					<p:inputText value="#{wizardTrip.lonD}" />
+					<p:inputText value="#{wizard.lonD}" />
 
 					<p:outputLabel for="fechaSalida" value="#{msgs.departureDate}: *" />
 					<p:calendar id="fechaSalida"
-						value="#{wizardTrip.trip.departureDate}"
-						pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}" />
+						value="#{wizard.trip.departureDate}"
+						pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizard.today}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2" columnClasses="label, value">
@@ -53,31 +53,31 @@
 					</f:facet>
 
 					<h:outputText value="#{msgs.address}: *" />
-					<p:inputText value="#{wizardTrip.addressA}" />
+					<p:inputText value="#{wizard.addressA}" />
 
 					<h:outputText value="#{msgs.city}: *" />
-					<p:inputText value="#{wizardTrip.cityA}" />
+					<p:inputText value="#{wizard.cityA}" />
 
 					<h:outputText value="#{msgs.state}: *" />
-					<p:inputText value="#{wizardTrip.stateA}" />
+					<p:inputText value="#{wizard.stateA}" />
 
 					<h:outputText value="#{msgs.country}: *" />
-					<p:inputText value="#{wizardTrip.countryA}" />
+					<p:inputText value="#{wizard.countryA}" />
 
 					<h:outputText value="#{msgs.zipCode}: *" />
-					<p:inputText value="#{wizardTrip.zipCodeA}" />
+					<p:inputText value="#{wizard.zipCodeA}" />
 
 					<h:outputText value="#{msgs.latitude}:" />
-					<p:inputText value="#{wizardTrip.latA}" />
+					<p:inputText value="#{wizard.latA}" />
 
 					<h:outputText value="#{msgs.longitude}:" />
-					<p:inputText value="#{wizardTrip.lonA}" />
+					<p:inputText value="#{wizard.lonA}" />
 
 					<p:outputLabel for="fechaLlegada" value="#{msgs.arrivalDate}: *" />
 					<p:calendar id="fechaLlegada"
-						value="#{wizardTrip.trip.arrivalDate}"
+						value="#{wizard.trip.arrivalDate}"
 						pattern="MM/dd/yyyy HH:mm:ss"
-						mindate="#{wizardTrip.trip.departureDate}" />
+						mindate="#{wizard.trip.departureDate}" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2" columnClasses="label, value">
@@ -89,34 +89,34 @@
 
 
 					<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: *" />
-					<p:calendar id="fechaCierre" value="#{wizardTrip.trip.closingDate}"
-						pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizardTrip.today}"
-						maxdate="#{wizardTrip.trip.departureDate}" />
+					<p:calendar id="fechaCierre" value="#{wizard.trip.closingDate}"
+						pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizard.today}"
+						maxdate="#{wizard.trip.departureDate}" />
 
 					<h:outputText value="#{msgs.estimatedCost}: *" />
-					<p:spinner id="cost" value="#{wizardTrip.trip.estimatedCost}"
+					<p:spinner id="cost" value="#{wizard.trip.estimatedCost}"
 						prefix="€" min="0" />
 
 					<h:outputText value="#{msgs.comments}: *" />
 					<p:inputTextarea rows="3" cols="33"
-						value="#{wizardTrip.trip.comments}" />
+						value="#{wizard.trip.comments}" />
 
 					<h:outputLabel for="maxPax" value="#{msgs.maxPax}: *" />
-					<p:spinner id="maxPax" value="#{wizardTrip.trip.maxPax}" min="1"
-						rendered="#{wizardTrip.update==false}" />
+					<p:spinner id="maxPax" value="#{wizard.trip.maxPax}" min="1"
+						rendered="#{wizard.update==false}" />
 				</h:panelGrid>
 			</h:panelGrid>
 			<p:commandButton value="#{msgs.accept}"
-				action="#{wizardTrip.save(user.user.id)}" update="messages"
-				rendered="#{wizardTrip.update==false}" />
+				action="#{wizard.save(user.user.id)}" update="messages"
+				rendered="#{wizard.update==false}" />
 			<p:commandButton value="#{msgs.accept}"
-				action="#{wizardTrip.updateTrip(user.user.id)}" update="messages"
-				rendered="#{wizardTrip.update}" />
+				action="#{wizard.updateTrip(user.user.id)}" update="messages"
+				rendered="#{wizard.update}" />
 
 			<p:commandButton id="precarga"
 				value="#{msgs.manageTrip_preloadButtom}"
-				action="#{wizardTrip.preloadTripData}" update="@all"
-				rendered="#{wizardTrip.update==false}" />
+				action="#{wizard.preloadTripData}" update="@all"
+				rendered="#{wizard.update==false}" />
 
 		</h:form>
 	</ui:define>

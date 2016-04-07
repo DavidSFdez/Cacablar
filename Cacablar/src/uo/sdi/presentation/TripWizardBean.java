@@ -3,8 +3,10 @@ package uo.sdi.presentation;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -17,7 +19,7 @@ import uo.sdi.model.AddressPoint;
 import uo.sdi.model.Trip;
 import uo.sdi.model.Waypoint;
 
-@ManagedBean(name = "wizardTrip")
+@ManagedBean(name = "wizard")
 @ViewScoped
 public class TripWizardBean implements Serializable {
 
@@ -40,6 +42,7 @@ public class TripWizardBean implements Serializable {
     private Double lonA = 0D;
     private boolean isUpdate = false;
 
+    @ManagedProperty("#{param.updateTrip}")
     private String id;
 
     public TripWizardBean() {
@@ -137,7 +140,8 @@ public class TripWizardBean implements Serializable {
 
     }
 
-    public String updateTripData() {
+    @PostConstruct
+    public void updateTripData() {
 
 	if (id != null) {
 	    try {
@@ -164,10 +168,8 @@ public class TripWizardBean implements Serializable {
 	    this.zipCodeA = trip.getDestination().getZipCode();
 
 	    this.isUpdate = true;
-
-	    return "exito";
 	}
-	return "fracaso";
+
     }
 
     public String updateTrip(Long idUser) {
