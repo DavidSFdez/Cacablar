@@ -44,6 +44,14 @@ public class TripWizardBean implements Serializable {
 
     public TripWizardBean() {
     }
+    
+    public String accept(){
+	
+	checkAllRight();
+	
+	return "exito";
+	
+    }
 
     private boolean checkAllRight() {
 	if (addressA == null || addressD == null || cityA == null
@@ -56,7 +64,7 @@ public class TripWizardBean implements Serializable {
 	        addMessage(message);
 	    return false;
 	}
-	
+		
 	if(trip.getDepartureDate()==null || trip.getArrivalDate()==null || trip.getClosingDate()==null){
 	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR","Rellena todas fechas gañan");
 	         
