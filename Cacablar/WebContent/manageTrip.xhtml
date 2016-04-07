@@ -106,12 +106,14 @@
 						rendered="#{wizard.update==false}" />
 				</h:panelGrid>
 			</h:panelGrid>
-			<p:commandButton value="#{msgs.accept}"
+			<p:commandButton id="bottonAceptar" value="#{msgs.accept}"
 				action="#{wizard.save(user.user.id)}" update="messages"
 				rendered="#{wizard.update==false}" />
-			<p:commandButton value="#{msgs.modify}"
+			<p:commandButton id="bottonModoficar" value="#{msgs.modify}"
 				action="#{wizard.modifyTrip(user.user.id)}" update="messages"
-				rendered="#{wizard.update}" />
+				rendered="#{wizard.update}" >
+				<f:param name="updateTrip" value="#{wizard.trip.id}"/>
+			</p:commandButton>
 
 			<p:commandButton id="precarga"
 				value="#{msgs.manageTrip_preloadButtom}"
