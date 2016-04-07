@@ -27,14 +27,16 @@
 		<div class="w3-container">
 			<h:form id="form-nav">
 				<ui:insert name="nav">
-					<p:menubar id="mimenu">
-						<p:submenu style="float:right" label="#{msgs.Language}" icon="ui-icon-document">
-							<p:menuitem id="linkespa" value="#{msgs.spanish}"
-								actionListener="#{settings.setSpanish}" update="@all" />
-							<p:menuitem id="linkingles" value="#{msgs.english}"
-								actionListener="#{settings.setEnglish}" update="@all" />
-						</p:submenu>
-					</p:menubar>
+	
+					<div style="float:right">
+				<p:commandButton id="setES" update="@all" actionListener="#{settings.setSpanish}"
+					value="#{msgs.spanish}">
+				</p:commandButton>
+
+				<p:commandButton id="setEN" update="@all" actionListener="#{settings.setEnglish}"
+					value="#{msgs.english}">
+				</p:commandButton>
+		</div>
 				</ui:insert>
 			</h:form>
 		</div>
