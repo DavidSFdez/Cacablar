@@ -8,10 +8,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.infrastructure.Factories;
@@ -20,7 +18,7 @@ import uo.sdi.model.Trip;
 import uo.sdi.model.Waypoint;
 
 @ManagedBean(name = "wizard")
-@ViewScoped
+@RequestScoped
 public class TripWizardBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
