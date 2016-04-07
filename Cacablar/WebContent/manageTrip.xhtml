@@ -91,7 +91,7 @@
 					<p:outputLabel for="fechaCierre" value="#{msgs.closingDate}: *" />
 					<p:calendar id="fechaCierre" value="#{wizard.trip.closingDate}"
 						pattern="MM/dd/yyyy HH:mm:ss" mindate="#{wizard.today}"
-						maxdate="#{wizard.trip.departureDate}" />
+						 />
 
 					<h:outputText value="#{msgs.estimatedCost}: *" />
 					<p:spinner id="cost" value="#{wizard.trip.estimatedCost}"

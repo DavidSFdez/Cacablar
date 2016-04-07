@@ -36,7 +36,7 @@
 
 	<!--  Peta pero funciona (wtf) (He puesto el == false en vez de ! para que eclipse no llore -->
 	<h:form rendered="#{trip.isUserRelated(user.user.id) == false}">
-		<p:commandButton value="#{msgs.requestSeat}"
+		<p:commandButton id="pedirPlazaButt" value="#{msgs.requestSeat}"
 			action="#{seat.request(user.user.id,trip.trip.id)}" immediate="true"
 			update="@all" >
 			<f:param name="id" value="#{trip.id}" />
