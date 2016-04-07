@@ -38,14 +38,14 @@ public class TripBean implements Serializable {
 
     @PostConstruct
     private void actualizar() {
-	Log.trace("Cargando viaje [" + id + "].");
+	Log.trace("Cargando viaje.");
 	// Cargar el viaje con ID que venga en los parametros
 	cargarViaje: {
 
 	    Log.debug("Id de viaje en petición: [" + id + "].");
 
 	    if (null == id) {
-		Log.error("No hay ID.");
+		Log.debug("No hay ID.");
 		break cargarViaje;
 	    }
 	    try {

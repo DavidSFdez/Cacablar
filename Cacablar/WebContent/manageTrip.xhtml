@@ -109,8 +109,8 @@
 			<p:commandButton value="#{msgs.accept}"
 				action="#{wizard.save(user.user.id)}" update="messages"
 				rendered="#{wizard.update==false}" />
-			<p:commandButton value="#{msgs.accept}"
-				action="#{wizard.updateTrip(user.user.id)}" update="messages"
+			<p:commandButton value="#{msgs.modify}"
+				action="#{wizard.modifyTrip(user.user.id)}" update="messages"
 				rendered="#{wizard.update}" />
 
 			<p:commandButton id="precarga"

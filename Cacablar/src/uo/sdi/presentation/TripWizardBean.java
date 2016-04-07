@@ -2,6 +2,7 @@ package uo.sdi.presentation;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -111,28 +112,30 @@ public class TripWizardBean implements Serializable {
     }
 
     public void preloadTripData() {
+	
+	int random = new Random().nextInt();
 
-	this.addressD = "direccionSalida";
-	this.cityD = "CiudadSalida";
-	this.countryD = "PaísSalida";
+	this.addressD = "direccionSalida"+random;
+	this.cityD = "CiudadSalida"+random;
+	this.countryD = "PaísSalida"+random;
 	this.latD = 0D;
 	this.lonD = 0D;
-	this.stateD = "ProvinciaSalida";
-	this.zipCodeD = "CodigoPostalSalida";
+	this.stateD = "ProvinciaSalida"+random;
+	this.zipCodeD = "CodigoPostalSalida"+random;
 
-	this.addressA = "direccionLlegada";
-	this.cityA = "CiudadLlegada";
-	this.countryA = "PaísLlegada";
+	this.addressA = "direccionLlegada"+random;
+	this.cityA = "CiudadLlegada"+random;
+	this.countryA = "PaísLlegada"+random;
 	this.latA = 0D;
 	this.lonA = 0D;
-	this.stateA = "ProvinciaLlegada";
-	this.zipCodeA = "CodigoPostalLlegada";
+	this.stateA = "ProvinciaLlegada"+random;
+	this.zipCodeA = "CodigoPostalLlegada"+random;
 
 	trip.setArrivalDate(new Date());
 	trip.setDepartureDate(new Date());
 	trip.setClosingDate(new Date());
 	trip.setEstimatedCost(10D);
-	trip.setComments("Descripción o comentarios");
+	trip.setComments("Descripción o comentarios"+random);
 	trip.setAvailablePax(1);
 	trip.setMaxPax(1);
 
@@ -170,7 +173,7 @@ public class TripWizardBean implements Serializable {
 
     }
 
-    public String updateTrip(Long idUser) {
+    public String modifyTrip(Long idUser) {
 
 	try {
 	    
