@@ -133,7 +133,7 @@ public class TripWizardBean implements Serializable {
 	trip.setArrivalDate(new Date());
 	trip.setDepartureDate(new Date());
 	trip.setClosingDate(new Date());
-	trip.setEstimatedCost(0D);
+	trip.setEstimatedCost(10D);
 	trip.setComments("Descripción o comentarios");
 	trip.setAvailablePax(1);
 	trip.setMaxPax(1);
