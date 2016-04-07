@@ -39,7 +39,7 @@ public class SeatsCancelSeat {
 	    throw new EntityNotFoundException(
 		    "No existe el sitio que se intenta cancelar");
 
-	if (trip.getAvailablePax() == trip.getMaxPax()
+	if (trip.getAvailablePax() == 0
 		&& trip.getClosingDate().after(new Date())) {
 	    trip.setAvailablePax(trip.getAvailablePax() + 1);
 	    trip.setStatus(TripStatus.OPEN);

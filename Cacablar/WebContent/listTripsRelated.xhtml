@@ -11,7 +11,7 @@
 		<f:event listener="#{user.checkIfLogged}" type="preRenderView" />
 		<p:dataTable id="tablalistado" var="var"
 			value="#{trips.listRelated(user.user.id)}"
-			selection="#{trips.tripsToCancel}" border="1" rowKey="#{var.id}">
+			selection="#{trips.tripsToCancel}" border="1" rowKey="#{var.id}" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15">
 
 			<ui:include src="/snippets/TripTableBody.xhtml" />
 

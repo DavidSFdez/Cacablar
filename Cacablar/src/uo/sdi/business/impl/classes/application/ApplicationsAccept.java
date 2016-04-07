@@ -1,5 +1,7 @@
 package uo.sdi.business.impl.classes.application;
 
+import java.util.List;
+
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
@@ -34,7 +36,7 @@ public class ApplicationsAccept {
 
 	// No quedan plazas
 	if (trip.getAvailablePax() == 0) {
-	    // TODO? Internacionalizar el mensaje de las excepciones?
+	    
 	    String errorMessage = "No hay plazas libres en el viaje.";
 	    throw new BusinessException(errorMessage);
 	}
@@ -53,6 +55,12 @@ public class ApplicationsAccept {
 	    tripDao.update(trip);
 	    applicationDao.delete(ids);
 	    seatDao.save(seat);
+	    if(trip.getAvailablePax()==0){
+		tripDao.updateTripsStatus();
+		List<Application> applications = applicationDao.findToUpdate();
+		Factories.services.createSeatsService().seatsToUpdate(applications);
+	    }
+	    
 	    transaction.commit();
 	} catch (NotPersistedException e) {
 	    transaction.rollback();
