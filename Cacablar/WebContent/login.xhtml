@@ -8,8 +8,9 @@
 	<ui:define name="title">#{msgs.login_title}</ui:define>
 
 	<ui:define name="content">
-	<f:event listener="#{user.checkIfNotLogged}" type="preRenderView"/>
+		<f:event listener="#{user.checkIfNotLogged}" type="preRenderView" />
 		<h:form id="login" method="POST" action="login">
+			<p:messages id="messages" showDetail="true" />
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="#{msgs.login_name}:" />
 				<p:inputText id="username" value="#{user.user.login}"
@@ -19,7 +20,8 @@
 				<p:password id="password" value="#{user.user.password}"
 					required="true" label="password" />
 				<span></span>
-				<p:commandButton id="loginButt" value="#{msgs.login_submitButtom}" action="#{user.login}" />
+				<p:commandButton id="loginButt" value="#{msgs.login_submitButtom}"
+					action="#{user.login}" update="messages" />
 
 			</h:panelGrid>
 

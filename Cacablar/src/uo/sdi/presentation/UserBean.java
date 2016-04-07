@@ -3,6 +3,7 @@ package uo.sdi.presentation;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -25,6 +26,10 @@ public class UserBean implements Serializable {
 	user = new User();
     }
 
+    private void addMessage(FacesMessage message) {
+	FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
     public User getUser() {
 	return user;
     }
@@ -38,7 +43,7 @@ public class UserBean implements Serializable {
     }
 
     public boolean isLogged() {
-	if(user == null)
+	if (user == null)
 	    return false;
 	return null != user.getId();
     }
@@ -61,14 +66,17 @@ public class UserBean implements Serializable {
 	user = Factories.services.createLoginService().verify(user.getLogin(),
 		user.getPassword());
 	Log.debug("Usuario encontrado: " + user);
-	if(user == null)
+	if (user == null)
 	    user = new User();
-	
-	if(user.getId() == null){
+
+	if (user.getId() == null) {
+	    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+		    "ERROR", "Login incorrecto");
+
+	    addMessage(message);
 	    Log.error("No se ha encontrado el usuario");
 	    return "fracaso";
-	}
-	else{
+	} else {
 	    Log.info("Usuario identificado con éxito.");
 	    return "exito";
 	}
@@ -88,12 +96,12 @@ public class UserBean implements Serializable {
 	    ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
 	}
     }
-    
+
     public void checkIfLogged() throws IOException {
-   	if (!isLogged()) {
-   	    ExternalContext ec = FacesContext.getCurrentInstance()
-   		    .getExternalContext();
-   	    ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
-   	}
-       }
+	if (!isLogged()) {
+	    ExternalContext ec = FacesContext.getCurrentInstance()
+		    .getExternalContext();
+	    ec.redirect(ec.getRequestContextPath() + "/error.xhtml");
+	}
+    }
 }
