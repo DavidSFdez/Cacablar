@@ -6,8 +6,9 @@
 	template="/templates/template-general.xhtml">
 
 	<ui:define name="title">#{msgs.listTripsRelated_title}</ui:define>
-<f:event listener="#{user.checkIfLogged}" type="preRenderView"/>
+	
 	<ui:define name="content">
+		<f:event listener="#{user.checkIfLogged}" type="preRenderView" />
 		<p:dataTable id="tablalistado" var="var"
 			value="#{trips.listRelated(user.user.id)}"
 			selection="#{trips.tripsToCancel}" border="1" rowKey="#{var.id}">
@@ -33,8 +34,7 @@
 		<p:commandButton value="#{msgs.cancelTrips}"
 			action="#{trips.cancelTrips(user.user.id)}" update="@all">
 
-			<p:confirm header="#{msgs.confirm}"
-				message="#{msgs.confirmMessage}"
+			<p:confirm header="#{msgs.confirm}" message="#{msgs.confirmMessage}"
 				icon="ui-icon-alert"></p:confirm>
 		</p:commandButton>
 
