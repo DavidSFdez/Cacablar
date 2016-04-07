@@ -24,7 +24,9 @@ public class SeatsToUpdate {
 		seatToUpdate.setTripId(a.getTripId());
 		seatToUpdate.setUserId(a.getUserId());
 
-		sd.save(seatToUpdate);
+		if (sd.findByUserAndTrip(seatToUpdate.getUserId(), seatToUpdate.getTripId()) == null) {
+		    sd.save(seatToUpdate);
+		}
 	    }
 	} catch (AlreadyPersistedException e) {
 	    throw new EntityAlreadyExistsException(
