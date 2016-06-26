@@ -27,7 +27,7 @@ import com.sdi.tests.utils.SeleniumUtils;
  * 
  * Para ello se encuentra en el proyecto base un script para reiniciarlos datos.
  * 
- * Están pensado para http://localhost:8280/
+ * Están pensado para http://localhost:8180/
  *
  */
 
@@ -39,14 +39,14 @@ public class PruebasSDI {
     List<WebElement> elementos = null;
     
     private final static String BASE_URLI = "sdi2-171/";
-    private final static String URL = "http://localhost:8280/" + BASE_URLI;
-    private final static String LISTRELATEDURL = "http://localhost:8280/sdi2-171/listTripsRelated.xhtml";
-    private final static String REGISTERTRIPURL = "http://localhost:8280/sdi2-171/manageTrip.xhtml";
+    private final static String URL = "http://localhost:8180/" + BASE_URLI;
+    private final static String LISTRELATEDURL = "http://localhost:8180/sdi2-171/listTripsRelated.xhtml";
+    private final static String REGISTERTRIPURL = "http://localhost:8180/sdi2-171/manageTrip.xhtml";
     private final static String VIAJEUSUARIOUSER1 = "?updateTrip=201";
-    private final static String LOGINURL = "http://localhost:8280/sdi2-171/login.xhtml";
-    private final static String VIAJE= "http://localhost:8280/sdi2-171/showTrip.xhtml?id=";
-    private final static String VIAJE201 = "http://localhost:8280/sdi2-171/showTrip.xhtml?id=201";
-    private final static String VIAJE206 = "http://localhost:8280/sdi2-171/showTrip.xhtml?id=206";
+    private final static String LOGINURL = "http://localhost:8180/sdi2-171/login.xhtml";
+    private final static String VIAJE= "http://localhost:8180/sdi2-171/showTrip.xhtml?id=";
+    private final static String VIAJE201 = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=201";
+    private final static String VIAJE206 = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=206";
     
 
     public PruebasSDI() {
