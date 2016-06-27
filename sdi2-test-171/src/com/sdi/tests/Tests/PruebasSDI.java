@@ -332,14 +332,20 @@ public class PruebasSDI {
     public void t12_Ins1ViajeAceptVal() {
 	logearse("user1", "user1");
 	irA(VIAJE+203);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt92:pedirPlazaButt");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	   
+	    e.printStackTrace();
+	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user2", "user2");
 	irA(VIAJE+203);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt97:0:acceptApplication");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
 	// loguearse con user2
 	// ir a URL de viaje de user1
@@ -365,29 +371,46 @@ public class PruebasSDI {
 	
 	logearse("user1", "user1");
 	irA(VIAJE+204);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt92:pedirPlazaButt");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	   
+	    e.printStackTrace();
+	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user3", "user3");
 	irA(VIAJE+204);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt97:0:acceptApplication");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
-	
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	   
+	    e.printStackTrace();
+	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user2", "user2");
 	irA(VIAJE+204);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt92:pedirPlazaButt");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
-	logearse("user2", "user2");
+	logearse("user3", "user3");
 	irA(VIAJE+204);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt97:0:acceptApplication");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
     }
 
@@ -399,13 +422,77 @@ public class PruebasSDI {
   
     @Test
     public void t14_Ins3ViajeAceptInval() {
-	assertTrue("", FALSE);
-	//Repetir prueba anterior en otro viaje con otros usuarios
 	
-	//loguearse user4(disntinto a los anteriores)
-	// ir a URL de viaje de user1
-	// No esta el boton de inscribirte
-
+	logearse("user2", "user2");
+	irA(VIAJE+209);
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	}
+	irA(URL);
+	buscarPorId("form-content:logout");
+	click();
+	logearse("user1", "user1");
+	irA(VIAJE+209);
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	}
+	irA(URL);
+	buscarPorId("form-content:logout");
+	click();
+	logearse("user3", "user3");
+	irA(VIAJE+209);
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	}
+	irA(URL);
+	buscarPorId("form-content:logout");
+	click();
+	logearse("user1", "user1");
+	irA(VIAJE+209);
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	}
+	irA(URL);
+	buscarPorId("form-content:logout");
+	click();
+	logearse("user4", "user4");
+	irA(VIAJE+209);
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	}
+	irA(URL);
+	buscarPorId("form-content:logout");
+	click();
+	logearse("user1", "user1");
+	irA(VIAJE+209);
+	textoPresentePagina(driver,"Sin Plaza");
+	
+	
     }
 
     // 15. [CancelNoPromotorVal] Un usuario no promotor Cancela plaza.
@@ -437,19 +524,36 @@ public class PruebasSDI {
     public void t16_Rech1ViajeVal() {
 	logearse("user3", "user3");
 	irA(VIAJE206);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt92:pedirPlazaButt");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	   
+	    e.printStackTrace();
+	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user5", "user5");
 	irA(VIAJE206);
-	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt97:0:acceptApplication");
+	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	   
+	    e.printStackTrace();
+	}
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt74:0:cancelButton");
 	click();
-	buscarPorId("form-nav:setEN");
-	textoNoPresentePagina(driver, "ERROR");
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	   
+	    e.printStackTrace();
+	}
+	textoPresentePagina(driver, "EXCLUIDO");
 	// registar nuevo usuario
 	// entrar en viaje de usuario uno
 	// pedir plaza
