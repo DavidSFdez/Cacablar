@@ -41,6 +41,7 @@ public class PruebasSDI {
     private final static String BASE_URLI = "sdi2-171/";
     private final static String URL = "http://localhost:8180/" + BASE_URLI;
     private final static String LISTRELATEDURL = "http://localhost:8180/sdi2-171/listTripsRelated.xhtml";
+    private final static String LISTTRIPSURL = "http://localhost:8180/sdi2-171/listTrips.xhtml";
     private final static String REGISTERTRIPURL = "http://localhost:8180/sdi2-171/manageTrip.xhtml";
     private final static String VIAJEUSUARIOUSER1 = "?updateTrip=201";
     private final static String LOGINURL = "http://localhost:8180/sdi2-171/login.xhtml";
@@ -608,7 +609,20 @@ public class PruebasSDI {
      */
     @Test
     public void t19_OpFiltrado() {
-
+	irA(LISTTRIPSURL);
+	textoPresentePagina(driver, "CiudadOrigen1");
+	textoPresentePagina(driver, "CiudadOrigen6");
+	buscarPorId("form-content:tablalistado:j_idt16:filter");
+	click();
+	escrbir("6");
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	textoNoPresentePagina(driver, "CiudadOrigen1");
+	textoPresentePagina(driver, "CiudadOrigen6");
     } 
     
     // 20. [OpOrden] Prueba para la ordenación opcional.
@@ -626,7 +640,34 @@ public class PruebasSDI {
 
     @Test
     public void t21_OpPag() {
-
+	irA(LISTTRIPSURL);
+	textoPresentePagina(driver, "CiudadOrigen1");
+	textoPresentePagina(driver, "CiudadSalida1220657388");
+	buscarPorId("form-content:tablalistado_rppDD");
+	click();
+	buscarPorTexto("10");
+	click();
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	textoPresentePagina(driver, "CiudadOrigen1");
+	textoNoPresentePagina(driver, "CiudadSalida1220657388");
+//	buscarPorId("ui-icon ui-icon-seek-next");
+//	
+//	buscarPorTexto("2");
+//	click();
+//	try {
+//	    Thread.sleep(5000);
+//	} catch (InterruptedException e) {
+//	    // TODO Auto-generated catch block
+//	    e.printStackTrace();
+//	}
+//	textoNoPresentePagina(driver, "CiudadOrigen1");
+//	textoPresentePagina(driver, "CiudadSalida1220657388");
+	
     }
     
     // 22. [OpMante] Prueba del mantenimiento programado opcional.
