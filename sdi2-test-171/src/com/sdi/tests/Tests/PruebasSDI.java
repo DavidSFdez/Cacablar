@@ -22,22 +22,22 @@ import org.openqa.selenium.interactions.Actions;
 import com.sdi.tests.utils.SeleniumUtils;
 
 /**
- * Para que las pruebas funcionene correctamente repetidas veces es necesario 
+ * Para que las pruebas funcionene correctamente repetidas veces es necesario
  * reiniciar la base de datos al mismo estado.
  * 
  * Para ello se encuentra en el proyecto base un script para reiniciarlos datos.
  * 
  * Están pensado para http://localhost:8180/
- *
+ * 
  */
 
-//Ordenamos las pruebas por el nombre del método
+// Ordenamos las pruebas por el nombre del método
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PruebasSDI {
 
     WebDriver driver;
     List<WebElement> elementos = null;
-    
+
     private final static String BASE_URLI = "sdi2-171/";
     private final static String URL = "http://localhost:8180/" + BASE_URLI;
     private final static String LISTRELATEDURL = "http://localhost:8180/sdi2-171/listTripsRelated.xhtml";
@@ -45,41 +45,45 @@ public class PruebasSDI {
     private final static String REGISTERTRIPURL = "http://localhost:8180/sdi2-171/manageTrip.xhtml";
     private final static String VIAJEUSUARIOUSER1 = "?updateTrip=201";
     private final static String LOGINURL = "http://localhost:8180/sdi2-171/login.xhtml";
-    private final static String VIAJE= "http://localhost:8180/sdi2-171/showTrip.xhtml?id=";
+    private final static String VIAJE = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=";
     private final static String VIAJE201 = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=201";
     private final static String VIAJE206 = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=206";
-    
 
     public PruebasSDI() {
     }
+
     private void controlA() {
 	elementos.get(0).sendKeys(Keys.chord(Keys.CONTROL, "a"));
     }
-    
-    private void escrbir(String cadena){
-	Actions builder = new Actions(driver);	    
+
+    private void escrbir(String cadena) {
+	Actions builder = new Actions(driver);
 	builder.sendKeys(cadena).perform();
     }
-    private void click(){
+
+    private void click() {
 	elementos.get(0).click();
     }
-    private void pulsarEnter(){
+
+    private void pulsarEnter() {
 	elementos.get(0).sendKeys(Keys.RETURN);
     }
-    private void irA(String uri){
+
+    private void irA(String uri) {
 	driver.get(uri);
     }
-    
-    private void buscarPorId(String id){
-	elementos = EsperaCargaPagina(driver, "id", id, 15); 
+
+    private void buscarPorId(String id) {
+	elementos = EsperaCargaPagina(driver, "id", id, 15);
     }
-    private void buscarPorTexto(String texto){
-   	elementos = EsperaCargaPagina(driver, "text", texto, 15); 
-       }
-    
-    private void logearse(String username, String pass){
+
+    private void buscarPorTexto(String texto) {
+	elementos = EsperaCargaPagina(driver, "text", texto, 15);
+    }
+
+    private void logearse(String username, String pass) {
 	irA(URL);
-	buscarPorId("form-content:login"); 
+	buscarPorId("form-content:login");
 	click();
 	buscarPorId("content:login:username");
 	click();
@@ -112,42 +116,39 @@ public class PruebasSDI {
     public void t01_RegVal() {
 	buscarPorId("form-content:register");
 	click();
-	//login
+	// login
 	buscarPorId("form-content:registrarse:login");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt());
-	//name
+	escrbir("NombreAleatorio" + new Random().nextInt());
+	// name
 	buscarPorId("form-content:registrarse:name");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt());
-	//surname
+	escrbir("NombreAleatorio" + new Random().nextInt());
+	// surname
 	buscarPorId("form-content:registrarse:surname");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt());
-	//email
+	escrbir("NombreAleatorio" + new Random().nextInt());
+	// email
 	buscarPorId("form-content:registrarse:email");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt()+"@e.c");
-	//pass1
-	String pass = "NombreAleatorio"+new Random().nextInt();
+	escrbir("NombreAleatorio" + new Random().nextInt() + "@e.c");
+	// pass1
+	String pass = "NombreAleatorio" + new Random().nextInt();
 	buscarPorId("form-content:registrarse:pwd1");
 	click();
 	escrbir(pass);
-	//pass2
+	// pass2
 	buscarPorId("form-content:registrarse:pwd2");
 	click();
 	escrbir(pass);
-	
-	
+
 	buscarPorId("form-content:registrarse:registrarse");
 	click();
-	
+
 	buscarPorId("form-content:logout");
-	
+
 	textoPresentePagina(driver, "Desconectarse");
-	
-	
-	
+
     }
 
     // 2. [RegInval] Registro de Usuario con datos inválidos (contraseñas
@@ -156,43 +157,43 @@ public class PruebasSDI {
     public void t02_RegInval() {
 	buscarPorId("form-content:register");
 	click();
-	//login
+	// login
 	buscarPorId("form-content:registrarse:login");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt());
-	//name
+	escrbir("NombreAleatorio" + new Random().nextInt());
+	// name
 	buscarPorId("form-content:registrarse:name");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt());
-	//surname
+	escrbir("NombreAleatorio" + new Random().nextInt());
+	// surname
 	buscarPorId("form-content:registrarse:surname");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt());
-	//email
+	escrbir("NombreAleatorio" + new Random().nextInt());
+	// email
 	buscarPorId("form-content:registrarse:email");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt()+"@e.c");
-	//pass1
+	escrbir("NombreAleatorio" + new Random().nextInt() + "@e.c");
+	// pass1
 	buscarPorId("form-content:registrarse:pwd1");
 	click();
-	escrbir("NombreAleatorio"+new Random().nextInt());
-	//pass2
+	escrbir("NombreAleatorio" + new Random().nextInt());
+	// pass2
 	buscarPorId("form-content:registrarse:pwd2");
 	click();
-	escrbir("NombreAleatorioA"+new Random().nextInt());
-	
+	escrbir("NombreAleatorioA" + new Random().nextInt());
+
 	buscarPorId("form-content:registrarse:registrarse");
 	click();
-	
+
 	buscarPorId("form-content:registrarse:registrarse");
-	
+
 	textoPresentePagina(driver, "Registro");
     }
 
     // 3. [IdVal] Identificación de Usuario registrado con datos válidos.
     @Test
     public void t03_IdVal() {
-	buscarPorId("form-content:login"); 
+	buscarPorId("form-content:login");
 	click();
 	buscarPorId("content:login:username");
 	click();
@@ -209,11 +210,11 @@ public class PruebasSDI {
     // 4. [IdInval] Identificación de usuario registrado con datos inválidos.
     @Test
     public void t04_IdInval() {
-	buscarPorId("form-content:login"); 
+	buscarPorId("form-content:login");
 	click();
 	buscarPorId("content:login:username");
 	click();
-	escrbir(new Random().nextInt()+"NombreAleatorio");
+	escrbir(new Random().nextInt() + "NombreAleatorio");
 	buscarPorId("form-content:login:password");
 	click();
 	escrbir("user1");
@@ -260,11 +261,11 @@ public class PruebasSDI {
     @Test
     public void t08_EditViajeVal() {
 	logearse("user1", "user1");
-	irA(REGISTERTRIPURL+VIAJEUSUARIOUSER1);
+	irA(REGISTERTRIPURL + VIAJEUSUARIOUSER1);
 	buscarPorId("form-content:registrar:bottonModoficar");
 	click();
-	//buscarPorId("form-content:registrar:bottonModoficar");
-	//pulsarEnter();
+	// buscarPorId("form-content:registrar:bottonModoficar");
+	// pulsarEnter();
 	buscarPorId("form-content:logout");
 	textoPresentePagina(driver, "Desconectarse");
     }
@@ -273,17 +274,15 @@ public class PruebasSDI {
     @Test
     public void t09_EditViajeInVal() {
 	logearse("user1", "user1");
-	irA(REGISTERTRIPURL+VIAJEUSUARIOUSER1);
+	irA(REGISTERTRIPURL + VIAJEUSUARIOUSER1);
 	buscarPorId("form-content:registrar:cost_input");
 	click();
 	controlA();
 	escrbir("-50");
 	pulsarEnter();
-	//Sale el icono de informacion error
+	// Sale el icono de informacion error
 	EsperaCargaPagina(driver, "class", "ui-messages-info-icon", 5);
     }
-
-    
 
     // 10. [CancelViajeVal] Cancelación de un viaje existente por un
     // promotor.
@@ -292,9 +291,7 @@ public class PruebasSDI {
      */
     @Test
     public void t10_CancelViajeVal() {
-	
-	
-	
+
 	// Loguearse
 	// ir a relacionados
 	// pulsar check de un viaje
@@ -324,28 +321,27 @@ public class PruebasSDI {
     // 12. [Ins1ViajeAceptVal] Inscribir en un viaje un solo usuario y ser
     // admitido por el promotor.
     /**
-     * Esta prueba puede fallar por dos razones:
-     * * Ajax demasiado lento.
-     * * en los snipets aqune pongamos el id aparece un valor intermedio que 
-     * 		no siempre es el mismo y no se puede encontrar por ID
+     * Esta prueba puede fallar por dos razones: * Ajax demasiado lento. * en
+     * los snipets aqune pongamos el id aparece un valor intermedio que no
+     * siempre es el mismo y no se puede encontrar por ID
      */
     @Test
     public void t12_Ins1ViajeAceptVal() {
 	logearse("user1", "user1");
-	irA(VIAJE+203);
+	irA(VIAJE + 203);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	   
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user2", "user2");
-	irA(VIAJE+203);
+	irA(VIAJE + 203);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
 	// loguearse con user2
@@ -362,55 +358,54 @@ public class PruebasSDI {
     // 13. [Ins2ViajeAceptVal] Inscribir en un viaje dos usuarios y ser
     // admitidos los dos por el promotor.
     /**
-     * Esta prueba puede fallar por dos razones:
-     * * Ajax demasiado lento.
-     * * en los snipets aqune pongamos el id aparece un valor intermedio que 
-     * 		no siempre es el mismo y no se puede encontrar por ID
+     * Esta prueba puede fallar por dos razones: * Ajax demasiado lento. * en
+     * los snipets aqune pongamos el id aparece un valor intermedio que no
+     * siempre es el mismo y no se puede encontrar por ID
      */
     @Test
     public void t13_Ins2ViajeAceptVal() {
-	
+
 	logearse("user1", "user1");
-	irA(VIAJE+204);
+	irA(VIAJE + 204);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	   
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user3", "user3");
-	irA(VIAJE+204);
+	irA(VIAJE + 204);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	   
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user2", "user2");
-	irA(VIAJE+204);
+	irA(VIAJE + 204);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user3", "user3");
-	irA(VIAJE+204);
+	irA(VIAJE + 204);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
     }
@@ -420,87 +415,96 @@ public class PruebasSDI {
     // inscribirse
     // en ese mismo viaje pero ya no pueda por falta de plazas.
 
-  
     @Test
     public void t14_Ins3ViajeAceptInval() {
-	
+
 	logearse("user2", "user2");
-	irA(VIAJE+209);
+	irA(VIAJE + 209);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user1", "user1");
-	irA(VIAJE+209);
+	irA(VIAJE + 209);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user3", "user3");
-	irA(VIAJE+209);
+	irA(VIAJE + 209);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user1", "user1");
-	irA(VIAJE+209);
+	irA(VIAJE + 209);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
 	logearse("user4", "user4");
-	irA(VIAJE+209);
+	irA(VIAJE + 209);
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	click();
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
+	// El usuario 4 solicita plaza, pero el viaje ya no tiene plazas
+	// la clase de mantenimiento que analiza la base de datos
+	// automáticamente
+	// salta cada min a comprobar que no haya datos inválidos, y pasará
+	// esta solicitud a un objeto seat SIN PLAZA
+	try {
+	    Thread.sleep(1000 * 65);
+	} catch (InterruptedException e) {
+
+	    e.printStackTrace();
+	}
 	logearse("user1", "user1");
-	irA(VIAJE+209);
-	textoPresentePagina(driver,"Sin Plaza");
-	
-	
+	irA(VIAJE + 209);
+	textoPresentePagina(driver, "Sin Plaza");
+
     }
 
     // 15. [CancelNoPromotorVal] Un usuario no promotor Cancela plaza.
     /**
-     * Esta prueba puede fallar por:
-     * * en los snipets aqune pongamos el id aparece un valor intermedio que 
-     * 		no siempre es el mismo y no se puede encontrar por ID
+     * Esta prueba puede fallar por: * en los snipets aqune pongamos el id
+     * aparece un valor intermedio que no siempre es el mismo y no se puede
+     * encontrar por ID
      */
     @Test
     public void t15_CancelNoPromotorVal() {
@@ -517,9 +521,9 @@ public class PruebasSDI {
     // 16. [Rech1ViajeVal] Inscribir en un viaje un usuario que será
     // admitido y después rechazarlo por el promotor.
     /**
-     * Esta prueba puede fallar por:
-     * * en los snipets aqune pongamos el id aparece un valor intermedio que 
-     * 		no siempre es el mismo y no se puede encontrar por ID
+     * Esta prueba puede fallar por: * en los snipets aqune pongamos el id
+     * aparece un valor intermedio que no siempre es el mismo y no se puede
+     * encontrar por ID
      */
     @Test
     public void t16_Rech1ViajeVal() {
@@ -530,7 +534,7 @@ public class PruebasSDI {
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	   
+
 	    e.printStackTrace();
 	}
 	irA(URL);
@@ -543,7 +547,7 @@ public class PruebasSDI {
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	   
+
 	    e.printStackTrace();
 	}
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt74:0:cancelButton");
@@ -551,7 +555,7 @@ public class PruebasSDI {
 	try {
 	    Thread.sleep(5000);
 	} catch (InterruptedException e) {
-	   
+
 	    e.printStackTrace();
 	}
 	textoPresentePagina(driver, "EXCLUIDO");
@@ -570,7 +574,7 @@ public class PruebasSDI {
     // (Probar algunas vistas)
     @Test
     public void t17_i18N1() {
-	textoPresentePagina(driver, "Bienvenido" );
+	textoPresentePagina(driver, "Bienvenido");
 	buscarPorId("form-nav:setEN");
 	click();
 	buscarPorId("form-nav:setEN");
@@ -584,7 +588,7 @@ public class PruebasSDI {
     // vuelta al idioma por defecto. (Probar algunas vistas)
     @Test
     public void t18_i18N2() {
-	textoPresentePagina(driver, "Bienvenido" );
+	textoPresentePagina(driver, "Bienvenido");
 	buscarPorId("form-nav:setEN");
 	click();
 	buscarPorId("form-nav:setEN");
@@ -599,13 +603,13 @@ public class PruebasSDI {
 	buscarPorId("form-content:logout");
 	textoPresentePagina(driver, "Desconectarse");
 
-    } 
-    
+    }
+
     // 19. [OpFiltrado] Prueba para el filtrado opcional.
 
     /**
-     * La funcionalionalidad está hecha pero no se ha podido probar.
-     * El ajax tarda demasiado.
+     * La funcionalionalidad está hecha pero no se ha podido probar. El ajax
+     * tarda demasiado.
      */
     @Test
     public void t19_OpFiltrado() {
@@ -616,26 +620,26 @@ public class PruebasSDI {
 	click();
 	escrbir("6");
 	try {
-	    Thread.sleep(5000);
+	    Thread.sleep(15000);
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
+	    
 	    e.printStackTrace();
 	}
 	textoNoPresentePagina(driver, "CiudadOrigen1");
 	textoPresentePagina(driver, "CiudadOrigen6");
-    } 
-    
+    }
+
     // 20. [OpOrden] Prueba para la ordenación opcional.
 
     /**
-     * La funcionalionalidad está hecha pero no se ha podido probar.
-     * El ajax tarda demasiado.
+     * La funcionalionalidad está hecha pero no se ha podido probar. El ajax
+     * tarda demasiado.
      */
     @Test
     public void t20_OpOrden() {
 
-    } 
-    
+    }
+
     // 21. [OpPag] Prueba para la paginación opcional.
 
     @Test
@@ -648,42 +652,31 @@ public class PruebasSDI {
 	buscarPorTexto("10");
 	click();
 	try {
-	    Thread.sleep(5000);
+	    Thread.sleep(15000);
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
+	    
 	    e.printStackTrace();
 	}
 	textoPresentePagina(driver, "CiudadOrigen1");
 	textoNoPresentePagina(driver, "CiudadSalida1220657388");
-//	buscarPorId("ui-icon ui-icon-seek-next");
-//	
-//	buscarPorTexto("2");
-//	click();
-//	try {
-//	    Thread.sleep(5000);
-//	} catch (InterruptedException e) {
-//	    // TODO Auto-generated catch block
-//	    e.printStackTrace();
-//	}
-//	textoNoPresentePagina(driver, "CiudadOrigen1");
-//	textoPresentePagina(driver, "CiudadSalida1220657388");
-	
+
     }
-    
+
     // 22. [OpMante] Prueba del mantenimiento programado opcional.
 
     boolean TRUE = true;
     boolean FALSE = false;
-    
-    
+
     @Test
     public void t22_OpMante() {
-	assertTrue("Realizada en el postcontructor del bean viaje. (leer comentario en prueba)", TRUE);
-	
-	// En el postcontruct de un viaje se comprueba la fecha actual y todas las peticiones.
-	// Se actualizan las peticiones y estados de ser necesario.
-	
-	// Esto no se puede probar de forma no extremadamente compleja en selenium ya que es transparente al usuario.
+	assertTrue(
+		"En la prueba 14 ya tenemos que esperar a que la clase "
+		+ "de mantenimiento lo realice automaticamente, por eso después"
+		+ " de solicitar plaza esperamos 65 segundos, para asegurarnos"
+		+ "de que haya saltado ya para actualizar (lo hace cada min)"
+		+ ". (leer comentario en prueba t14_Ins3ViajeAceptInval())"
+		, TRUE);
+
     }
 
 }
