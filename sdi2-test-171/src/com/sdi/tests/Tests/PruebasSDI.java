@@ -48,6 +48,7 @@ public class PruebasSDI {
     private final static String VIAJE = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=";
     private final static String VIAJE201 = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=201";
     private final static String VIAJE206 = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=206";
+    private final static String VIAJE999 = "http://localhost:8180/sdi2-171/showTrip.xhtml?id=999";
 
     public PruebasSDI() {
     }
@@ -483,20 +484,10 @@ public class PruebasSDI {
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
-	// El usuario 4 solicita plaza, pero el viaje ya no tiene plazas
-	// la clase de mantenimiento que analiza la base de datos
-	// automáticamente
-	// salta cada min a comprobar que no haya datos inválidos, y pasará
-	// esta solicitud a un objeto seat SIN PLAZA
-	try {
-	    Thread.sleep(1000 * 65);
-	} catch (InterruptedException e) {
-
-	    e.printStackTrace();
-	}
+	
 	logearse("user1", "user1");
 	irA(VIAJE + 209);
-	textoPresentePagina(driver, "Sin Plaza");
+	textoPresentePagina(driver, "SIN_PLAZA");
 
     }
 
@@ -669,14 +660,18 @@ public class PruebasSDI {
 
     @Test
     public void t22_OpMante() {
-	assertTrue(
-		"En la prueba 14 ya tenemos que esperar a que la clase "
-		+ "de mantenimiento lo realice automaticamente, por eso después"
-		+ " de solicitar plaza esperamos 65 segundos, para asegurarnos"
-		+ "de que haya saltado ya para actualizar (lo hace cada min)"
-		+ ". (leer comentario en prueba t14_Ins3ViajeAceptInval())"
-		, TRUE);
-
+//	Hay un viaje metido en la base de datos con estado abierto en una fecha
+//	ya pasada, cuando salte por primera vez la clase de mantenimiento,
+//	cambiará su estado a cerrado. 
+	logearse("user13", "user13");
+	try {
+	    Thread.sleep(1000*65);
+	} catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	}
+	irA(VIAJE999);
+	textoPresentePagina(driver, "CLOSED");
     }
 
 }

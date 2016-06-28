@@ -37,6 +37,9 @@
 				<h:outputText value="#{msgs.promotorId}: " rendered="#{user.logged}" />
 				<h:outputText value="#{trip.trip.promoterId}"
 					styleClass="outputLabel" rendered="#{user.logged}" />
+				<h:outputText value="Status: " rendered="#{user.logged}" />
+				<h:outputText value="#{trip.trip.status}"
+					styleClass="outputLabel" rendered="#{user.logged}" />
 
 				<h:outputText value="#{msgs.tripId}: " />
 				<h:outputText value="#{trip.trip.id}" styleClass="outputLabel" />
