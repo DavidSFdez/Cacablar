@@ -8,16 +8,15 @@
 	<ui:define name="title">#{msgs.showtrip_title} #{param['id']}</ui:define>
 
 	<ui:define name="nav">
-		<div style="float:right">
-				<p:commandButton update="@all" actionListener="#{settings.setSpanish}"
-					value="#{msgs.spanish}">
-					<f:param name="id" value="#{param['id']}" />
+		<div style="float: right">
+			<ui:repeat var="#{settings.idiomas}" value="idioma">
+				<p:commandButton id="set#{idioma.language}" update="@all"
+					actionListener="#{settings.changeLanguage}"
+					value="#{idioma.language}">
+					<f:setPropertyActionListener target="#{settings.localeSelected}"
+						value="{idioma.code}" />
 				</p:commandButton>
-
-				<p:commandButton update="@all" actionListener="#{settings.setEnglish}"
-					value="#{msgs.english}">
-					<f:param name="id" value="#{param['id']}" />
-				</p:commandButton>
+			</ui:repeat>
 		</div>
 	</ui:define>
 
@@ -38,8 +37,8 @@
 				<h:outputText value="#{trip.trip.promoterId}"
 					styleClass="outputLabel" rendered="#{user.logged}" />
 				<h:outputText value="Status: " rendered="#{user.logged}" />
-				<h:outputText value="#{trip.trip.status}"
-					styleClass="outputLabel" rendered="#{user.logged}" />
+				<h:outputText value="#{trip.trip.status}" styleClass="outputLabel"
+					rendered="#{user.logged}" />
 
 				<h:outputText value="#{msgs.tripId}: " />
 				<h:outputText value="#{trip.trip.id}" styleClass="outputLabel" />
