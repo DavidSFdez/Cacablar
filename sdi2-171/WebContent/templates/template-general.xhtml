@@ -18,25 +18,22 @@
 		<!-- <p>#{settings.locale}</p> -->
 
 		<div class="w3-container">
-			<h1></h1>
-			<h2></h2>
-			<h3>
-				<ui:insert name="title"></ui:insert>
-			</h3>
+			<h3><ui:insert name="title"></ui:insert></h3>
 		</div>
 		<div class="w3-container">
 			<h:form id="form-nav">
 				<ui:insert name="nav">
-	
-					<div style="float:right">
-				<p:commandButton id="setES" update="@all" actionListener="#{settings.setSpanish}"
-					value="#{msgs.spanish}">
-				</p:commandButton>
 
-				<p:commandButton id="setEN" update="@all" actionListener="#{settings.setEnglish}"
-					value="#{msgs.english}">
-				</p:commandButton>
-		</div>
+					<div style="float: right">
+						<ui:repeat id="idiomas" value="#{settings.idiomas}" var="idioma">
+							<p:commandButton id="set_#{idioma.code}" update="@all"
+								actionListener="#{settings.changeLanguage}"
+								value="#{idioma.language}">
+								<f:setPropertyActionListener target="#{settings.localeSelected}"
+									value="#{idioma.code}" />
+							</p:commandButton>
+						</ui:repeat>
+					</div>
 				</ui:insert>
 			</h:form>
 		</div>
