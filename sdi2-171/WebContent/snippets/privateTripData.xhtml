@@ -6,7 +6,8 @@
 			
 	<h:panelGroup>
 		<h3>#{msgs.seats}</h3>
-		<p:dataTable var="var" value="#{trip.getSeats()}" border="1">
+		<!-- Nuevo ID para esta dataTable -->
+		<p:dataTable id="tableSeatsTripData" var="var" value="#{trip.getSeats()}" border="1">
 			<p:column>
 				<f:facet name="header">#{msgs.ID}</f:facet>#{var.userId}</p:column>
 			<p:column>
@@ -25,7 +26,8 @@
 		</p:dataTable>
 	</h:panelGroup>
 
-	<h:form rendered="#{trip.isUserInApplications(user.user.id)}">
+	<!-- Nuevo ID para este form -->
+	<h:form id="forCancelarPeticion" rendered="#{trip.isUserInApplications(user.user.id)}">
 		<h:outputText value="#{msgs.applicationMessage}" />
 		<p:commandButton value="#{msgs.cancelApplication}"
 			action="#{trip.cancelApplication(user.user.id,trip.trip.id)}"
@@ -34,7 +36,8 @@
 			</p:commandButton>
 	</h:form>
 
-	<h:form rendered="#{trip.isUserRelated(user.user.id) == false}">
+	<!-- Nuevo ID para este form -->
+	<h:form id="formPedirPlaza" rendered="#{trip.isUserRelated(user.user.id) == false}">
 		<p:commandButton id="pedirPlazaButt" value="#{msgs.requestSeat}"
 			action="#{seat.request(user.user.id,trip.trip.id)}" immediate="true"
 			update="@all" >
@@ -42,9 +45,9 @@
 			</p:commandButton>
 	</h:form>
 
-	<h:panelGroup rendered="#{trip.isPromoter(user.user.id)}">
+	<h:panelGroup  rendered="#{trip.isPromoter(user.user.id)}">
 		<h3>#{msgs.applications}</h3>
-		<p:dataTable var="var" value="#{trip.getApplications()}" border="1">
+		<p:dataTable id="panelPasajerosPeticiones" var="var" value="#{trip.getApplications()}" border="1">
 			<p:column>
 				<f:facet name="header">#{msgs.ID}</f:facet>#{var.userId}</p:column>
 			<p:column>
