@@ -7,6 +7,7 @@ import uo.sdi.business.exception.EntityAlreadyExistsException;
 import uo.sdi.business.exception.EntityNotFoundException;
 import uo.sdi.business.impl.classes.application.ApplicationsByTrip;
 import uo.sdi.business.impl.classes.application.ApplicationsFind;
+import uo.sdi.business.impl.classes.mantenimiento.ApplicationsYSeatsActualizarAutomaticamente;
 import uo.sdi.business.impl.classes.seat.SeatsCancelSeat;
 import uo.sdi.business.impl.classes.seat.SeatsFindByTrip;
 import uo.sdi.business.impl.classes.seat.SeatsFindByUserAndTrip;
@@ -56,6 +57,12 @@ public class SimpleSeatsService implements SeatsService{
     @Override
     public void seatsToUpdate(List<Application> applications) throws EntityAlreadyExistsException {
 	new SeatsToUpdate().update(applications);
+	
+    }
+
+    @Override
+    public void actualizarAsientosAutomaticamente() {
+	new ApplicationsYSeatsActualizarAutomaticamente().actualizar();
 	
     }
 

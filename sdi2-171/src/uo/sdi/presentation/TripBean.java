@@ -60,15 +60,15 @@ public class TripBean implements Serializable {
 	    }
 	}
 
-	Log.trace("Actualizando asientos.");
-	Factories.services.createTripsService().updateTripsStatus();
-	List<Application> applications = Factories.services
-		.createApplicationService().getToUpdate();
-	try {
-	    Factories.services.createSeatsService().seatsToUpdate(applications);
-	} catch (EntityAlreadyExistsException e) {
-	    Log.trace("Se ha intentado actualizar un asiento ya actuaizado.");
-	}
+//	Log.trace("Actualizando asientos.");
+//	Factories.services.createTripsService().updateTripsStatus();
+//	List<Application> applications = Factories.services
+//		.createApplicationService().getToUpdate();
+//	try {
+//	    Factories.services.createSeatsService().seatsToUpdate(applications);
+//	} catch (EntityAlreadyExistsException e) {
+//	    Log.trace("Se ha intentado actualizar un asiento ya actuaizado.");
+//	}
 
     }
 
