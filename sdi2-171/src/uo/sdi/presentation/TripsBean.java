@@ -83,7 +83,7 @@ public class TripsBean implements Serializable {
 	List<Trip> trips = null;
 	trips = Factories.services.createTripsService().listActive();
 	this.trips = trips;
-	Log.debug("Viajes: "+this.trips);
+	//Log.debug("Viajes: "+this.trips);
 	return trips;
     }
 
@@ -96,7 +96,7 @@ public class TripsBean implements Serializable {
 	    Log.error("ha ocurrido un error.", e);
 	}
 	this.trips = trips;
-	Log.debug("Viajes: "+this.trips);
+	//Log.debug("Viajes: "+this.trips);
 	return trips;
     }
 
@@ -115,7 +115,7 @@ public class TripsBean implements Serializable {
 	}
 
 	this.trips = trips;
-	Log.debug("Viajes: "+this.trips);
+	//Log.debug("Viajes: "+this.trips);
 	return trips;
     }
 

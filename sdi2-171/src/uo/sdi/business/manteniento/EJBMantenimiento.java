@@ -7,11 +7,11 @@ import javax.ejb.Startup;
 import uo.sdi.infrastructure.Factories;
 import alb.util.log.Log;
 
-@Singleton
-@Startup
+//@Singleton
+//@Startup
 public class EJBMantenimiento {
 
-    @Schedule(second = "10", minute = "*", hour = "*")
+//    @Schedule(second = "10", minute = "*", hour = "*")
     public void runTask1() {
 	Log.trace("Actualizando viajes y asientos.");
 	

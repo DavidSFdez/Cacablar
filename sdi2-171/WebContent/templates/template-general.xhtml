@@ -25,16 +25,14 @@
 		<div class="w3-container">
 			<h:form id="form-nav">
 				<ui:insert name="nav">
-
 					<div style="float: right">
-						<p:dataTable id="idiomas" var="var" value="#{settings.idiomas}">
-							<p:column>
-								<p:commandButton action="#{settings.localeSelected(var.code)}"
-									actionListener="#{settings.changeLanguage}"
-									value="#{var.language}" />
-							</p:column>
-						</p:dataTable>
-
+						<ui:repeat id="idiomas" value="#{settings.idiomas}" var="idioma">
+							<p:commandButton id="set_#{idioma.code}" update="form-content form-footer"
+								actionListener="#{settings.changeLanguage}"
+								value="#{idioma.language}">
+								<f:attribute name="localeSelected" value="#{idioma.code}" />
+							</p:commandButton>
+						</ui:repeat>
 					</div>
 				</ui:insert>
 			</h:form>
@@ -52,7 +50,6 @@
 				</ui:insert>
 			</h:form>
 		</div>
-
 
 	</h:body>
 </f:view>

@@ -11,10 +11,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
 import alb.util.log.Log;
@@ -29,41 +28,35 @@ public class SettingsBean implements Serializable {
 
     private Map<String, Idioma> mapaIdiomas = new HashMap<String, Idioma>();
 
-    List<Idioma> idiomas;
-
     private final static String PATH_TO_PROJECT = "S:\\";
 
     public SettingsBean() {
-
-    }
-
-    @PostConstruct
-    private void process() {
 	locale = new Locale("es");
 	File directory = new File(PATH_TO_PROJECT);
 	for (File element : directory.listFiles()) {
 	    if (element.getName().contains("messages")) {
-
-		String s = element.getName();
-		String name = s.substring(s.indexOf("_") + 1, s.indexOf("."));
-
-		Properties properties = new Properties();
-		try {
-		    properties.load(new FileInputStream(element));
-		} catch (IOException e) {
-		    throw new RuntimeException("No se encuentra el fichero.");
-		}
-
-		Idioma idioma = new Idioma();
-		idioma.setCode(name);
-		System.out.println("name: " + name);
-		idioma.setLocale(new Locale(name));
-		System.out.println("locale: " + idioma.getLocale());
-		idioma.setLanguage(properties.getProperty("meta.idioma"));
-		System.out.println("idioma: " + idioma.getLanguage());
-		mapaIdiomas.put(name, idioma);
+		process(element);
 	    }
 	}
+    }
+
+    private void process(File element) {
+	String s = element.getName();
+	String name = s.substring(s.indexOf("_") + 1, s.indexOf("."));
+
+	Properties properties = new Properties();
+	try {
+	    properties.load(new FileInputStream(element));
+	} catch (IOException e) {
+	    throw new RuntimeException("No se encuentra el fichero.");
+	}
+
+	Idioma idioma = new Idioma();
+	idioma.setCode(name);
+	idioma.setLocale(new Locale(name));
+	idioma.setLanguage(properties.getProperty("meta.idioma"));
+
+	mapaIdiomas.put(name, idioma);
     }
 
     @PreDestroy
@@ -77,33 +70,32 @@ public class SettingsBean implements Serializable {
 
     public String localeSelected;
 
+    public String getLocaleSelected() {
+	return localeSelected;
+    }
+
+    public void editLocaleSelected(String localeSelected) {
+	this.localeSelected = localeSelected;
+    }
+
     public void setLocaleSelected(String localeSelected) {
 	this.localeSelected = localeSelected;
     }
 
     public void changeLanguage(ActionEvent event) {
+	localeSelected = (String) event.getComponent().getAttributes()
+		.get("localeSelected");
+
 	System.out.println(localeSelected);
 	if (mapaIdiomas.containsKey(localeSelected))
 	    locale = mapaIdiomas.get(localeSelected).getLocale();
     }
 
     public List<Idioma> getIdiomas() {
-	idiomas = new LinkedList<>();
+	List<Idioma> idiomas = new LinkedList<>();
 	for (Map.Entry<String, Idioma> entry : mapaIdiomas.entrySet())
 	    idiomas.add(entry.getValue());
 	return idiomas;
     }
-
-    // public String setSpanish(ActionEvent event) {
-    // Log.info("Cambiando idioma a Español.");
-    // locale = SPANISH;
-    // return null;
-    // }
-    //
-    // public String setEnglish(ActionEvent event) {
-    // Log.info("Cambiando idioma a Inglés.");
-    // locale = ENGLISH;
-    // return null;
-    // }
 
 }

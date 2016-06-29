@@ -10,17 +10,21 @@
 	<ui:define name="nav">
 		<div style="float: right">
 			<ui:repeat var="#{settings.idiomas}" value="idioma">
-				<p:commandButton id="set#{idioma.language}" update="@all"
-					actionListener="#{settings.changeLanguage}"
-					value="#{idioma.language}">
-					<f:setPropertyActionListener target="#{settings.localeSelected}"
-						value="#{idioma.code}" />
-				</p:commandButton>
+				<ui:repeat id="idiomas" value="#{settings.idiomas}" var="idioma">
+					<p:commandButton id="set_#{idioma.code}"
+						update="form-content form-footer"
+						actionListener="#{settings.changeLanguage}"
+						value="#{idioma.language}">
+						<f:attribute name="localeSelected" value="#{idioma.code}" />
+						<f:param name="id" value="#{param['id']}" />
+					</p:commandButton>
+				</ui:repeat>
 			</ui:repeat>
 		</div>
 	</ui:define>
 
 
+	<f:param name="id" value="#{param['id']}" />
 	<ui:define name="content">
 
 
