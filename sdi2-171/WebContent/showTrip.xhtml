@@ -14,7 +14,7 @@
 					actionListener="#{settings.changeLanguage}"
 					value="#{idioma.language}">
 					<f:setPropertyActionListener target="#{settings.localeSelected}"
-						value="{idioma.code}" />
+						value="#{idioma.code}" />
 				</p:commandButton>
 			</ui:repeat>
 		</div>
