@@ -3,15 +3,16 @@ package uo.sdi.business.manteniento;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.Timeout;
 
 import uo.sdi.infrastructure.Factories;
 import alb.util.log.Log;
 
-//@Singleton
-//@Startup
+@Singleton
+@Startup
 public class EJBMantenimiento {
 
-//    @Schedule(second = "10", minute = "*", hour = "*")
+    @Schedule(second = "10", minute = "*", hour = "*", persistent = false)
     public void runTask1() {
 	Log.trace("Actualizando viajes y asientos.");
 	
@@ -24,6 +25,11 @@ public class EJBMantenimiento {
 	//clase de negocio el funcionamiento exacto)
 	Factories.services.createSeatsService().actualizarAsientosAutomaticamente();
 	
+    }
+    
+    @Timeout
+   public void timeout(){
+	// Nada
     }
 
 }
