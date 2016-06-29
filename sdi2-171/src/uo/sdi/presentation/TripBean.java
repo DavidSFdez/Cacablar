@@ -60,15 +60,15 @@ public class TripBean implements Serializable {
 	    }
 	}
 
-//	Log.trace("Actualizando asientos.");
-//	Factories.services.createTripsService().updateTripsStatus();
-//	List<Application> applications = Factories.services
-//		.createApplicationService().getToUpdate();
-//	try {
-//	    Factories.services.createSeatsService().seatsToUpdate(applications);
-//	} catch (EntityAlreadyExistsException e) {
-//	    Log.trace("Se ha intentado actualizar un asiento ya actuaizado.");
-//	}
+	// Log.trace("Actualizando asientos.");
+	// Factories.services.createTripsService().updateTripsStatus();
+	// List<Application> applications = Factories.services
+	// .createApplicationService().getToUpdate();
+	// try {
+	// Factories.services.createSeatsService().seatsToUpdate(applications);
+	// } catch (EntityAlreadyExistsException e) {
+	// Log.trace("Se ha intentado actualizar un asiento ya actuaizado.");
+	// }
 
     }
 
@@ -168,7 +168,7 @@ public class TripBean implements Serializable {
 
     public String saveTrip(Long idUser) {
 	Log.trace("Iniciando salva de viaje.");
-	Log.debug("Viaje: "+trip);
+	Log.debug("Viaje: " + trip);
 	try {
 	    Factories.services.createTripsService().save(trip, idUser);
 	} catch (EntityAlreadyExistsException e) {
@@ -183,7 +183,7 @@ public class TripBean implements Serializable {
 	try {
 	    trip = Factories.services.createTripsService().findById(idTrip);
 	} catch (EntityNotFoundException e) {
-	    Log.error("Fracaso view trip",e);
+	    Log.error("Fracaso view trip", e);
 	    return "fracaso";
 	}
 	return "exito";
@@ -306,8 +306,8 @@ public class TripBean implements Serializable {
     public boolean isActive() {
 	return trip.getStatus().isOpen();
     }
-    
+
     private void addMessage(FacesMessage message) {
-   	FacesContext.getCurrentInstance().addMessage(null, message);
-       }
+	FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 }

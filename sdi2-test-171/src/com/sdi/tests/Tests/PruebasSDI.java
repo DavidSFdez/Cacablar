@@ -329,7 +329,7 @@ public class PruebasSDI {
     public void t12_Ins1ViajeAceptVal() {
 	logearse("user1", "user1");
 	irA(VIAJE + 203);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:formPedirPlaza:pedirPlazaButt");
 	click();
 	try {
@@ -343,7 +343,7 @@ public class PruebasSDI {
 	click();
 	logearse("user2", "user2");
 	irA(VIAJE + 203);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:panelPasajerosPeticiones:0:acceptApplication");
 	click();
 	// loguearse con user2
@@ -369,7 +369,7 @@ public class PruebasSDI {
 
 	logearse("user1", "user1");
 	irA(VIAJE + 204);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:formPedirPlaza:pedirPlazaButt");
 	click();
 	try {
@@ -383,9 +383,9 @@ public class PruebasSDI {
 	click();
 	logearse("user3", "user3");
 	irA(VIAJE + 204);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:panelPasajerosPeticiones:0:acceptApplication");
-			
+
 	click();
 	try {
 	    Thread.sleep(5000);
@@ -398,7 +398,7 @@ public class PruebasSDI {
 	click();
 	logearse("user2", "user2");
 	irA(VIAJE + 204);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:formPedirPlaza:pedirPlazaButt");
 	click();
 	try {
@@ -412,7 +412,7 @@ public class PruebasSDI {
 	click();
 	logearse("user3", "user3");
 	irA(VIAJE + 204);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:panelPasajerosPeticiones:0:acceptApplication");
 	click();
     }
@@ -427,7 +427,7 @@ public class PruebasSDI {
 
 	logearse("user2", "user2");
 	irA(VIAJE + 209);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:formPedirPlaza:pedirPlazaButt");
 	click();
 	try {
@@ -441,7 +441,7 @@ public class PruebasSDI {
 	click();
 	logearse("user1", "user1");
 	irA(VIAJE + 209);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:panelPasajerosPeticiones:0:acceptApplication");
 	click();
 	try {
@@ -455,7 +455,7 @@ public class PruebasSDI {
 	click();
 	logearse("user3", "user3");
 	irA(VIAJE + 209);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:formPedirPlaza:pedirPlazaButt");
 	click();
 	try {
@@ -469,7 +469,7 @@ public class PruebasSDI {
 	click();
 	logearse("user1", "user1");
 	irA(VIAJE + 209);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:panelPasajerosPeticiones:0:acceptApplication");
 	click();
 	try {
@@ -483,7 +483,7 @@ public class PruebasSDI {
 	click();
 	logearse("user4", "user4");
 	irA(VIAJE + 209);
-	//buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:formPedirPlaza:pedirPlazaButt");
 	click();
 	try {
@@ -495,7 +495,7 @@ public class PruebasSDI {
 	irA(URL);
 	buscarPorId("form-content:logout");
 	click();
-	
+
 	logearse("user1", "user1");
 	irA(VIAJE + 209);
 	textoPresentePagina(driver, "SIN_PLAZA");
@@ -512,10 +512,9 @@ public class PruebasSDI {
     public void t15_CancelNoPromotorVal() {
 	logearse("user5", "user5");
 	irA(VIAJE201);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt74:0:cancelButton");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt74:0:cancelButton");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:tableSeatsTripData:0:cancelButton");
-	
-	
+
 	click();
 	textoNoPresentePagina(driver, "Error");
 	// ir a pagina viaje user1
@@ -534,7 +533,7 @@ public class PruebasSDI {
     public void t16_Rech1ViajeVal() {
 	logearse("user3", "user3");
 	irA(VIAJE206);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt91:pedirPlazaButt");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:formPedirPlaza:pedirPlazaButt");
 	click();
 	try {
@@ -548,7 +547,7 @@ public class PruebasSDI {
 	click();
 	logearse("user5", "user5");
 	irA(VIAJE206);
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt95:0:acceptApplication");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:panelPasajerosPeticiones:0:acceptApplication");
 	click();
 	try {
@@ -557,7 +556,7 @@ public class PruebasSDI {
 
 	    e.printStackTrace();
 	}
-//	buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt74:0:cancelButton");
+	// buscarPorId("form-content:showTrip:PasajerosPeticiones:j_idt74:0:cancelButton");
 	buscarPorId("form-content:showTrip:PasajerosPeticiones:tableSeatsTripData:0:cancelButton");
 	click();
 	try {
@@ -617,16 +616,16 @@ public class PruebasSDI {
 	irA(LISTTRIPSURL);
 	textoPresentePagina(driver, "CiudadOrigen1");
 	textoPresentePagina(driver, "CiudadOrigen6");
-	
-	//buscarPorId("form-content:tablalistado:j_idt16:filter");
+
+	// buscarPorId("form-content:tablalistado:j_idt16:filter");
 	buscarPorId("form-content:tablalistado:thFilterDepatureCity:filter");
-	
+
 	click();
 	escrbir("6");
 	try {
 	    Thread.sleep(15000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	textoNoPresentePagina(driver, "CiudadOrigen1");
@@ -658,7 +657,7 @@ public class PruebasSDI {
 	try {
 	    Thread.sleep(15000);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	textoPresentePagina(driver, "CiudadOrigen1");
@@ -673,14 +672,15 @@ public class PruebasSDI {
 
     @Test
     public void t22_OpMante() {
-//	Hay un viaje metido en la base de datos con estado abierto en una fecha
-//	ya pasada, cuando salte por primera vez la clase de mantenimiento,
-//	cambiará su estado a cerrado. 
+	// Hay un viaje metido en la base de datos con estado abierto en una
+	// fecha
+	// ya pasada, cuando salte por primera vez la clase de mantenimiento,
+	// cambiará su estado a cerrado.
 	logearse("user13", "user13");
 	try {
-	    Thread.sleep(1000*65);
+	    Thread.sleep(1000 * 65);
 	} catch (InterruptedException e) {
-	    
+
 	    e.printStackTrace();
 	}
 	irA(VIAJE999);

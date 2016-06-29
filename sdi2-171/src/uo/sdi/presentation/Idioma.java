@@ -3,7 +3,7 @@ package uo.sdi.presentation;
 import java.util.Locale;
 
 public class Idioma {
-    
+
     private Locale locale;
     private String code;
     private String language;
@@ -31,7 +31,5 @@ public class Idioma {
     public void setCode(String code) {
 	this.code = code;
     }
-    
-    
 
 }

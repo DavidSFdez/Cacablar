@@ -14,8 +14,10 @@ public interface ApplicationService {
 
     List<Application> getToUpdate();
 
-    void acceptApplication(Application application) throws EntityAlreadyExistsException, EntityNotFoundException;
+    void acceptApplication(Application application)
+	    throws EntityAlreadyExistsException, EntityNotFoundException;
 
-    void cancelApplication(Application application) throws EntityAlreadyExistsException, EntityNotFoundException;
+    void cancelApplication(Application application)
+	    throws EntityAlreadyExistsException, EntityNotFoundException;
 
 }

@@ -16,23 +16,25 @@ import uo.sdi.business.impl.classes.seat.SeatsToUpdate;
 import uo.sdi.model.Application;
 import uo.sdi.model.Seat;
 
-public class SimpleSeatsService implements SeatsService{
+public class SimpleSeatsService implements SeatsService {
 
     @Override
-    public Seat findByUserAndTrip(Long idUser, Long idTrip) throws EntityNotFoundException {
+    public Seat findByUserAndTrip(Long idUser, Long idTrip)
+	    throws EntityNotFoundException {
 	return new SeatsFindByUserAndTrip().find(idUser, idTrip);
     }
 
     @Override
-    public void request(Long idTrip, Long idUser) throws EntityAlreadyExistsException {
+    public void request(Long idTrip, Long idUser)
+	    throws EntityAlreadyExistsException {
 
-	new SeatsRequest().request(idTrip,idUser);
-	
+	new SeatsRequest().request(idTrip, idUser);
+
     }
 
     @Override
     public void cancelSeat(Seat seat) throws EntityNotFoundException {
-	
+
 	new SeatsCancelSeat().cancel(seat);
     }
 
@@ -43,7 +45,8 @@ public class SimpleSeatsService implements SeatsService{
     }
 
     @Override
-    public Application findApplication(Long idUser, Long id) throws EntityNotFoundException {
+    public Application findApplication(Long idUser, Long id)
+	    throws EntityNotFoundException {
 	ApplicationsFind action = new ApplicationsFind();
 	return action.find(idUser, id);
     }
@@ -55,15 +58,16 @@ public class SimpleSeatsService implements SeatsService{
     }
 
     @Override
-    public void seatsToUpdate(List<Application> applications) throws EntityAlreadyExistsException {
+    public void seatsToUpdate(List<Application> applications)
+	    throws EntityAlreadyExistsException {
 	new SeatsToUpdate().update(applications);
-	
+
     }
 
     @Override
     public void actualizarAsientosAutomaticamente() {
 	new ApplicationsYSeatsActualizarAutomaticamente().actualizar();
-	
+
     }
 
 }

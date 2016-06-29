@@ -16,7 +16,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
-
 import alb.util.log.Log;
 
 @ManagedBean(name = "settings")

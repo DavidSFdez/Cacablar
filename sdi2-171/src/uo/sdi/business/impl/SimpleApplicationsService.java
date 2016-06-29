@@ -12,31 +12,33 @@ import uo.sdi.business.impl.classes.application.ApplicationsGetToUpdate;
 import uo.sdi.business.impl.classes.application.ApplicationsRemove;
 import uo.sdi.model.Application;
 
-public class SimpleApplicationsService implements ApplicationService{
+public class SimpleApplicationsService implements ApplicationService {
 
     @Override
-    public Application find(Long idTrip, Long idUser) throws EntityNotFoundException {
-	return new ApplicationsFind().find(idTrip,idUser);
-	
+    public Application find(Long idTrip, Long idUser)
+	    throws EntityNotFoundException {
+	return new ApplicationsFind().find(idTrip, idUser);
+
     }
 
     @Override
     public void remove(Long idUser, Long idTrip) throws EntityNotFoundException {
-	new ApplicationsRemove().remove(idUser,idTrip);
-	
+	new ApplicationsRemove().remove(idUser, idTrip);
+
     }
 
     @Override
     public List<Application> getToUpdate() {
-	
+
 	return new ApplicationsGetToUpdate().find();
     }
 
     @Override
-    public void acceptApplication(Application application) throws EntityAlreadyExistsException, EntityNotFoundException {
+    public void acceptApplication(Application application)
+	    throws EntityAlreadyExistsException, EntityNotFoundException {
 
 	new ApplicationsAccept().execute(application);
-	
+
     }
 
     @Override

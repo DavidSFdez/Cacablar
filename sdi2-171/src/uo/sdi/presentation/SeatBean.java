@@ -14,7 +14,7 @@ import uo.sdi.model.Seat;
 public class SeatBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     private Seat seat;
 
     public SeatBean() {
@@ -26,8 +26,6 @@ public class SeatBean implements Serializable {
 	return "exito";
     }
 
-  
-
     public String request(Long idUser, Long idTrip) {
 
 	try {
@@ -37,8 +35,7 @@ public class SeatBean implements Serializable {
 	}
 	return "exito";
     }
-   
-    
+
     public Seat getSeat() {
 	return seat;
     }

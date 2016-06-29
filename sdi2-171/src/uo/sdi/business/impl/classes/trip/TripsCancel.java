@@ -21,9 +21,6 @@ public class TripsCancel {
 
     public void cancel(Trip trip, Long idUser) throws EntityNotFoundException,
 	    EntityAlreadyExistsException {
-	// TODO Comprobar todas las condiciones para que se pueda cancelar,
-	// fechas, que sea promotor blabalbla
-	// TODO poner a excluidos a toda la peña que tenga asientos solicitados
 	Transaction transaction = Factories.persistence.createTransaction();
 	ApplicationDao ad = Factories.persistence.createApplicationDao();
 	SeatDao sd = Factories.persistence.createSeatDao();
@@ -53,7 +50,7 @@ public class TripsCancel {
 		    s.setTripId(trip.getId());
 		    s.setUserId(a.getUserId());
 		    sd.save(s);
-		    //borro las application
+		    // borro las application
 		    Long[] ids = { a.getUserId(), a.getTripId() };
 		    ad.delete(ids);
 		}
