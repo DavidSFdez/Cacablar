@@ -582,13 +582,11 @@ public class PruebasSDI {
     // (Probar algunas vistas)
     @Test
     public void t17_i18N1() {
-	textoPresentePagina(driver, "Bienvenido");
-	buscarPorId("form-nav:setEN");
+	textoPresentePagina(driver, "Identificarse");
+	buscarPorId("form-nav:idiomas:0:set_");
 	click();
-	buscarPorId("form-nav:setEN");
-	SeleniumUtils.textoPresentePagina(driver, "Welcome");
+	SeleniumUtils.textoPresentePagina(driver, "Log in");
 	irA(LOGINURL);
-	buscarPorId("form-nav:setEN");
 	SeleniumUtils.textoNoPresentePagina(driver, "Identificarse");
     }
 
@@ -596,20 +594,15 @@ public class PruebasSDI {
     // vuelta al idioma por defecto. (Probar algunas vistas)
     @Test
     public void t18_i18N2() {
-	textoPresentePagina(driver, "Bienvenido");
-	buscarPorId("form-nav:setEN");
+	textoPresentePagina(driver, "Identificarse");
+	buscarPorId("form-nav:idiomas:0:set_");
 	click();
-	buscarPorId("form-nav:setEN");
-	SeleniumUtils.textoPresentePagina(driver, "Welcome");
+	SeleniumUtils.textoPresentePagina(driver, "Log in");
 	irA(LOGINURL);
-	buscarPorId("form-nav:setEN");
-	SeleniumUtils.textoNoPresentePagina(driver, "Identificarse");
-	buscarPorId("form-nav:setES");
+	SeleniumUtils.textoNoPresentePagina(driver, "Nombre de usuario:");
+	buscarPorId("form-nav:idiomas:1:set_");
 	click();
-	irA(URL);
-	logearse("user1", "user1");
-	buscarPorId("form-content:logout");
-	textoPresentePagina(driver, "Desconectarse");
+	SeleniumUtils.textoPresentePagina(driver, "Nombre de usuario:");
 
     }
 
