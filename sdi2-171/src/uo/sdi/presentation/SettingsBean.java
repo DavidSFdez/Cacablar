@@ -15,7 +15,7 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
-import uo.sdi.presentation.Idioma;
+
 
 import alb.util.log.Log;
 

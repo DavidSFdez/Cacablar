@@ -12,7 +12,7 @@
 			<ui:repeat var="#{settings.idiomas}" value="idioma">
 				<ui:repeat id="idiomas" value="#{settings.idiomas}" var="idioma">
 					<p:commandButton id="set_#{idioma.code}"
-						update="form-content form-footer"
+						update="form-title form-content form-footer"
 						actionListener="#{settings.changeLanguage}"
 						value="#{idioma.language}">
 						<f:attribute name="localeSelected" value="#{idioma.code}" />

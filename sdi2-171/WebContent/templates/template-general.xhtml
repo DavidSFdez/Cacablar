@@ -18,16 +18,19 @@
 		<!-- <p>#{settings.locale}</p> -->
 
 		<div class="w3-container">
-			<h3>
-				<ui:insert name="title"></ui:insert>
-			</h3>
+			<h:form id="form-title">
+				<h3>
+					<ui:insert name="title"></ui:insert>
+				</h3>
+			</h:form>
 		</div>
 		<div class="w3-container">
 			<h:form id="form-nav">
 				<ui:insert name="nav">
 					<div style="float: right">
 						<ui:repeat id="idiomas" value="#{settings.idiomas}" var="idioma">
-							<p:commandButton id="set_#{idioma.code}" update="form-content form-footer"
+							<p:commandButton id="set_#{idioma.code}"
+								update="form-title form-content form-footer"
 								actionListener="#{settings.changeLanguage}"
 								value="#{idioma.language}">
 								<f:attribute name="localeSelected" value="#{idioma.code}" />
